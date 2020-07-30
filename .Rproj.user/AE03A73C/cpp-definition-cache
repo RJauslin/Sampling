@@ -1,0 +1,44 @@
+[
+    {
+        "file": "C:/Users/jauslinr/switchdrive/Sampling/Sampling/src/rcpparma_hello_world.cpp",
+        "file_last_write": 1596100027.0,
+        "definitions": [
+            {
+                "usr": "c:@F@rcpparma_hello_world#",
+                "kind": 6,
+                "parent_name": "",
+                "name": "rcpparma_hello_world",
+                "file": "C:/Users/jauslinr/switchdrive/Sampling/Sampling/src/rcpparma_hello_world.cpp",
+                "line": 18,
+                "column": 11
+            },
+            {
+                "usr": "c:@F@rcpparma_outerproduct#&1$@N@arma@S@Col>#d#",
+                "kind": 6,
+                "parent_name": "",
+                "name": "rcpparma_outerproduct(const arma::colvec &)",
+                "file": "C:/Users/jauslinr/switchdrive/Sampling/Sampling/src/rcpparma_hello_world.cpp",
+                "line": 31,
+                "column": 11
+            },
+            {
+                "usr": "c:@F@rcpparma_innerproduct#&1$@N@arma@S@Col>#d#",
+                "kind": 6,
+                "parent_name": "",
+                "name": "rcpparma_innerproduct(const arma::colvec &)",
+                "file": "C:/Users/jauslinr/switchdrive/Sampling/Sampling/src/rcpparma_hello_world.cpp",
+                "line": 39,
+                "column": 8
+            },
+            {
+                "usr": "c:@F@rcpparma_bothproducts#&1$@N@arma@S@Col>#d#",
+                "kind": 6,
+                "parent_name": "",
+                "name": "rcpparma_bothproducts(const arma::colvec &)",
+                "file": "C:/Users/jauslinr/switchdrive/Sampling/Sampling/src/rcpparma_hello_world.cpp",
+                "line": 48,
+                "column": 12
+            }
+        ]
+    }
+]
