@@ -22,6 +22,9 @@ Rcpp::List systematicDesign(arma::vec pik){
   double eps = 1e-13;
   double R = 1e+9;
 
+  
+  
+  
   //index of pik equal 1 or 0
   arma::uvec ones = arma::find(pik > (1-eps));
   arma::uvec zeros = arma::find(pik < eps);
