@@ -20,8 +20,6 @@ Rcpp::List systematicDesign(arma::vec pik){
 
   //Value to round value like -1e-17...
   double eps = 1e-13;
-  
-  
   double R = 1e+9;
 
   //index of pik equal 1 or 0
