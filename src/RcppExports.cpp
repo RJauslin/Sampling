@@ -6,6 +6,30 @@
 
 using namespace Rcpp;
 
+// choose
+long long int choose(int n, int k);
+RcppExport SEXP _Sampling_choose(SEXP nSEXP, SEXP kSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< int >::type n(nSEXP);
+    Rcpp::traits::input_parameter< int >::type k(kSEXP);
+    rcpp_result_gen = Rcpp::wrap(choose(n, k));
+    return rcpp_result_gen;
+END_RCPP
+}
+// samplen
+arma::mat samplen(int N, int n);
+RcppExport SEXP _Sampling_samplen(SEXP NSEXP, SEXP nSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< int >::type N(NSEXP);
+    Rcpp::traits::input_parameter< int >::type n(nSEXP);
+    rcpp_result_gen = Rcpp::wrap(samplen(N, n));
+    return rcpp_result_gen;
+END_RCPP
+}
 // systematicDesign
 Rcpp::List systematicDesign(arma::vec pik);
 RcppExport SEXP _Sampling_systematicDesign(SEXP pikSEXP) {
@@ -19,6 +43,8 @@ END_RCPP
 }
 
 static const R_CallMethodDef CallEntries[] = {
+    {"_Sampling_choose", (DL_FUNC) &_Sampling_choose, 2},
+    {"_Sampling_samplen", (DL_FUNC) &_Sampling_samplen, 2},
     {"_Sampling_systematicDesign", (DL_FUNC) &_Sampling_systematicDesign, 1},
     {NULL, NULL, 0}
 };

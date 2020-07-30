@@ -94,7 +94,7 @@ Rcpp::List systematicDesign(arma::vec pik){
 
 
   // return(final);
-  return Rcpp::List::create(Rcpp::Named("p")=p,
+  return Rcpp::List::create(Rcpp::Named("probas")=p,
                             Rcpp::Named("samples") = final);
 }
 
