@@ -1,47 +1,35 @@
-# R for travis: see documentation at https://docs.travis-ci.com/user/languages/r
-language: r
-
-r:
-  - devel
-- release
-
-r_build_args: --no-build-vignettes
-
-os:
-  - linux
-- osx
-
-dist: trusty
-osx_image: xcode9.4
-
-warnings_are_errors: false  
-
-before_install:
-  - chmod +x configure
-- chmod +x cleanup  
-
-addons:
-  apt:
-  packages:
-  - libudunits2-dev
-- gdal-bin
-- libgdal1-dev
-- libproj-dev
-
-brew_packages:
+--- 
+addons: ~
+apt: ~
+before_install: 
+  - "chmod +x configure"
+  - "chmod +x cleanup"
+brew_packages: 
   - udunits
-
-jobs:
-  exclude:
-  - os: osx
+dist: trusty
+exclude: 
+  - 
+    os: osx
+jobs: ~
+language: ry
+os: 
+  - linux
+  - osx
+osx_image: xcode9.4
+packages: 
+  - libudunits2-dev
+  - gdal-bin
+  - libgdal1-dev
+  - libproj-dev
 r: devel
-
-r_packages:
+r_build_args: "--no-build-vignettes"
+r_packages: 
   - knitr
-- rmarkdown
-- ggplot2
-- ggvoronoi
-- sampling
-- BalancedSampling
-- sp
-- sf
+  - rmarkdown
+  - ggplot2
+  - ggvoronoi
+  - sampling
+  - BalancedSampling
+  - sp
+  - sf
+warnings_are_errors: false
