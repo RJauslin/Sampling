@@ -18,6 +18,64 @@ choose <- function(n, k) {
     .Call(`_Sampling_choose`, n, k)
 }
 
+#' @title title
+#'
+#' @description
+#' description
+#'
+#'
+#' @param x x
+#'
+#' @details
+#'
+#' details
+#'
+#' @return a vector
+#'
+#'
+#' @author Raphaël Jauslin \email{raphael.jauslin@@unine.ch}
+#'
+#' @seealso
+#' func
+#'
+#' @examples
+#'
+#' @export
+flightphase_arma2 <- function(X, pik, EPS = 0.0000001) {
+    .Call(`_Sampling_flightphase_arma2`, X, pik, EPS)
+}
+
+#' @title title
+#'
+#' @description
+#' description
+#'
+#'
+#' @param x x
+#'
+#' @details
+#'
+#' details
+#'
+#' @return a vector
+#'
+#'
+#' @author Raphaël Jauslin \email{raphael.jauslin@@unine.ch}
+#'
+#' @seealso
+#' func
+#'
+#' @examples
+#'
+#' @export
+flightphase_arma <- function(X, pik, EPS = 0.0000001) {
+    .Call(`_Sampling_flightphase_arma`, X, pik, EPS)
+}
+
+onestep <- function(B, pik, EPS = 0.0000001) {
+    .Call(`_Sampling_onestep`, B, pik, EPS)
+}
+
 #' @title All samples of fixed size
 #'
 #' @description

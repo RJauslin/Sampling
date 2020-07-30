@@ -18,6 +18,45 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
+// flightphase_arma2
+arma::vec flightphase_arma2(arma::mat X, arma::vec pik, double EPS);
+RcppExport SEXP _Sampling_flightphase_arma2(SEXP XSEXP, SEXP pikSEXP, SEXP EPSSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< arma::mat >::type X(XSEXP);
+    Rcpp::traits::input_parameter< arma::vec >::type pik(pikSEXP);
+    Rcpp::traits::input_parameter< double >::type EPS(EPSSEXP);
+    rcpp_result_gen = Rcpp::wrap(flightphase_arma2(X, pik, EPS));
+    return rcpp_result_gen;
+END_RCPP
+}
+// flightphase_arma
+arma::vec flightphase_arma(arma::mat X, arma::vec pik, double EPS);
+RcppExport SEXP _Sampling_flightphase_arma(SEXP XSEXP, SEXP pikSEXP, SEXP EPSSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< arma::mat >::type X(XSEXP);
+    Rcpp::traits::input_parameter< arma::vec >::type pik(pikSEXP);
+    Rcpp::traits::input_parameter< double >::type EPS(EPSSEXP);
+    rcpp_result_gen = Rcpp::wrap(flightphase_arma(X, pik, EPS));
+    return rcpp_result_gen;
+END_RCPP
+}
+// onestep
+arma::vec onestep(arma::mat B, arma::vec pik, double EPS);
+RcppExport SEXP _Sampling_onestep(SEXP BSEXP, SEXP pikSEXP, SEXP EPSSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< arma::mat >::type B(BSEXP);
+    Rcpp::traits::input_parameter< arma::vec >::type pik(pikSEXP);
+    Rcpp::traits::input_parameter< double >::type EPS(EPSSEXP);
+    rcpp_result_gen = Rcpp::wrap(onestep(B, pik, EPS));
+    return rcpp_result_gen;
+END_RCPP
+}
 // samplen
 arma::mat samplen(int N, int n);
 RcppExport SEXP _Sampling_samplen(SEXP NSEXP, SEXP nSEXP) {
@@ -44,6 +83,9 @@ END_RCPP
 
 static const R_CallMethodDef CallEntries[] = {
     {"_Sampling_choose", (DL_FUNC) &_Sampling_choose, 2},
+    {"_Sampling_flightphase_arma2", (DL_FUNC) &_Sampling_flightphase_arma2, 3},
+    {"_Sampling_flightphase_arma", (DL_FUNC) &_Sampling_flightphase_arma, 3},
+    {"_Sampling_onestep", (DL_FUNC) &_Sampling_onestep, 3},
     {"_Sampling_samplen", (DL_FUNC) &_Sampling_samplen, 2},
     {"_Sampling_systematicDesign", (DL_FUNC) &_Sampling_systematicDesign, 1},
     {NULL, NULL, 0}

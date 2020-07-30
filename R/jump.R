@@ -8,7 +8,7 @@
 #'
 #' @examples
 jump <- function(X, pik) {
-
+  EPS = 1e-11
   N = length(pik)
   p = round(length(X)/length(pik))
   X <- array(X, c(N, p))
