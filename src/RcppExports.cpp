@@ -6,6 +6,73 @@
 
 using namespace Rcpp;
 
+// rrefBal
+void rrefBal(NumericMatrix& M);
+RcppExport SEXP _Sampling_rrefBal(SEXP MSEXP) {
+BEGIN_RCPP
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< NumericMatrix& >::type M(MSEXP);
+    rrefBal(M);
+    return R_NilValue;
+END_RCPP
+}
+// onestepfastflightcube
+NumericVector onestepfastflightcube(NumericVector prob, NumericMatrix Bm);
+RcppExport SEXP _Sampling_onestepfastflightcube(SEXP probSEXP, SEXP BmSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< NumericVector >::type prob(probSEXP);
+    Rcpp::traits::input_parameter< NumericMatrix >::type Bm(BmSEXP);
+    rcpp_result_gen = Rcpp::wrap(onestepfastflightcube(prob, Bm));
+    return rcpp_result_gen;
+END_RCPP
+}
+// flightphase
+NumericVector flightphase(NumericVector prob, NumericMatrix Xbal);
+RcppExport SEXP _Sampling_flightphase(SEXP probSEXP, SEXP XbalSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< NumericVector >::type prob(probSEXP);
+    Rcpp::traits::input_parameter< NumericMatrix >::type Xbal(XbalSEXP);
+    rcpp_result_gen = Rcpp::wrap(flightphase(prob, Xbal));
+    return rcpp_result_gen;
+END_RCPP
+}
+// mat_as_Numeric
+Rcpp::NumericMatrix mat_as_Numeric(arma::mat x);
+RcppExport SEXP _Sampling_mat_as_Numeric(SEXP xSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< arma::mat >::type x(xSEXP);
+    rcpp_result_gen = Rcpp::wrap(mat_as_Numeric(x));
+    return rcpp_result_gen;
+END_RCPP
+}
+// mat_as_arma
+arma::mat mat_as_arma(Rcpp::NumericMatrix x);
+RcppExport SEXP _Sampling_mat_as_arma(SEXP xSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< Rcpp::NumericMatrix >::type x(xSEXP);
+    rcpp_result_gen = Rcpp::wrap(mat_as_arma(x));
+    return rcpp_result_gen;
+END_RCPP
+}
+// svdArma
+Rcpp::List svdArma(arma::mat x);
+RcppExport SEXP _Sampling_svdArma(SEXP xSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< arma::mat >::type x(xSEXP);
+    rcpp_result_gen = Rcpp::wrap(svdArma(x));
+    return rcpp_result_gen;
+END_RCPP
+}
 // choose
 long long int choose(int n, int k);
 RcppExport SEXP _Sampling_choose(SEXP nSEXP, SEXP kSEXP) {
@@ -82,6 +149,12 @@ END_RCPP
 }
 
 static const R_CallMethodDef CallEntries[] = {
+    {"_Sampling_rrefBal", (DL_FUNC) &_Sampling_rrefBal, 1},
+    {"_Sampling_onestepfastflightcube", (DL_FUNC) &_Sampling_onestepfastflightcube, 2},
+    {"_Sampling_flightphase", (DL_FUNC) &_Sampling_flightphase, 2},
+    {"_Sampling_mat_as_Numeric", (DL_FUNC) &_Sampling_mat_as_Numeric, 1},
+    {"_Sampling_mat_as_arma", (DL_FUNC) &_Sampling_mat_as_arma, 1},
+    {"_Sampling_svdArma", (DL_FUNC) &_Sampling_svdArma, 1},
     {"_Sampling_choose", (DL_FUNC) &_Sampling_choose, 2},
     {"_Sampling_flightphase_arma2", (DL_FUNC) &_Sampling_flightphase_arma2, 3},
     {"_Sampling_flightphase_arma", (DL_FUNC) &_Sampling_flightphase_arma, 3},

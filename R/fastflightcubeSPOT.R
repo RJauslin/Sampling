@@ -27,7 +27,7 @@
 #' set.seed(1)
 #' eps <- 1e-13
 #' library(Matrix)
-#' N <- 500
+#' N <- 300
 #' Pik <- matrix(c(sampling::inclusionprobabilities(runif(N),70),
 #' sampling::inclusionprobabilities(runif(N),50),
 #' sampling::inclusionprobabilities(runif(N),30)),ncol = 3)
@@ -36,8 +36,9 @@
 #' dim(X)
 #' order = 2
 #' EPS = 1e-11
-#'
-#'
+#' 
+#' system.time(fastflightcubeSPOT(X,pik))
+#' system.time(sampling::fastflightcube(X,pik))
 #'
 #'
 #'

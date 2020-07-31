@@ -219,18 +219,11 @@ system.time(test <- fast.flight.cube(X,pik))
 
 
 
-
-
-
-
-
-
-
 rm(list = ls())
  set.seed(1)
  eps <- 1e-13
  library(Matrix)
- N <- 200
+ N <- 250
  Pik <- matrix(c(sampling::inclusionprobabilities(runif(N),70),
  sampling::inclusionprobabilities(runif(N),50),
  sampling::inclusionprobabilities(runif(N),30)),ncol = 3)
@@ -243,11 +236,17 @@ rm(list = ls())
  EPS = 1e-11
 
  system.time(test <- flightphase_arma(X,pik))
+ # t(X)%*%test
+ # t(X)%*%pik
+ system.time(pikstar <- fastflightcubeSPOT(X, pik))
+ # t(X)%*%pikstar
+ # t(X)%*%pik
+ system.time(pikstar2 <- sampling::fastflightcube(X, pik))
+ # t(X)%*%pikstar2
+ # t(X)%*%pik
+ system.time(test <- BalancedSampling::flightphase(pik,X))
+ system.time(test <- fast.flight.cube(X,pik))
  t(X)%*%test
  t(X)%*%pik
- system.time(pikstar <- fastflightcubeSPOT(X, pik))
- t(A)%*%pikstar
- t(A)%*%pik
  
-
 */
