@@ -1,4 +1,5 @@
-#include <Rcpp.h>
+#include <RcppArmadillo.h>
+#include "NumericToArma.h"
 using namespace Rcpp;
 
 //**********************************************
@@ -239,10 +240,13 @@ NumericVector flightphase(NumericVector prob, NumericMatrix Xbal){
   
   // remaining are index from done to N-1
   while( done < N ){
+  // while( B.ncol() > 1){
+    
     // find cluster of size howmany
     howmany = std::min(naux+1,N-done);
+    
     // stop if there are less than naux units left
-    if(howmany <= naux){done=N; break;}
+    // if(howmany <= naux){done=N; break;} WHY ?!?!?!
     
     if( howmany > 1 ){
       NumericVector p_small(howmany);
@@ -258,6 +262,15 @@ NumericVector flightphase(NumericVector prob, NumericMatrix Xbal){
       }
       // std::cout << index << std::endl;
       // std::cout << B << std::endl;
+      if(B.ncol() < (naux+1)){
+        std::cout << "B.ncol smaller" << std::endl;
+        arma::mat B_arma = mat_as_arma(B);
+        arma::mat kern = arma::null(B_arma.t());
+        if(kern.empty()){
+          break;
+        }
+      }
+      
       p_small = onestepfastflightcube(p_small,B);
       // update prob
       for(i=0;i<howmany;i++){
