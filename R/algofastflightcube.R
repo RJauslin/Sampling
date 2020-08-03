@@ -21,13 +21,13 @@ algofastflightcube2 <- function(X, pik) {
   pp = p + 2
   B <- array(B, c(p + 1, p))
 
-  ### HERE MODIFY B SUCH THAT IN FACT WE DO NOT USE p but loop until
 
   while (pp <= N) {
     tmp <- reduxB(B)
     tmp$B
     B[tmp$ind_row,tmp$ind_col]
     B_tmp <- tmp$B
+    print(dim(B_tmp))
 
     psik_tmp <- psik[tmp$ind_row]
     psik[tmp$ind_row]<- jump(B_tmp, psik_tmp)
@@ -46,9 +46,10 @@ algofastflightcube2 <- function(X, pik) {
       }
     }
     # print(ind)
-    # image(as(B,"sparseMatrix"))
+    # print(image(as(B,"sparseMatrix"))
+    # Sys.sleep(2)
   }
-
+  
   if (length(pik[(pik > EPS & pik < (1 - EPS))]) == (p + 1)){
     psik <- jump(B, psik)
     pik[ind] = psik

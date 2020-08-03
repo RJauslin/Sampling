@@ -30,24 +30,36 @@
 #' B_redux[1:10,1:20]
 #' B[tmp$ind_row[1:10],tmp$ind_col[1:20]]
 reduxB <- function(B){
+  
+  # initialization
   eps <- 1e-12
   sums <- colSums(B)
   sums_row <- rowSums(B)
   B_out <- B
   ind_col <- seq(1,ncol(B_out),1)
   ind_row <- seq(1,nrow(B_out),1)
-  while(any( sums < eps | sums < -eps)){
-
+  
+  
+  step = 1
+  # loop while any colsums equal to 0 exists
+  while(any( sums > eps | sums < -eps)){
+    print(step)
+    # exctract right column
     ind_col <- ind_col[which(sums > eps | sums < -eps)]
     B_out <- B_out[,sums > eps | sums < -eps]
 
 
-    # remove duplicated rows
-    ind_row <- ind_row[!duplicated(B_out)]
-    B_out <- B_out[!duplicated(B_out), ]
+    # calculate rowsums and remove rowsums equal to 0
     sums_row <- rowSums(B_out)
     ind_row <- ind_row[which(sums_row > eps | sums_row < -eps)]
-
+    B_out <- B_out[sums_row > eps | sums_row < -eps,]
+    
+    # remove duplicated rows
+    ind_row <- ind_row[!duplicated(B_out,MARGIN = 1)]
+    B_out <- B_out[!duplicated(B_out,MARGIN = 1), ]
+    sums_row <- rowSums(B_out)
+    
+    # if we have enough row then compress B, if equal drop one variable then break
     if(length(ind_row) > (ncol(B_out) + 1)){
       B_out <- B_out[which(sums_row > eps | sums_row < -eps)[1:(ncol(B_out) + 1)],]
     }else{
@@ -55,13 +67,16 @@ reduxB <- function(B){
         ind_col <- ind_col[-length(ind_col)]
         B_out <- B_out[,-ncol(B_out)]
       }
-      # print("break")
       break;
     }
-    # print(dim(B_out))
+    # update sums
     sums <- colSums(B_out)
+    step = step + 1;
   }
+  # last update rowsums
   sums_row <- rowSums(B_out)
-  ind_row <- ind_row[which(sums_row > eps | sums_row < -eps)]
+  # ind_row <- ind_row[which(sums_row > eps | sums_row < -eps)]
+  
+  # return the compressed matrix and the column and row that represent B_out.
   return(list(B = B_out,ind_col = ind_col, ind_row = ind_row))
 }

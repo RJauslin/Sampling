@@ -262,7 +262,7 @@ NumericVector flightphase(NumericVector prob, NumericMatrix Xbal){
       }
       // std::cout << index << std::endl;
       // std::cout << B << std::endl;
-      if(B.ncol() < (naux+1)){
+      if(howmany <= naux){
         std::cout << "B.ncol smaller" << std::endl;
         arma::mat B_arma = mat_as_arma(B);
         arma::mat kern = arma::null(B_arma.t());

@@ -37,8 +37,9 @@
 #' order = 2
 #' EPS = 1e-11
 #' 
-#' system.time(fastflightcubeSPOT(X,pik))
-#' system.time(sampling::fastflightcube(X,pik))
+#' system.time(fastflightcubeSPOT(X,pik,order = 2))
+#' system.time(fastflightcubeSPOT(X,pik,order = 1))
+#' system.time(sampling::fastflightcube(X,pik, order = 2))
 #'
 #'
 #'
