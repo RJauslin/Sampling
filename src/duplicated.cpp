@@ -38,30 +38,45 @@ Rcpp::List reduxArma(arma::mat B) {
   arma::uvec ind_row = arma::regspace<arma::uvec>(0,1,B_out.n_rows-1);
   
   int step = 1;
-  while(any(sums > eps || sums < -eps)){
-    std::cout << step << std::endl;
+  // while(any(sums < eps && sums > -eps)){ // loop while we find some colSums equal to 0
+  while(step < 2){ // loop while we find some colSums equal to 0
+    
+    std::cout << step << std::endl<< std::endl;
+    
+    // std::cout << B_out.n_cols << std::endl;
+    // std::cout << B_out.n_rows << std::endl;
+    
     // intialize column an row index
-    ind_col = ind_col.elem(arma::find(sums > eps || sums < -eps));
+    arma::uvec coltmp = arma::find(sums > eps || sums < -eps);
+    
+    ind_col = ind_col.elem(coltmp); // keep right index of B
+    B_out = B_out.cols(coltmp);
     
     
-    // extract B_out
-    B_out = B_out.cols(ind_col);
-    
-    
-    // calculate unique rows_sums and unique rows
+    // calculate rowSums
     sums_row = sum(B_out,1);
-    ind_row = ind_row.elem(arma::find(sums_row > eps || sums_row < -eps)); // find > 0 or < 0
-    B_out = B_out.rows(ind_row); // update B_out
-    sums_row = sum(B_out,1); // recompute sums_row
-    ind_row = ind_row.elem(arma::find(unique(sums_row)));// find unique value
+    arma::uvec rowtmp = arma::find(sums_row > eps || sums_row < -eps);
     
+    ind_row = ind_row.elem(rowtmp); // keep rignt index of B
+    B_out = B_out.rows(rowtmp); // update B_out
     
-    // std::cout << ind_row << std::endl;
+    // recompute rowSums
+    sums_row = sum(B_out,1); 
     
+    arma::uvec uniqueRow = arma::find_unique(sums_row);
+    ind_row = ind_row.elem(uniqueRow);// find unique value
+    B_out = B_out.rows(uniqueRow); // update B_out
+    
+    // std::cout << B_out << std::endl;
+    std::cout << ind_row << std::endl;
+
     if(ind_row.size() > (B_out.n_cols + 1)){
       arma::uvec f = arma::regspace<arma::uvec>(0,1,B_out.n_cols);
+      ind_row = ind_row.elem(f);
       B_out = B_out.rows(ind_row.elem(f));
     }else{
+      // std::cout << ind_row.size() << std::endl;
+      // std::cout << B_out.n_cols << std::endl;
       if(ind_row.size() == B_out.n_cols){
         arma::uvec c = arma::regspace<arma::uvec>(0,1,B_out.n_cols-2);
         arma::uvec r = arma::regspace<arma::uvec>(0,1,B_out.n_cols-1);
@@ -70,8 +85,16 @@ Rcpp::List reduxArma(arma::mat B) {
         ind_col = ind_col.elem(c);
         
         B_out = B_out(r,c);
+      }else{
+        arma::uvec r = arma::regspace<arma::uvec>(0,1,ind_row.size()-1);
+        arma::uvec c = arma::regspace<arma::uvec>(0,1,ind_row.size()-2);
+        
+        ind_row = ind_row.elem(r);
+        ind_col = ind_col.elem(c);
+        
+        B_out = B_out(r,c);
       }
-      break;
+      // break;
     }
     
     sums = sum(B_out,0);
@@ -88,21 +111,56 @@ Rcpp::List reduxArma(arma::mat B) {
 
 /*** R
 rm(list = ls())
-set.seed(1)
+set.seed(3)
 B <- as.matrix(rsparsematrix(100,100,density = 0.001))
 image(as(B,"sparseMatrix"))
-reduxArma(B)
-reduxB(B)
+test1 <- reduxArma(B)
+test2 <- reduxB(B)
+test1
+test2
+
+
+rm(list = ls())
+set.seed(1)
+B <- as.matrix(rsparsematrix(200,200,density = 0.01))
+image(as(B,"sparseMatrix"))
+system.time(test1 <- reduxArma(B))
+dim(test1$B)
+system.time(test2 <- reduxB(B))
+dim(test2$B)
+
+
+
+rm(list = ls())
+set.seed(1)
+eps <- 1e-13
+library(Matrix)
+N <- 50
+Pik <- matrix(c(sampling::inclusionprobabilities(runif(N),5),
+sampling::inclusionprobabilities(runif(N),10),
+sampling::inclusionprobabilities(runif(N),15)),ncol = 3)
+X <- PM(Pik)$PM
+image(as(X,"sparseMatrix"))
+pik <- PM(Pik)$P
+dim(X)
+order = 2
+EPS = 1e-11
+
+system.time(test1 <- reduxArma(X))
+system.time(test2 <- reduxB(X))
 
 
 
 
 rm(list = ls())
 set.seed(1)
-B <- as.matrix(rsparsematrix(200,200,density = 0.001))
+B <- as.matrix(rsparsematrix(4000,3000,density = 0.0001))
 image(as(B,"sparseMatrix"))
 system.time(test1 <- reduxArma(B))
+dim(test1$B)
 system.time(test2 <- reduxB(B))
+dim(test2$B)
+
 
 */
 

@@ -25,7 +25,8 @@
 #' A <-  X/pik
 #' B <- A[1:(p + 1), ]
 #'
-#' tmp <- reduxB(B)
+#' tmp <- reduxArma(B)
+#' tmp2 <- reduxB(B)
 #' B_redux <- tmp$B
 #' B_redux[1:10,1:20]
 #' B[tmp$ind_row[1:10],tmp$ind_col[1:20]]
@@ -42,32 +43,55 @@ reduxB <- function(B){
   
   step = 1
   # loop while any colsums equal to 0 exists
-  while(any( sums > eps | sums < -eps)){
+  while(any( sums < eps & sums > -eps)){
     print(step)
+    
     # exctract right column
-    ind_col <- ind_col[which(sums > eps | sums < -eps)]
-    B_out <- B_out[,sums > eps | sums < -eps]
+    coltmp <- which(sums > eps | sums < -eps)
+    ind_col <- ind_col[coltmp]
+    B_out <- B_out[,coltmp]
 
 
     # calculate rowsums and remove rowsums equal to 0
     sums_row <- rowSums(B_out)
-    ind_row <- ind_row[which(sums_row > eps | sums_row < -eps)]
-    B_out <- B_out[sums_row > eps | sums_row < -eps,]
+    rowtmp <- which(sums_row > eps | sums_row < -eps)
+    ind_row <- ind_row[rowtmp]
+    B_out <- B_out[rowtmp,]
     
-    # remove duplicated rows
-    ind_row <- ind_row[!duplicated(B_out,MARGIN = 1)]
-    B_out <- B_out[!duplicated(B_out,MARGIN = 1), ]
+    
+    # unique 
+    sums_row <- rowSums(B_out)
+    uniqueRow <- !duplicated(sums_row)
+    ind_row <- ind_row[uniqueRow]
+    B_out <- B_out[uniqueRow, ]
     sums_row <- rowSums(B_out)
     
+    
+    
+    ## remove duplicated rows
+    # uniqueRow <- !duplicated(B_out,MARGIN = 1)
+    # ind_row <- ind_row[uniqueRow]
+    # B_out <- B_out[uniqueRow, ]
+    # sums_row <- rowSums(B_out)
+    
+    
+    
     # if we have enough row then compress B, if equal drop one variable then break
-    if(length(ind_row) > (ncol(B_out) + 1)){
-      B_out <- B_out[which(sums_row > eps | sums_row < -eps)[1:(ncol(B_out) + 1)],]
+    if(length(ind_row) >= (ncol(B_out) + 1)){
+      ind_row <- ind_row[1:(ncol(B_out)+1)]
+      # B_out <- B_out[which(sums_row > eps | sums_row < -eps)[1:(ncol(B_out) + 1)],]
+      B_out <- B_out[1:(ncol(B_out)+1),]
     }else{
       if(length(ind_row) == length(ind_col)){
+        print("sakjdbf")
         ind_col <- ind_col[-length(ind_col)]
         B_out <- B_out[,-ncol(B_out)]
+      }else{
+        
+        ind_col <- ind_col[1:(length(ind_row)-1)]
+        B_out <- B_out[,1:length(ind_row)-1]
       }
-      break;
+      # break;
     }
     # update sums
     sums <- colSums(B_out)
