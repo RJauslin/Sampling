@@ -6,6 +6,17 @@
 
 using namespace Rcpp;
 
+// all0
+bool all0(NumericVector x);
+RcppExport SEXP _Sampling_all0(SEXP xSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< NumericVector >::type x(xSEXP);
+    rcpp_result_gen = Rcpp::wrap(all0(x));
+    return rcpp_result_gen;
+END_RCPP
+}
 // rrefBal
 void rrefBal(NumericMatrix& M);
 RcppExport SEXP _Sampling_rrefBal(SEXP MSEXP) {
@@ -14,6 +25,17 @@ BEGIN_RCPP
     Rcpp::traits::input_parameter< NumericMatrix& >::type M(MSEXP);
     rrefBal(M);
     return R_NilValue;
+END_RCPP
+}
+// ukern
+NumericVector ukern(NumericMatrix Bm);
+RcppExport SEXP _Sampling_ukern(SEXP BmSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< NumericMatrix >::type Bm(BmSEXP);
+    rcpp_result_gen = Rcpp::wrap(ukern(Bm));
+    return rcpp_result_gen;
 END_RCPP
 }
 // onestepfastflightcube
@@ -283,7 +305,9 @@ END_RCPP
 }
 
 static const R_CallMethodDef CallEntries[] = {
+    {"_Sampling_all0", (DL_FUNC) &_Sampling_all0, 1},
     {"_Sampling_rrefBal", (DL_FUNC) &_Sampling_rrefBal, 1},
+    {"_Sampling_ukern", (DL_FUNC) &_Sampling_ukern, 1},
     {"_Sampling_onestepfastflightcube", (DL_FUNC) &_Sampling_onestepfastflightcube, 2},
     {"_Sampling_flightphase", (DL_FUNC) &_Sampling_flightphase, 2},
     {"_Sampling_mat_as_Numeric", (DL_FUNC) &_Sampling_mat_as_Numeric, 1},

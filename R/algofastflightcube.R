@@ -27,7 +27,7 @@ algofastflightcube2 <- function(X, pik) {
     tmp$B
     B[tmp$ind_row,tmp$ind_col]
     B_tmp <- tmp$B
-    print(dim(B_tmp))
+    # print(dim(B_tmp))
 
     psik_tmp <- psik[tmp$ind_row]
     psik[tmp$ind_row]<- jump(B_tmp, psik_tmp)

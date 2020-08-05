@@ -23,21 +23,28 @@
 #'
 #'
 #' @examples
+#' \dontrun{
 #' ## Temporal inclusion probabilities with 3 waves and 4 units ##
 #' Pik <- matrix(c(0.6,0.3,0.3,
 #'                 0.2,0.4,0.9,
 #'                 0.3,0.2,0.5,
 #'                 0.9,0.1,0.3), ncol = 3, byrow = TRUE)
 #'
-#' N <- 200
-#' Pik <- matrix(c(sampling::inclusionprobabilities(runif(N),20),
-#' sampling::inclusionprobabilities(runif(N),30),
-#' sampling::inclusionprobabilities(runif(N),40)),ncol = 3)
+#' N <- 400
+#' n1 <- round(N/3)
+#' n2 <- round(N/5)
+#' n3 <- round(N/7)
+#' Pik <- matrix(c(sampling::inclusionprobabilities(runif(N),n1),
+#' sampling::inclusionprobabilities(runif(N),n2),
+#' sampling::inclusionprobabilities(runif(N),n3)),ncol = 3)
 #'
 #' ## ORFS method ##
-#' res <- Orfs(Pik, tol = 1e-6)
-#' res
-#'
+#' system.time(res <- Orfs(Pik, tol = 1e-6))
+#' utilisateur     système      écoulé 
+#' # 156.53        1.29      157.84
+#' # system.time(res <- Orfs(Pik, tol = 1e-6)) #### WITH samplecubeSPOT
+#' 
+#'}
 #' @export
 Orfs <- function(Pik, tol = 1e-9)
 {
@@ -47,12 +54,12 @@ Orfs <- function(Pik, tol = 1e-9)
   t <- ncol(Pik)
 
   # SYSTEMATIC SAMPLING
-  res    <- SystematicDesign(Pik[1,])
+  res    <- systematicDesign(Pik[1,])
   S      <- as.matrix(res$samples)
   P      <- res$probas
   R      <- rep(1, each = length(res$probas))
   for(i in 2:N){
-    res  <- SystematicDesign(Pik[i,])
+    res  <- systematicDesign(Pik[i,])
     S    <- rbind(S,res$samples)
     P    <- c(P, res$probas)
     R    <- c(R, rep(i, each = length(res$probas)))

@@ -35,7 +35,8 @@ p <- ncol(X)
 A <-  X/pik
 B <- A[1:(p + 1), ]
 
-tmp <- reduxB(B)
+tmp <- reduxArma(B)
+tmp2 <- reduxB(B)
 B_redux <- tmp$B
 B_redux[1:10,1:20]
 B[tmp$ind_row[1:10],tmp$ind_col[1:20]]

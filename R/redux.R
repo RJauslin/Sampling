@@ -44,7 +44,7 @@ reduxB <- function(B){
   step = 1
   # loop while any colsums equal to 0 exists
   while(any( sums < eps & sums > -eps)){
-    print(step)
+    # print(step)
     
     # exctract right column
     coltmp <- which(sums > eps | sums < -eps)
@@ -60,19 +60,19 @@ reduxB <- function(B){
     
     
     # unique 
-    sums_row <- rowSums(B_out)
-    uniqueRow <- !duplicated(sums_row)
-    ind_row <- ind_row[uniqueRow]
-    B_out <- B_out[uniqueRow, ]
-    sums_row <- rowSums(B_out)
+    # sums_row <- rowSums(B_out)
+    # uniqueRow <- !duplicated(sums_row)
+    # ind_row <- ind_row[uniqueRow]
+    # B_out <- B_out[uniqueRow, ]
+    # sums_row <- rowSums(B_out)
     
     
     
     ## remove duplicated rows
-    # uniqueRow <- !duplicated(B_out,MARGIN = 1)
-    # ind_row <- ind_row[uniqueRow]
-    # B_out <- B_out[uniqueRow, ]
-    # sums_row <- rowSums(B_out)
+    uniqueRow <- !duplicated(B_out,MARGIN = 1)
+    ind_row <- ind_row[uniqueRow]
+    B_out <- B_out[uniqueRow, ]
+    sums_row <- rowSums(B_out)
     
     
     

@@ -23,21 +23,28 @@ Select temporal samples of fixed size at each wave.
 It allows to generate an optimal temporal rotation in the selection of units using the systematic sampling method.
 }
 \examples{
+\dontrun{
 ## Temporal inclusion probabilities with 3 waves and 4 units ##
 Pik <- matrix(c(0.6,0.3,0.3,
                 0.2,0.4,0.9,
                 0.3,0.2,0.5,
                 0.9,0.1,0.3), ncol = 3, byrow = TRUE)
 
-N <- 200
-Pik <- matrix(c(sampling::inclusionprobabilities(runif(N),20),
-sampling::inclusionprobabilities(runif(N),30),
-sampling::inclusionprobabilities(runif(N),40)),ncol = 3)
+N <- 400
+n1 <- round(N/3)
+n2 <- round(N/5)
+n3 <- round(N/7)
+Pik <- matrix(c(sampling::inclusionprobabilities(runif(N),n1),
+sampling::inclusionprobabilities(runif(N),n2),
+sampling::inclusionprobabilities(runif(N),n3)),ncol = 3)
 
 ## ORFS method ##
-res <- Orfs(Pik, tol = 1e-6)
-res
+system.time(res <- Orfs(Pik, tol = 1e-6))
+utilisateur     systÃ¨me      Ã©coulÃ© 
+# 156.53        1.29      157.84
+# system.time(res <- Orfs(Pik, tol = 1e-6)) #### WITH samplecubeSPOT
 
+}
 }
 \author{
 Esther Eustache \email{esther.eustache@unine.ch}
