@@ -33,20 +33,29 @@ Z=cbind(matrix(rbinom(N*q,1,1/2),c(N,q)))
 B=cbind(Z,-Z)
 X <- cbind(X,B*pik)
 
+A <- X/pik
+
 
 piks <- round(fastflightcube(X,pik),9)
 piksBal <- round(BalancedSampling::flightphase(pik,X),9)
 piksSam <- round(SamplingC::flightphase(pik,X),9)
 pikCube <- round(BalancedSampling::cube(pik,X),9)
-
+pikCube01 <- rep(0,N)
+pikCube01[pikCube] <- 1
 
 dim(X)
 length(which(piks > eps & piks < (1-eps)))
 length(which(piksBal > eps & piksBal < (1-eps)))
 length(which(piksSam > eps & piksSam < (1-eps)))
 
+piks[which(piks > eps & piks < (1-eps))]
+piksSam[which(piksSam > eps & piksSam < (1-eps))]
 
 
+
+t(A)%*%piksSam # correct
+t(A)%*%pik # correct
+t(A)%*%pikCube01
 
 
 ##############

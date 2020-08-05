@@ -24,6 +24,7 @@ all0(c(rep(0,N),1))
 */
 
 
+
 // [[Rcpp::depends(RcppArmadillo)]]
 //' @title title
 //'
@@ -256,35 +257,37 @@ NumericVector onestepfastflightcube(NumericVector prob, NumericMatrix Bm){
   rrefBal(Bm);
   
   // std::cout << Bm << std::endl;
-  for(i=(nrow-1);i>=0;i--){
-    // find lead (first nonzero entry on row) if exists
-    // if no lead, i.e lead = ncol, do nothing
-    // if lead, the variables after are either set or free
-    // free variables are alternately set to 1 or -1
-    lead = 0;
-    for(j=0;j<ncol;j++){if(Bm(i,j)==0.0){lead++;}else{break;}}
-    // lead found
-    if(lead<ncol){
-      v = 0.0;
-      for(j=lead+1;j<ncol;j++){
-        if( uset[j] == 0 ){
-          uset[j] = 1;
-          free *= -1.0;
-          u[j] = free;
-        }
-        v -= u[j]*Bm(i,j);
-      }
-      u[lead] = v/Bm(i,lead);
-      uset[lead] = 1;
-    }
-  }
-  // unset u[i] are free and are set to 1 or -1, can only exist at beginning
-  for(i=0;i<ncol;i++){
-    if( uset[i] == 0 ){
-      free *= -1.0;
-      u[i] = free;
-    }else{break;}
-  }
+  // for(i=(nrow-1);i>=0;i--){
+  //   // find lead (first nonzero entry on row) if exists
+  //   // if no lead, i.e lead = ncol, do nothing
+  //   // if lead, the variables after are either set or free
+  //   // free variables are alternately set to 1 or -1
+  //   lead = 0;
+  //   for(j=0;j<ncol;j++){if(Bm(i,j)==0.0){lead++;}else{break;}}
+  //   // lead found
+  //   if(lead<ncol){
+  //     v = 0.0;
+  //     for(j=lead+1;j<ncol;j++){
+  //       if( uset[j] == 0 ){
+  //         uset[j] = 1;
+  //         free *= -1.0;
+  //         u[j] = free;
+  //       }
+  //       v -= u[j]*Bm(i,j);
+  //     }
+  //     u[lead] = v/Bm(i,lead);
+  //     uset[lead] = 1;
+  //   }
+  // }
+  // // unset u[i] are free and are set to 1 or -1, can only exist at beginning
+  // for(i=0;i<ncol;i++){
+  //   if( uset[i] == 0 ){
+  //     free *= -1.0;
+  //     u[i] = free;
+  //   }else{break;}
+  // }
+  
+  u = ukern(Bm);
   
   // find lambda1 and lambda2
   for(i=0;i<ncol;i++){
@@ -399,8 +402,15 @@ NumericVector flightphase(NumericVector prob, NumericMatrix Xbal){
         //   break;
         // }
         
+        // check singular value --> if all are greater than 0 (eps)
+        // then the matrix has a empty kernel -> IN FACT LOWER (certainly due to the all function)
+        // arma::vec s = arma::svd(B_arma);
+        // std::cout << s << std::endl;
+        // if(arma::all(s > eps)){
+          // break;
+        // }
         
-        // std::cout << "B.ncol smaller" << std::endl;
+        
         arma::mat B_arma = mat_as_arma(B);
         arma::mat kern = arma::null(B_arma.t());
         if(kern.empty()){
