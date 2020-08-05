@@ -2,7 +2,7 @@
 # Generator token: 10BE3573-1514-4C36-9D1C-5A225CD40393
 
 all0 <- function(x) {
-    .Call(`_Sampling_all0`, x)
+    .Call(`_SamplingC_all0`, x)
 }
 
 #' @title title
@@ -29,7 +29,7 @@ all0 <- function(x) {
 #'
 #' @export
 rrefBal <- function(M) {
-    invisible(.Call(`_Sampling_rrefBal`, M))
+    invisible(.Call(`_SamplingC_rrefBal`, M))
 }
 
 #' @title title
@@ -56,7 +56,7 @@ rrefBal <- function(M) {
 #'
 #' @export
 ukern <- function(Bm) {
-    .Call(`_Sampling_ukern`, Bm)
+    .Call(`_SamplingC_ukern`, Bm)
 }
 
 #' @title title
@@ -83,7 +83,7 @@ ukern <- function(Bm) {
 #'
 #' @export
 onestepfastflightcube <- function(prob, Bm) {
-    .Call(`_Sampling_onestepfastflightcube`, prob, Bm)
+    .Call(`_SamplingC_onestepfastflightcube`, prob, Bm)
 }
 
 #' @title title
@@ -110,7 +110,7 @@ onestepfastflightcube <- function(prob, Bm) {
 #'
 #' @export
 flightphase <- function(prob, Xbal) {
-    .Call(`_Sampling_flightphase`, prob, Xbal)
+    .Call(`_SamplingC_flightphase`, prob, Xbal)
 }
 
 #' @title Arma matrix to NumericMatrix
@@ -146,19 +146,19 @@ NULL
 #'
 #' @export
 mat_as_Numeric <- function(x) {
-    .Call(`_Sampling_mat_as_Numeric`, x)
+    .Call(`_SamplingC_mat_as_Numeric`, x)
 }
 
 #'
 #' @export
 mat_as_arma <- function(x) {
-    .Call(`_Sampling_mat_as_arma`, x)
+    .Call(`_SamplingC_mat_as_arma`, x)
 }
 
 #'
 #' @export
 svdArma <- function(x) {
-    .Call(`_Sampling_svdArma`, x)
+    .Call(`_SamplingC_svdArma`, x)
 }
 
 #' @title Binomial coefficient
@@ -175,7 +175,7 @@ svdArma <- function(x) {
 #'
 #' @export
 choose <- function(n, k) {
-    .Call(`_Sampling_choose`, n, k)
+    .Call(`_SamplingC_choose`, n, k)
 }
 
 #' @title Arma matrix to NumericMatrix
@@ -279,59 +279,59 @@ NULL
 #'
 #' @export
 reduxArma <- function(B) {
-    .Call(`_Sampling_reduxArma`, B)
+    .Call(`_SamplingC_reduxArma`, B)
 }
 
 #'
 #' @export
 all_sug <- function(x) {
-    .Call(`_Sampling_all_sug`, x)
+    .Call(`_SamplingC_all_sug`, x)
 }
 
 #'
 #' @export
 colSumsRcpp <- function(x) {
-    .Call(`_Sampling_colSumsRcpp`, x)
+    .Call(`_SamplingC_colSumsRcpp`, x)
 }
 
 #'
 #' @export
 rowSumsRcpp <- function(x) {
-    .Call(`_Sampling_rowSumsRcpp`, x)
+    .Call(`_SamplingC_rowSumsRcpp`, x)
 }
 
 #'
 #' @export
 reduxRcpp <- function(B) {
-    .Call(`_Sampling_reduxRcpp`, B)
+    .Call(`_SamplingC_reduxRcpp`, B)
 }
 
 #'
 #' @export
 duplicatedMatrixRcpp <- function(x) {
-    .Call(`_Sampling_duplicatedMatrixRcpp`, x)
+    .Call(`_SamplingC_duplicatedMatrixRcpp`, x)
 }
 
 #'
 #' @export
 check_equal <- function(x, y) {
-    .Call(`_Sampling_check_equal`, x, y)
+    .Call(`_SamplingC_check_equal`, x, y)
 }
 
 #'
 #' @export
 duplicatedCols <- function(B) {
-    .Call(`_Sampling_duplicatedCols`, B)
+    .Call(`_SamplingC_duplicatedCols`, B)
 }
 
 #'
 #' @export
 duplicatedRows <- function(B) {
-    .Call(`_Sampling_duplicatedRows`, B)
+    .Call(`_SamplingC_duplicatedRows`, B)
 }
 
 is_duplicate_row <- function(r, x) {
-    .Call(`_Sampling_is_duplicate_row`, r, x)
+    .Call(`_SamplingC_is_duplicate_row`, r, x)
 }
 
 #' @title title
@@ -358,7 +358,7 @@ is_duplicate_row <- function(r, x) {
 #'
 #' @export
 flightphase_arma2 <- function(X, pik, EPS = 0.0000001) {
-    .Call(`_Sampling_flightphase_arma2`, X, pik, EPS)
+    .Call(`_SamplingC_flightphase_arma2`, X, pik, EPS)
 }
 
 #' @title title
@@ -385,11 +385,11 @@ flightphase_arma2 <- function(X, pik, EPS = 0.0000001) {
 #'
 #' @export
 flightphase_arma <- function(X, pik, EPS = 0.0000001) {
-    .Call(`_Sampling_flightphase_arma`, X, pik, EPS)
+    .Call(`_SamplingC_flightphase_arma`, X, pik, EPS)
 }
 
 onestep <- function(B, pik, EPS = 0.0000001) {
-    .Call(`_Sampling_onestep`, B, pik, EPS)
+    .Call(`_SamplingC_onestep`, B, pik, EPS)
 }
 
 #' @title Column sums for sparseMatrix
@@ -413,7 +413,7 @@ onestep <- function(B, pik, EPS = 0.0000001) {
 #'
 #' @export
 colSumsiter <- function(x) {
-    .Call(`_Sampling_colSumsiter`, x)
+    .Call(`_SamplingC_colSumsiter`, x)
 }
 
 #' @title Row sums on sparse matrix.
@@ -437,7 +437,7 @@ colSumsiter <- function(x) {
 #' 
 #' @export
 rowSumsiter <- function(x) {
-    .Call(`_Sampling_rowSumsiter`, x)
+    .Call(`_SamplingC_rowSumsiter`, x)
 }
 
 #' @title All samples of fixed size
@@ -456,7 +456,7 @@ rowSumsiter <- function(x) {
 #' 
 #' @export
 samplen <- function(N, n) {
-    .Call(`_Sampling_samplen`, N, n)
+    .Call(`_SamplingC_samplen`, N, n)
 }
 
 #' @encoding UTF-8
@@ -474,6 +474,6 @@ samplen <- function(N, n) {
 #'
 #' @export
 systematicDesign <- function(pik) {
-    .Call(`_Sampling_systematicDesign`, pik)
+    .Call(`_SamplingC_systematicDesign`, pik)
 }
 

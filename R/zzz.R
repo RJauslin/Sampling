@@ -7,7 +7,7 @@
 #' @encoding UTF-8
 #' @import Matrix
 #' 
-#' @useDynLib Sampling, .registration = TRUE
+#' @useDynLib SamplingC, .registration = TRUE
 #' 
 #' 
 #' @importFrom Rcpp sourceCpp
