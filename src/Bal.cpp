@@ -375,7 +375,7 @@ NumericVector flightphase(NumericVector prob, NumericMatrix Xbal){
     howmany = std::min(naux+1,N-done);
     
     // stop if there are less than naux units left
-    if(howmany <= naux){done=N; break;} //WHY ?!?!?!
+    // if(howmany <= naux){done=N; break;} //WHY ?!?!?!
     
     if( howmany > 1 ){
       NumericVector p_small(howmany);
@@ -391,7 +391,7 @@ NumericVector flightphase(NumericVector prob, NumericMatrix Xbal){
       }
       // std::cout << index << std::endl;
       // std::cout << B << std::endl;
-      // if(howmany <= naux){
+      if(howmany <= naux){
         
         // NumericVector u = ukern(B);
         // std::cout << u << std::endl;
@@ -400,13 +400,13 @@ NumericVector flightphase(NumericVector prob, NumericMatrix Xbal){
         // }
         
         
-        // // std::cout << "B.ncol smaller" << std::endl;
-        // arma::mat B_arma = mat_as_arma(B);
-        // arma::mat kern = arma::null(B_arma.t());
-        // if(kern.empty()){
-        //   break;
-        // }
-      // }
+        // std::cout << "B.ncol smaller" << std::endl;
+        arma::mat B_arma = mat_as_arma(B);
+        arma::mat kern = arma::null(B_arma.t());
+        if(kern.empty()){
+          break;
+        }
+      }
       
       p_small = onestepfastflightcube(p_small,B);
       // update prob

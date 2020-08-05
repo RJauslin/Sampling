@@ -8,6 +8,11 @@ rm(list = ls())
 eps=1e-12
 
 
+library(devtools)
+install_github("Rjauslin/SamplingC@master")
+library(SamplingC)
+
+
 ##############
 #
 # Some examples to show that the function flightphase of package BalancedSampling
@@ -31,7 +36,7 @@ X <- cbind(X,B*pik)
 
 piks <- round(fastflightcube(X,pik),9)
 piksBal <- round(BalancedSampling::flightphase(pik,X),9)
-piksSam <- round(Sampling::flightphase(pik,X),9)
+piksSam <- round(SamplingC::flightphase(pik,X),9)
 pikCube <- round(BalancedSampling::cube(pik,X),9)
 
 
@@ -69,7 +74,7 @@ X <- cbind(X,B*pik)
 
 system.time(piks <- round(fastflightcube(X,pik),9))
 system.time(piksBal <- round(BalancedSampling::flightphase(pik,X),9))
-system.time(piksSam <- round(Sampling::flightphase(pik,X),9))
+system.time(piksSam <- round(SamplingC::flightphase(pik,X),9))
 system.time(test <- flightphase_arma(X,pik))
 # system.time(pikCube <- round(BalancedSampling::cube(pik,X),9))
 
