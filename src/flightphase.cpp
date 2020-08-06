@@ -96,6 +96,8 @@ arma::vec flightphase_arma2(arma::mat X,arma::vec pik,double EPS=0.0000001){
         break;
       }
     }
+    // std::cout << B.n_cols << std::endl;
+    // std::cout << B.n_rows << std::endl << std::endl;
     
     /*
      * onestep flightphase with the sub-pik and sub-matrix B
@@ -180,7 +182,8 @@ arma::vec flightphase_arma(arma::mat X,arma::vec pik,double EPS=0.0000001){
     pik.elem(i) =  onestep(B,pik.elem(i));
     i = arma::find(pik > EPS && pik < (1-EPS), J+1, "first");
     B = (A.rows(i)).t();
-    // std::cout << B << std::endl;
+    // std::cout << B.n_cols << std::endl;
+    // std::cout << B.n_rows << std::endl << std::endl;
     if(i.size() < (J+1)){
       arma::mat kern = arma::null(B);
       if(kern.empty()){

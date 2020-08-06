@@ -291,7 +291,7 @@
     },
     {
         "file": "C:/Users/jauslinr/switchdrive/SamplingC/SamplingC/src/Bal.cpp",
-        "file_last_write": 1596639773.0,
+        "file_last_write": 1596717497.0,
         "definitions": [
             {
                 "usr": "c:@F@all0#$@N@Rcpp@S@Vector>#VI14#@N@Rcpp@ST>1#T@PreserveStorage#",
@@ -299,26 +299,8 @@
                 "parent_name": "",
                 "name": "all0(Rcpp::NumericVector)",
                 "file": "C:/Users/jauslinr/switchdrive/SamplingC/SamplingC/src/Bal.cpp",
-                "line": 16,
+                "line": 17,
                 "column": 6
-            },
-            {
-                "usr": "c:@F@rrefBal#&$@N@Rcpp@S@Matrix>#VI14#@N@Rcpp@ST>1#T@PreserveStorage#",
-                "kind": 6,
-                "parent_name": "",
-                "name": "rrefBal(Rcpp::NumericMatrix &)",
-                "file": "C:/Users/jauslinr/switchdrive/SamplingC/SamplingC/src/Bal.cpp",
-                "line": 53,
-                "column": 6
-            },
-            {
-                "usr": "c:@F@ukern#$@N@Rcpp@S@Matrix>#VI14#@N@Rcpp@ST>1#T@PreserveStorage#",
-                "kind": 6,
-                "parent_name": "",
-                "name": "ukern(Rcpp::NumericMatrix)",
-                "file": "C:/Users/jauslinr/switchdrive/SamplingC/SamplingC/src/Bal.cpp",
-                "line": 143,
-                "column": 15
             },
             {
                 "usr": "c:@F@onestepfastflightcube#$@N@Rcpp@S@Vector>#VI14#@N@Rcpp@ST>1#T@PreserveStorage#$@N@Rcpp@S@Matrix>#VI14#@N@Rcpp@ST>1#T@PreserveStorage#",
@@ -326,7 +308,7 @@
                 "parent_name": "",
                 "name": "onestepfastflightcube(Rcpp::NumericVector, Rcpp::NumericMatrix)",
                 "file": "C:/Users/jauslinr/switchdrive/SamplingC/SamplingC/src/Bal.cpp",
-                "line": 243,
+                "line": 55,
                 "column": 15
             },
             {
@@ -335,8 +317,32 @@
                 "parent_name": "",
                 "name": "flightphase(Rcpp::NumericVector, Rcpp::NumericMatrix)",
                 "file": "C:/Users/jauslinr/switchdrive/SamplingC/SamplingC/src/Bal.cpp",
-                "line": 344,
+                "line": 156,
                 "column": 15
+            }
+        ]
+    },
+    {
+        "file": "C:/Users/jauslinr/switchdrive/SamplingC/SamplingC/src/BalArma.cpp",
+        "file_last_write": 1596718528.0,
+        "definitions": [
+            {
+                "usr": "c:@F@onestepfastflightcubeArma#$@N@arma@S@Col>#d#$@N@arma@S@Mat>#d#",
+                "kind": 6,
+                "parent_name": "",
+                "name": "onestepfastflightcubeArma(arma::vec, arma::mat)",
+                "file": "C:/Users/jauslinr/switchdrive/SamplingC/SamplingC/src/BalArma.cpp",
+                "line": 32,
+                "column": 11
+            },
+            {
+                "usr": "c:@F@flightphaseArma#$@N@arma@S@Col>#d#$@N@arma@S@Mat>#d#",
+                "kind": 6,
+                "parent_name": "",
+                "name": "flightphaseArma(arma::vec, arma::mat)",
+                "file": "C:/Users/jauslinr/switchdrive/SamplingC/SamplingC/src/BalArma.cpp",
+                "line": 142,
+                "column": 11
             }
         ]
     },
@@ -510,6 +516,30 @@
         ]
     },
     {
+        "file": "C:/Users/jauslinr/switchdrive/SamplingC/SamplingC/src/flightphaseSPOT.cpp",
+        "file_last_write": 1596707880.0,
+        "definitions": [
+            {
+                "usr": "c:@F@onestepfastflightcubeSPOT#$@N@Rcpp@S@Vector>#VI14#@N@Rcpp@ST>1#T@PreserveStorage#$@N@Rcpp@S@Matrix>#VI14#@N@Rcpp@ST>1#T@PreserveStorage#",
+                "kind": 6,
+                "parent_name": "",
+                "name": "onestepfastflightcubeSPOT(Rcpp::NumericVector, Rcpp::NumericMatrix)",
+                "file": "C:/Users/jauslinr/switchdrive/SamplingC/SamplingC/src/flightphaseSPOT.cpp",
+                "line": 35,
+                "column": 15
+            },
+            {
+                "usr": "c:@F@flightphaseSPOT#$@N@Rcpp@S@Vector>#VI14#@N@Rcpp@ST>1#T@PreserveStorage#$@N@Rcpp@S@Matrix>#VI14#@N@Rcpp@ST>1#T@PreserveStorage#",
+                "kind": 6,
+                "parent_name": "",
+                "name": "flightphaseSPOT(Rcpp::NumericVector, Rcpp::NumericMatrix)",
+                "file": "C:/Users/jauslinr/switchdrive/SamplingC/SamplingC/src/flightphaseSPOT.cpp",
+                "line": 136,
+                "column": 15
+            }
+        ]
+    },
+    {
         "file": "C:/Users/jauslinr/switchdrive/SamplingC/SamplingC/src/onestep.cpp",
         "file_last_write": 1596633707.0,
         "definitions": [
@@ -531,7 +561,7 @@
     },
     {
         "file": "C:/Users/jauslinr/switchdrive/SamplingC/SamplingC/src/reduxArma.cpp",
-        "file_last_write": 1596698291.0,
+        "file_last_write": 1596704230.0,
         "definitions": [
             {
                 "usr": "c:@F@reduxArma#$@N@arma@S@Mat>#d#",
@@ -543,6 +573,11 @@
                 "column": 12
             }
         ]
+    },
+    {
+        "file": "C:/Users/jauslinr/switchdrive/SamplingC/SamplingC/src/reduxArma.h",
+        "file_last_write": 1596703761.0,
+        "definitions": []
     },
     {
         "file": "C:/Users/jauslinr/switchdrive/SamplingC/SamplingC/src/rowcolSumsiter.cpp",
@@ -574,6 +609,46 @@
         "definitions": []
     },
     {
+        "file": "C:/Users/jauslinr/switchdrive/SamplingC/SamplingC/src/rrefArma.cpp",
+        "file_last_write": 1596717299.0,
+        "definitions": [
+            {
+                "usr": "c:@F@rrefArma#&$@N@arma@S@Mat>#d#",
+                "kind": 6,
+                "parent_name": "",
+                "name": "rrefArma(arma::mat &)",
+                "file": "C:/Users/jauslinr/switchdrive/SamplingC/SamplingC/src/rrefArma.cpp",
+                "line": 29,
+                "column": 6
+            }
+        ]
+    },
+    {
+        "file": "C:/Users/jauslinr/switchdrive/SamplingC/SamplingC/src/rrefArma.h",
+        "file_last_write": 1596717411.0,
+        "definitions": []
+    },
+    {
+        "file": "C:/Users/jauslinr/switchdrive/SamplingC/SamplingC/src/rrefBal.cpp",
+        "file_last_write": 1596701768.0,
+        "definitions": [
+            {
+                "usr": "c:@F@rrefBal#&$@N@Rcpp@S@Matrix>#VI14#@N@Rcpp@ST>1#T@PreserveStorage#",
+                "kind": 6,
+                "parent_name": "",
+                "name": "rrefBal(Rcpp::NumericMatrix &)",
+                "file": "C:/Users/jauslinr/switchdrive/SamplingC/SamplingC/src/rrefBal.cpp",
+                "line": 30,
+                "column": 6
+            }
+        ]
+    },
+    {
+        "file": "C:/Users/jauslinr/switchdrive/SamplingC/SamplingC/src/rrefBal.h",
+        "file_last_write": 1596701873.0,
+        "definitions": []
+    },
+    {
         "file": "C:/Users/jauslinr/switchdrive/SamplingC/SamplingC/src/samplen.cpp",
         "file_last_write": 1596633707.0,
         "definitions": [
@@ -600,6 +675,36 @@
                 "file": "C:/Users/jauslinr/switchdrive/SamplingC/SamplingC/src/systematicDesign.cpp",
                 "line": 19,
                 "column": 12
+            }
+        ]
+    },
+    {
+        "file": "C:/Users/jauslinr/switchdrive/SamplingC/SamplingC/src/ukern.cpp",
+        "file_last_write": 1596717436.0,
+        "definitions": [
+            {
+                "usr": "c:@F@ukern#$@N@Rcpp@S@Matrix>#VI14#@N@Rcpp@ST>1#T@PreserveStorage#",
+                "kind": 6,
+                "parent_name": "",
+                "name": "ukern(Rcpp::NumericMatrix)",
+                "file": "C:/Users/jauslinr/switchdrive/SamplingC/SamplingC/src/ukern.cpp",
+                "line": 30,
+                "column": 15
+            }
+        ]
+    },
+    {
+        "file": "C:/Users/jauslinr/switchdrive/SamplingC/SamplingC/src/ukernArma.cpp",
+        "file_last_write": 1596717732.0,
+        "definitions": [
+            {
+                "usr": "c:@F@ukernArma#$@N@arma@S@Mat>#d#",
+                "kind": 6,
+                "parent_name": "",
+                "name": "ukernArma(arma::mat)",
+                "file": "C:/Users/jauslinr/switchdrive/SamplingC/SamplingC/src/ukernArma.cpp",
+                "line": 30,
+                "column": 11
             }
         ]
     }

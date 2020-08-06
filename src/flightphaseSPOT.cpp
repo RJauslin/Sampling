@@ -263,7 +263,7 @@ EPS = 1e-11
 
 test <- flightphaseSPOT(pik,X)
 
-test <- SamplingC::flightphase(pik,X)
+test <- SamplingC::flightphaseArma(pik,X)
 test <- sampling::fastflightcube(X,pik,order = 2)
 test <- BalancedSampling::flightphase(pik,X)
 

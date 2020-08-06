@@ -178,28 +178,40 @@ arma::vec flightphaseArma(arma::vec prob, arma::mat Xbal){
     // while( B.ncol() > 1){
     
     // find cluster of size howmany
-    howmany = std::min(naux+1,N-done);
+    howmany = std::min(naux + 1,N-done);
     
     // stop if there are less than naux units left
-    if(howmany <= naux){
-      done=N;
-      break;
-    } //WHY ?!?!?!
+    // if(howmany <= naux){
+    //   done=N;
+    //   break;
+    // } //WHY ?!?!?!
     
     if( howmany > 1 ){
       arma::vec p_small(howmany);
       arma::vec dists(howmany); dists = 1e+20;
       arma::vec index_small(howmany);
-      arma::mat B(howmany-1,howmany);
+      // arma::mat B(howmany-1,howmany);
+      arma::mat B(naux,howmany);
       
       
       for(int i = 0;i < howmany; i++){
         index_small[i] = index[done+i];
-        for(int j = 0;j < howmany-1;j++){
+        for(int j = 0;j < naux;j++){
           B(j,i) = Xbal(index_small[i],j)/prob[index_small[i]];
         }
         p_small[i] = p[index_small[i]];
       }
+      
+      if(howmany < naux + 1){
+        arma::mat kern = arma::null(B);
+        if(kern.empty()){
+          break;  
+        }
+      }
+      
+        //   emp = true;
+        //   // break;
+        // }
       // std::cout << index << std::endl;
       // std::cout << B << std::endl;
       // if(howmany <= naux){
@@ -235,6 +247,8 @@ arma::vec flightphaseArma(arma::vec prob, arma::mat Xbal){
       // std::cout << B << std::endl;
       
       p_small = onestepfastflightcubeArma(p_small,B);
+      
+      
       // update prob
       for(int i = 0;i < howmany;i++){
         p[index_small[i]] = p_small[i];
@@ -256,10 +270,6 @@ arma::vec flightphaseArma(arma::vec prob, arma::mat Xbal){
     }
   }
   
-  
-  // arma::mat B_arma = mat_as_arma(B);
-  // arma::uvec i = arma::find(pik > EPS && pik < (1-EPS), J+1, "first");
-  // 
   
   // round
   for(int i = 0;i < N;i++){
