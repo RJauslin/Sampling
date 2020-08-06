@@ -400,24 +400,15 @@
     },
     {
         "file": "C:/Users/jauslinr/switchdrive/SamplingC/SamplingC/src/duplicated.cpp",
-        "file_last_write": 1596633707.0,
+        "file_last_write": 1596696604.0,
         "definitions": [
-            {
-                "usr": "c:@F@reduxArma#$@N@arma@S@Mat>#d#",
-                "kind": 6,
-                "parent_name": "",
-                "name": "reduxArma(arma::mat)",
-                "file": "C:/Users/jauslinr/switchdrive/SamplingC/SamplingC/src/duplicated.cpp",
-                "line": 27,
-                "column": 12
-            },
             {
                 "usr": "c:@F@all_sug#$@N@Rcpp@S@Vector>#VI10#@N@Rcpp@ST>1#T@PreserveStorage#",
                 "kind": 6,
                 "parent_name": "",
                 "name": "all_sug(Rcpp::LogicalVector)",
                 "file": "C:/Users/jauslinr/switchdrive/SamplingC/SamplingC/src/duplicated.cpp",
-                "line": 180,
+                "line": 18,
                 "column": 6
             },
             {
@@ -426,7 +417,7 @@
                 "parent_name": "",
                 "name": "colSumsRcpp(const Rcpp::NumericMatrix &)",
                 "file": "C:/Users/jauslinr/switchdrive/SamplingC/SamplingC/src/duplicated.cpp",
-                "line": 205,
+                "line": 43,
                 "column": 15
             },
             {
@@ -435,7 +426,7 @@
                 "parent_name": "",
                 "name": "rowSumsRcpp(const Rcpp::NumericMatrix &)",
                 "file": "C:/Users/jauslinr/switchdrive/SamplingC/SamplingC/src/duplicated.cpp",
-                "line": 238,
+                "line": 76,
                 "column": 15
             },
             {
@@ -444,7 +435,7 @@
                 "parent_name": "",
                 "name": "reduxRcpp(Rcpp::NumericMatrix)",
                 "file": "C:/Users/jauslinr/switchdrive/SamplingC/SamplingC/src/duplicated.cpp",
-                "line": 268,
+                "line": 106,
                 "column": 15
             },
             {
@@ -453,7 +444,7 @@
                 "parent_name": "",
                 "name": "duplicatedMatrixRcpp(Rcpp::NumericVector)",
                 "file": "C:/Users/jauslinr/switchdrive/SamplingC/SamplingC/src/duplicated.cpp",
-                "line": 320,
+                "line": 158,
                 "column": 15
             },
             {
@@ -462,7 +453,7 @@
                 "parent_name": "",
                 "name": "check_equal(Rcpp::NumericVector, Rcpp::NumericVector)",
                 "file": "C:/Users/jauslinr/switchdrive/SamplingC/SamplingC/src/duplicated.cpp",
-                "line": 344,
+                "line": 182,
                 "column": 6
             },
             {
@@ -471,7 +462,7 @@
                 "parent_name": "",
                 "name": "duplicatedCols(Rcpp::NumericMatrix)",
                 "file": "C:/Users/jauslinr/switchdrive/SamplingC/SamplingC/src/duplicated.cpp",
-                "line": 375,
+                "line": 213,
                 "column": 15
             },
             {
@@ -480,7 +471,7 @@
                 "parent_name": "",
                 "name": "duplicatedRows(Rcpp::NumericMatrix)",
                 "file": "C:/Users/jauslinr/switchdrive/SamplingC/SamplingC/src/duplicated.cpp",
-                "line": 423,
+                "line": 261,
                 "column": 15
             },
             {
@@ -489,7 +480,7 @@
                 "parent_name": "",
                 "name": "is_duplicate_row(R_xlen_t, Rcpp::LogicalMatrix)",
                 "file": "C:/Users/jauslinr/switchdrive/SamplingC/SamplingC/src/duplicated.cpp",
-                "line": 462,
+                "line": 300,
                 "column": 6
             }
         ]
@@ -537,6 +528,21 @@
         "file": "C:/Users/jauslinr/switchdrive/SamplingC/SamplingC/src/onestep.h",
         "file_last_write": 1596633707.0,
         "definitions": []
+    },
+    {
+        "file": "C:/Users/jauslinr/switchdrive/SamplingC/SamplingC/src/reduxArma.cpp",
+        "file_last_write": 1596698291.0,
+        "definitions": [
+            {
+                "usr": "c:@F@reduxArma#$@N@arma@S@Mat>#d#",
+                "kind": 6,
+                "parent_name": "",
+                "name": "reduxArma(arma::mat)",
+                "file": "C:/Users/jauslinr/switchdrive/SamplingC/SamplingC/src/reduxArma.cpp",
+                "line": 27,
+                "column": 12
+            }
+        ]
     },
     {
         "file": "C:/Users/jauslinr/switchdrive/SamplingC/SamplingC/src/rowcolSumsiter.cpp",

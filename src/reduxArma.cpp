@@ -103,8 +103,8 @@ Rcpp::List reduxArma(arma::mat B) {
   }
     
     return Rcpp::List::create(Rcpp::Named("B") = B_out,
-                              Rcpp::Named("ind_col") = ind_col +1,
-                              Rcpp::Named("ind_row") = ind_row +1);
+                              Rcpp::Named("ind_col") = ind_col ,
+                              Rcpp::Named("ind_row") = ind_row );
   }
   
   

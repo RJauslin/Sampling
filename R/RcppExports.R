@@ -28,33 +28,6 @@ all0 <- function(x) {
 #' @examples
 #'
 #' @export
-rrefBal <- function(M) {
-    invisible(.Call(`_SamplingC_rrefBal`, M))
-}
-
-#' @title title
-#'
-#' @description
-#' description
-#'
-#'
-#' @param x x
-#'
-#' @details
-#'
-#' details
-#'
-#' @return a vector
-#'
-#'
-#' @author Raphaël Jauslin \email{raphael.jauslin@@unine.ch}
-#'
-#' @seealso
-#' func
-#'
-#' @examples
-#'
-#' @export
 ukern <- function(Bm) {
     .Call(`_SamplingC_ukern`, Bm)
 }
@@ -364,6 +337,60 @@ flightphase_arma <- function(X, pik, EPS = 0.0000001) {
     .Call(`_SamplingC_flightphase_arma`, X, pik, EPS)
 }
 
+#' @title title
+#'
+#' @description
+#' description
+#'
+#'
+#' @param x x
+#'
+#' @details
+#'
+#' details
+#'
+#' @return a vector
+#'
+#'
+#' @author Raphaël Jauslin \email{raphael.jauslin@@unine.ch}
+#'
+#' @seealso
+#' func
+#'
+#' @examples
+#'
+#' @export
+onestepfastflightcubeSPOT <- function(prob, Bm) {
+    .Call(`_SamplingC_onestepfastflightcubeSPOT`, prob, Bm)
+}
+
+#' @title title
+#'
+#' @description
+#' description
+#'
+#'
+#' @param x x
+#'
+#' @details
+#'
+#' details
+#'
+#' @return a vector
+#'
+#'
+#' @author Raphaël Jauslin \email{raphael.jauslin@@unine.ch}
+#'
+#' @seealso
+#' func
+#'
+#' @examples
+#'
+#' @export
+flightphaseSPOT <- function(prob, Xbal) {
+    .Call(`_SamplingC_flightphaseSPOT`, prob, Xbal)
+}
+
 onestep <- function(B, pik, EPS = 0.0000001) {
     .Call(`_SamplingC_onestep`, B, pik, EPS)
 }
@@ -438,6 +465,33 @@ colSumsiter <- function(x) {
 #' @export
 rowSumsiter <- function(x) {
     .Call(`_SamplingC_rowSumsiter`, x)
+}
+
+#' @title title
+#'
+#' @description
+#' description
+#'
+#'
+#' @param x x
+#'
+#' @details
+#'
+#' details
+#'
+#' @return a vector
+#'
+#'
+#' @author Raphaël Jauslin \email{raphael.jauslin@@unine.ch}
+#'
+#' @seealso
+#' func
+#'
+#' @examples
+#'
+#' @export
+rrefBal <- function(M) {
+    invisible(.Call(`_SamplingC_rrefBal`, M))
 }
 
 #' @title All samples of fixed size

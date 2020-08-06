@@ -17,16 +17,6 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
-// rrefBal
-void rrefBal(NumericMatrix& M);
-RcppExport SEXP _SamplingC_rrefBal(SEXP MSEXP) {
-BEGIN_RCPP
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< NumericMatrix& >::type M(MSEXP);
-    rrefBal(M);
-    return R_NilValue;
-END_RCPP
-}
 // ukern
 NumericVector ukern(NumericMatrix Bm);
 RcppExport SEXP _SamplingC_ukern(SEXP BmSEXP) {
@@ -234,6 +224,30 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
+// onestepfastflightcubeSPOT
+NumericVector onestepfastflightcubeSPOT(NumericVector prob, NumericMatrix Bm);
+RcppExport SEXP _SamplingC_onestepfastflightcubeSPOT(SEXP probSEXP, SEXP BmSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< NumericVector >::type prob(probSEXP);
+    Rcpp::traits::input_parameter< NumericMatrix >::type Bm(BmSEXP);
+    rcpp_result_gen = Rcpp::wrap(onestepfastflightcubeSPOT(prob, Bm));
+    return rcpp_result_gen;
+END_RCPP
+}
+// flightphaseSPOT
+NumericVector flightphaseSPOT(NumericVector prob, NumericMatrix Xbal);
+RcppExport SEXP _SamplingC_flightphaseSPOT(SEXP probSEXP, SEXP XbalSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< NumericVector >::type prob(probSEXP);
+    Rcpp::traits::input_parameter< NumericMatrix >::type Xbal(XbalSEXP);
+    rcpp_result_gen = Rcpp::wrap(flightphaseSPOT(prob, Xbal));
+    return rcpp_result_gen;
+END_RCPP
+}
 // onestep
 arma::vec onestep(arma::mat B, arma::vec pik, double EPS);
 RcppExport SEXP _SamplingC_onestep(SEXP BSEXP, SEXP pikSEXP, SEXP EPSSEXP) {
@@ -280,6 +294,16 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
+// rrefBal
+void rrefBal(NumericMatrix& M);
+RcppExport SEXP _SamplingC_rrefBal(SEXP MSEXP) {
+BEGIN_RCPP
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< NumericMatrix& >::type M(MSEXP);
+    rrefBal(M);
+    return R_NilValue;
+END_RCPP
+}
 // samplen
 arma::mat samplen(int N, int n);
 RcppExport SEXP _SamplingC_samplen(SEXP NSEXP, SEXP nSEXP) {
@@ -306,7 +330,6 @@ END_RCPP
 
 static const R_CallMethodDef CallEntries[] = {
     {"_SamplingC_all0", (DL_FUNC) &_SamplingC_all0, 1},
-    {"_SamplingC_rrefBal", (DL_FUNC) &_SamplingC_rrefBal, 1},
     {"_SamplingC_ukern", (DL_FUNC) &_SamplingC_ukern, 1},
     {"_SamplingC_onestepfastflightcube", (DL_FUNC) &_SamplingC_onestepfastflightcube, 2},
     {"_SamplingC_flightphase", (DL_FUNC) &_SamplingC_flightphase, 2},
@@ -325,10 +348,13 @@ static const R_CallMethodDef CallEntries[] = {
     {"_SamplingC_is_duplicate_row", (DL_FUNC) &_SamplingC_is_duplicate_row, 2},
     {"_SamplingC_flightphase_arma2", (DL_FUNC) &_SamplingC_flightphase_arma2, 3},
     {"_SamplingC_flightphase_arma", (DL_FUNC) &_SamplingC_flightphase_arma, 3},
+    {"_SamplingC_onestepfastflightcubeSPOT", (DL_FUNC) &_SamplingC_onestepfastflightcubeSPOT, 2},
+    {"_SamplingC_flightphaseSPOT", (DL_FUNC) &_SamplingC_flightphaseSPOT, 2},
     {"_SamplingC_onestep", (DL_FUNC) &_SamplingC_onestep, 3},
     {"_SamplingC_reduxArma", (DL_FUNC) &_SamplingC_reduxArma, 1},
     {"_SamplingC_colSumsiter", (DL_FUNC) &_SamplingC_colSumsiter, 1},
     {"_SamplingC_rowSumsiter", (DL_FUNC) &_SamplingC_rowSumsiter, 1},
+    {"_SamplingC_rrefBal", (DL_FUNC) &_SamplingC_rrefBal, 1},
     {"_SamplingC_samplen", (DL_FUNC) &_SamplingC_samplen, 2},
     {"_SamplingC_systematicDesign", (DL_FUNC) &_SamplingC_systematicDesign, 1},
     {NULL, NULL, 0}
