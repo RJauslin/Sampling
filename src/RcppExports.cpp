@@ -107,17 +107,6 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
-// reduxArma
-Rcpp::List reduxArma(arma::mat B);
-RcppExport SEXP _SamplingC_reduxArma(SEXP BSEXP) {
-BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< arma::mat >::type B(BSEXP);
-    rcpp_result_gen = Rcpp::wrap(reduxArma(B));
-    return rcpp_result_gen;
-END_RCPP
-}
 // all_sug
 bool all_sug(LogicalVector x);
 RcppExport SEXP _SamplingC_all_sug(SEXP xSEXP) {
@@ -258,6 +247,17 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
+// reduxArma
+Rcpp::List reduxArma(arma::mat B);
+RcppExport SEXP _SamplingC_reduxArma(SEXP BSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< arma::mat >::type B(BSEXP);
+    rcpp_result_gen = Rcpp::wrap(reduxArma(B));
+    return rcpp_result_gen;
+END_RCPP
+}
 // colSumsiter
 arma::vec colSumsiter(const arma::sp_mat& x);
 RcppExport SEXP _SamplingC_colSumsiter(SEXP xSEXP) {
@@ -314,7 +314,6 @@ static const R_CallMethodDef CallEntries[] = {
     {"_SamplingC_mat_as_arma", (DL_FUNC) &_SamplingC_mat_as_arma, 1},
     {"_SamplingC_svdArma", (DL_FUNC) &_SamplingC_svdArma, 1},
     {"_SamplingC_choose", (DL_FUNC) &_SamplingC_choose, 2},
-    {"_SamplingC_reduxArma", (DL_FUNC) &_SamplingC_reduxArma, 1},
     {"_SamplingC_all_sug", (DL_FUNC) &_SamplingC_all_sug, 1},
     {"_SamplingC_colSumsRcpp", (DL_FUNC) &_SamplingC_colSumsRcpp, 1},
     {"_SamplingC_rowSumsRcpp", (DL_FUNC) &_SamplingC_rowSumsRcpp, 1},
@@ -327,6 +326,7 @@ static const R_CallMethodDef CallEntries[] = {
     {"_SamplingC_flightphase_arma2", (DL_FUNC) &_SamplingC_flightphase_arma2, 3},
     {"_SamplingC_flightphase_arma", (DL_FUNC) &_SamplingC_flightphase_arma, 3},
     {"_SamplingC_onestep", (DL_FUNC) &_SamplingC_onestep, 3},
+    {"_SamplingC_reduxArma", (DL_FUNC) &_SamplingC_reduxArma, 1},
     {"_SamplingC_colSumsiter", (DL_FUNC) &_SamplingC_colSumsiter, 1},
     {"_SamplingC_rowSumsiter", (DL_FUNC) &_SamplingC_rowSumsiter, 1},
     {"_SamplingC_samplen", (DL_FUNC) &_SamplingC_samplen, 2},

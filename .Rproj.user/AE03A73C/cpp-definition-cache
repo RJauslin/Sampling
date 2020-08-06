@@ -291,7 +291,7 @@
     },
     {
         "file": "C:/Users/jauslinr/switchdrive/SamplingC/SamplingC/src/Bal.cpp",
-        "file_last_write": 1596634616.0,
+        "file_last_write": 1596639773.0,
         "definitions": [
             {
                 "usr": "c:@F@all0#$@N@Rcpp@S@Vector>#VI14#@N@Rcpp@ST>1#T@PreserveStorage#",
@@ -308,7 +308,7 @@
                 "parent_name": "",
                 "name": "rrefBal(Rcpp::NumericMatrix &)",
                 "file": "C:/Users/jauslinr/switchdrive/SamplingC/SamplingC/src/Bal.cpp",
-                "line": 52,
+                "line": 53,
                 "column": 6
             },
             {
@@ -317,7 +317,7 @@
                 "parent_name": "",
                 "name": "ukern(Rcpp::NumericMatrix)",
                 "file": "C:/Users/jauslinr/switchdrive/SamplingC/SamplingC/src/Bal.cpp",
-                "line": 142,
+                "line": 143,
                 "column": 15
             },
             {
@@ -326,7 +326,7 @@
                 "parent_name": "",
                 "name": "onestepfastflightcube(Rcpp::NumericVector, Rcpp::NumericMatrix)",
                 "file": "C:/Users/jauslinr/switchdrive/SamplingC/SamplingC/src/Bal.cpp",
-                "line": 242,
+                "line": 243,
                 "column": 15
             },
             {
@@ -335,7 +335,7 @@
                 "parent_name": "",
                 "name": "flightphase(Rcpp::NumericVector, Rcpp::NumericMatrix)",
                 "file": "C:/Users/jauslinr/switchdrive/SamplingC/SamplingC/src/Bal.cpp",
-                "line": 341,
+                "line": 344,
                 "column": 15
             }
         ]

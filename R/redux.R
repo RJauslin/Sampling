@@ -48,16 +48,20 @@ reduxB <- function(B){
     
     # exctract right column
     coltmp <- which(sums > eps | sums < -eps)
-    ind_col <- ind_col[coltmp]
+    if(length(coltmp)<= 1){
+      break;
+    }
     B_out <- B_out[,coltmp]
-
+    ind_col <- ind_col[coltmp]
 
     # calculate rowsums and remove rowsums equal to 0
     sums_row <- rowSums(B_out)
     rowtmp <- which(sums_row > eps | sums_row < -eps)
-    ind_row <- ind_row[rowtmp]
     B_out <- B_out[rowtmp,]
+    ind_row <- ind_row[rowtmp]
     
+    # recompute
+    sums_row <- rowSums(B_out)
     
     # unique 
     # sums_row <- rowSums(B_out)
@@ -69,25 +73,23 @@ reduxB <- function(B){
     
     
     ## remove duplicated rows
-    uniqueRow <- !duplicated(B_out,MARGIN = 1)
-    ind_row <- ind_row[uniqueRow]
-    B_out <- B_out[uniqueRow, ]
-    sums_row <- rowSums(B_out)
+    # uniqueRow <- !duplicated(B_out,MARGIN = 1)
+    # ind_row <- ind_row[uniqueRow]
+    # B_out <- B_out[uniqueRow, ]
+    # sums_row <- rowSums(B_out)
     
     
     
-    # if we have enough row then compress B, if equal drop one variable then break
-    if(length(ind_row) >= (ncol(B_out) + 1)){
+    # if we have enough row then compress B
+    if(nrow(B_out) >= (ncol(B_out) + 1)){
       ind_row <- ind_row[1:(ncol(B_out)+1)]
-      # B_out <- B_out[which(sums_row > eps | sums_row < -eps)[1:(ncol(B_out) + 1)],]
       B_out <- B_out[1:(ncol(B_out)+1),]
     }else{
-      if(length(ind_row) == length(ind_col)){
-        print("sakjdbf")
+      if(nrow(B_out) == ncol(B_out)){
         ind_col <- ind_col[-length(ind_col)]
         B_out <- B_out[,-ncol(B_out)]
       }else{
-        
+        # ind_row smaller than 
         ind_col <- ind_col[1:(length(ind_row)-1)]
         B_out <- B_out[,1:length(ind_row)-1]
       }
@@ -98,7 +100,7 @@ reduxB <- function(B){
     step = step + 1;
   }
   # last update rowsums
-  sums_row <- rowSums(B_out)
+  # sums_row <- rowSums(B_out)
   # ind_row <- ind_row[which(sums_row > eps | sums_row < -eps)]
   
   # return the compressed matrix and the column and row that represent B_out.

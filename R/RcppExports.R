@@ -258,30 +258,6 @@ NULL
 #' @author Raphaël Jauslin \email{raphael.jauslin@@unine.ch}
 NULL
 
-#' @title Column sums for sparseMatrix
-#'
-#' @description
-#' Form column sums for sparseMatrix.
-#'
-#' @param x A sparse matrix, i.e., inheriting from \code{\link[Matrix]{sparseMatrix}}.
-#'
-#' @details
-#' This function is designed to be used for internal \code{RcppArmadillo} functions. Nevertheless it could be applied in R.
-#' It loops on the non-zero entries of the \code{\link[Matrix]{sparseMatrix}}. For general uses, the function
-#' \code{\link[Matrix]{colSums}} should be prefered.
-#'
-#' @return column sums of x.
-#' 
-#' @author Raphaël Jauslin \email{raphael.jauslin@@unine.ch}
-#' 
-#' @seealso
-#' \code{\link[Matrix]{colSums}}, \code{\link[Matrix]{rowSums}}.
-#'
-#' @export
-reduxArma <- function(B) {
-    .Call(`_SamplingC_reduxArma`, B)
-}
-
 #'
 #' @export
 all_sug <- function(x) {
@@ -390,6 +366,30 @@ flightphase_arma <- function(X, pik, EPS = 0.0000001) {
 
 onestep <- function(B, pik, EPS = 0.0000001) {
     .Call(`_SamplingC_onestep`, B, pik, EPS)
+}
+
+#' @title Column sums for sparseMatrix
+#'
+#' @description
+#' Form column sums for sparseMatrix.
+#'
+#' @param x A sparse matrix, i.e., inheriting from \code{\link[Matrix]{sparseMatrix}}.
+#'
+#' @details
+#' This function is designed to be used for internal \code{RcppArmadillo} functions. Nevertheless it could be applied in R.
+#' It loops on the non-zero entries of the \code{\link[Matrix]{sparseMatrix}}. For general uses, the function
+#' \code{\link[Matrix]{colSums}} should be prefered.
+#'
+#' @return column sums of x.
+#' 
+#' @author Raphaël Jauslin \email{raphael.jauslin@@unine.ch}
+#' 
+#' @seealso
+#' \code{\link[Matrix]{colSums}}, \code{\link[Matrix]{rowSums}}.
+#'
+#' @export
+reduxArma <- function(B) {
+    .Call(`_SamplingC_reduxArma`, B)
 }
 
 #' @title Column sums for sparseMatrix
