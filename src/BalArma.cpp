@@ -1,30 +1,7 @@
 #include <RcppArmadillo.h>
-#include "NumericToArma.h"
-#include "rrefBal.h"
+#include "rrefArma.h"
+
 using namespace Rcpp;
-
-//**********************************************
-// Author: Anton Grafström
-// Last edit: 2014-05-05
-// Licence: GPL (>=2)
-//**********************************************
-
-// "import" print for error checking
-Function print("print");
-
-
-// [[Rcpp::export]]
-bool all0(NumericVector x) {
-  double eps = 1e-12;
-  return is_true(all(x < eps & x > -eps));
-}
-
-/*** R
-N <- 10
-all0(c(rep(0,N),1))
-*/
-
-
 
 
 // [[Rcpp::depends(RcppArmadillo)]]
@@ -52,12 +29,13 @@ all0(c(rep(0,N),1))
 //'
 //' @export
 // [[Rcpp::export]]
-NumericVector onestepfastflightcube(NumericVector prob, NumericMatrix Bm){
-  int ncol = Bm.ncol();
-  int nrow = Bm.nrow();
-  int i, j;
-  NumericVector u(ncol,0.0);
-  IntegerVector uset(ncol,0);
+arma::vec onestepfastflightcubeArma(arma::vec prob, arma::mat Bm){
+  int ncol = Bm.n_cols;
+  int nrow = Bm.n_rows;
+  
+  arma::vec u(ncol,arma::fill::zeros);
+  arma::uvec uset(ncol,arma::fill::zeros);
+
   double la1 = 1e+200;
   double la2 = 1e+200;
   double la, eps = 1e-9;
@@ -66,20 +44,26 @@ NumericVector onestepfastflightcube(NumericVector prob, NumericMatrix Bm){
   // find nonzero vector u in Ker B (null space of B, i.e. Bu = 0)
   // with both positive and negative values
   // find reduced row echelon form of B
-  rrefBal(Bm);
+  rrefArma(Bm);
   
   // std::cout << Bm << std::endl;
-  for(i=(nrow-1);i>=0;i--){
+  for(int i = (nrow-1);i >= 0; i--){
     // find lead (first nonzero entry on row) if exists
     // if no lead, i.e lead = ncol, do nothing
     // if lead, the variables after are either set or free
     // free variables are alternately set to 1 or -1
     lead = 0;
-    for(j=0;j<ncol;j++){if(Bm(i,j)==0.0){lead++;}else{break;}}
+    for(int j = 0; j < ncol; j++){
+      if(Bm(i,j)==0.0){
+        lead++;
+      }else{
+        break;
+      }
+    }
     // lead found
     if(lead<ncol){
       v = 0.0;
-      for(j=lead+1;j<ncol;j++){
+      for(int j = lead+1;j < ncol;j++){
         if( uset[j] == 0 ){
           uset[j] = 1;
           free *= -1.0;
@@ -92,17 +76,19 @@ NumericVector onestepfastflightcube(NumericVector prob, NumericMatrix Bm){
     }
   }
   // unset u[i] are free and are set to 1 or -1, can only exist at beginning
-  for(i=0;i<ncol;i++){
+  for(int i = 0;i < ncol;i++){
     if( uset[i] == 0 ){
       free *= -1.0;
       u[i] = free;
-    }else{break;}
+    }else{
+      break;
+    }
   }
   
   // u = ukern(Bm);
   
   // find lambda1 and lambda2
-  for(i=0;i<ncol;i++){
+  for(int i = 0;i < ncol;i++){
     if(u[i]>0){
       la1 = std::min(la1,(1-prob[i])/u[i]);
       la2 = std::min(la2,prob[i]/u[i]);
@@ -119,7 +105,7 @@ NumericVector onestepfastflightcube(NumericVector prob, NumericMatrix Bm){
     la = -la2;
   }
   // update prob
-  for(i=0;i<ncol;i++){
+  for(int i = 0;i < ncol;i++){
     prob[i] = prob[i] + la * u[i];
     if(prob[i] < eps){ prob[i] = 0; }
     if(prob[i] > 1-eps){ prob[i] = 1; }
@@ -153,14 +139,18 @@ NumericVector onestepfastflightcube(NumericVector prob, NumericMatrix Bm){
 //'
 //' @export
 // [[Rcpp::export]]
-NumericVector flightphase(NumericVector prob, NumericMatrix Xbal){
+arma::vec flightphaseArma(arma::vec prob, arma::mat Xbal){
   int N = prob.size();
-  int naux = Xbal.ncol();
+  int naux = Xbal.n_cols;
   
-  IntegerVector index(N);
-  NumericVector p(N);
+  arma::uvec index(N);
+  arma::vec p(N);
+  
   int i,j,k,howmany;
-  for(i=0;i<N;i++){index[i]=i; p[i]=prob[i];}
+  for(int i = 0;i < N;i++){
+    index[i]=i;
+    p[i]=prob[i];
+  }
   double eps = 1e-12;
   int done = 0, tempInt, howlong;
   // randomize order of index list
@@ -173,7 +163,7 @@ NumericVector flightphase(NumericVector prob, NumericMatrix Xbal){
   // }
   
   // put finished units at beginning of list
-  for(i=done;i<N;i++){
+  for(int i = done;i < N;i++){
     if( p[index[i]]<eps || p[index[i]]>1-eps ){
       tempInt = index[done];
       index[done] = index[i];
@@ -185,29 +175,34 @@ NumericVector flightphase(NumericVector prob, NumericMatrix Xbal){
   
   // remaining are index from done to N-1
   while( done < N ){
-  // while( B.ncol() > 1){
+    // while( B.ncol() > 1){
     
     // find cluster of size howmany
     howmany = std::min(naux+1,N-done);
     
     // stop if there are less than naux units left
-    if(howmany <= naux){done=N; break;} //WHY ?!?!?!
+    if(howmany <= naux){
+      done=N;
+      break;
+    } //WHY ?!?!?!
     
     if( howmany > 1 ){
-      NumericVector p_small(howmany);
-      NumericVector dists(howmany,1e+200);
-      IntegerVector index_small(howmany);
-      NumericMatrix B(howmany-1,howmany);
-      for(i=0;i<howmany;i++){
+      arma::vec p_small(howmany);
+      arma::vec dists(howmany); dists = 1e+20;
+      arma::vec index_small(howmany);
+      arma::mat B(howmany-1,howmany);
+      
+      
+      for(int i = 0;i < howmany; i++){
         index_small[i] = index[done+i];
-        for(j=0;j<howmany-1;j++){
+        for(int j = 0;j < howmany-1;j++){
           B(j,i) = Xbal(index_small[i],j)/prob[index_small[i]];
         }
         p_small[i] = p[index_small[i]];
       }
       // std::cout << index << std::endl;
       // std::cout << B << std::endl;
-      if(howmany <= naux){
+      // if(howmany <= naux){
         
         // NumericVector u = ukern(B);
         // std::cout << u << std::endl;
@@ -220,7 +215,7 @@ NumericVector flightphase(NumericVector prob, NumericMatrix Xbal){
         // arma::vec s = arma::svd(B_arma);
         // std::cout << s << std::endl;
         // if(arma::all(s > eps)){
-          // break;
+        // break;
         // }
         
         
@@ -236,17 +231,17 @@ NumericVector flightphase(NumericVector prob, NumericMatrix Xbal){
         //   emp = true;
         //   // break;
         // }
-      }
+      // }
       // std::cout << B << std::endl;
       
-      p_small = onestepfastflightcube(p_small,B);
+      p_small = onestepfastflightcubeArma(p_small,B);
       // update prob
-      for(i=0;i<howmany;i++){
+      for(int i = 0;i < howmany;i++){
         p[index_small[i]] = p_small[i];
       }
       // update done and index
       howlong = done + howmany;
-      for(i=done;i<howlong;i++){
+      for(int i = done;i < howlong;i++){
         if( p[index[i]]<eps || p[index[i]]>1-eps ){
           tempInt = index[done];
           index[done] = index[i];
@@ -256,7 +251,7 @@ NumericVector flightphase(NumericVector prob, NumericMatrix Xbal){
       }
     }else{
       // max one unit left
-      if(runif(1)[0]<p[index[done]]){p[index[done]]=1;}else{p[index[done]]=0;}
+      if(runif(1)[0] < p[index[done]]){p[index[done]]=1;}else{p[index[done]]=0;}
       done = N;
     }
   }
@@ -267,7 +262,7 @@ NumericVector flightphase(NumericVector prob, NumericMatrix Xbal){
   // 
   
   // round
-  for(i=0;i<N;i++){
+  for(int i = 0;i < N;i++){
     if( p[index[i]] > 1-eps  ){
       p[index[i]] = 1;
     }
@@ -286,5 +281,36 @@ n = 30
 p = 2
 pik=inclusionprobabilities(runif(N),n)
 X=cbind(pik,matrix(rnorm(N*p),c(N,p)))
-flightphase(pik,X)
+flightphaseArma(pik,X)
+
+
+
+
+
+rm(list = ls())
+N = 5000
+n = 800
+p = 40
+pik=inclusionprobabilities(runif(N),n)
+X=cbind(pik,matrix(rnorm(N*p),c(N,p)))
+system.time(test1 <- BalancedSampling::flightphase(pik,X))
+system.time(test2 <- flightphaseArma(pik,X))
+
+
+A <- X/pik
+
+t(A)%*%pik
+t(A)%*%test1
+t(A)%*%test2
+t(A)%*%pik # correc
+
+
+
+
+
+
+
+
+
+  
 */

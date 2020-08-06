@@ -17,17 +17,6 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
-// ukern
-NumericVector ukern(NumericMatrix Bm);
-RcppExport SEXP _SamplingC_ukern(SEXP BmSEXP) {
-BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< NumericMatrix >::type Bm(BmSEXP);
-    rcpp_result_gen = Rcpp::wrap(ukern(Bm));
-    return rcpp_result_gen;
-END_RCPP
-}
 // onestepfastflightcube
 NumericVector onestepfastflightcube(NumericVector prob, NumericMatrix Bm);
 RcppExport SEXP _SamplingC_onestepfastflightcube(SEXP probSEXP, SEXP BmSEXP) {
@@ -49,6 +38,30 @@ BEGIN_RCPP
     Rcpp::traits::input_parameter< NumericVector >::type prob(probSEXP);
     Rcpp::traits::input_parameter< NumericMatrix >::type Xbal(XbalSEXP);
     rcpp_result_gen = Rcpp::wrap(flightphase(prob, Xbal));
+    return rcpp_result_gen;
+END_RCPP
+}
+// onestepfastflightcubeArma
+arma::vec onestepfastflightcubeArma(arma::vec prob, arma::mat Bm);
+RcppExport SEXP _SamplingC_onestepfastflightcubeArma(SEXP probSEXP, SEXP BmSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< arma::vec >::type prob(probSEXP);
+    Rcpp::traits::input_parameter< arma::mat >::type Bm(BmSEXP);
+    rcpp_result_gen = Rcpp::wrap(onestepfastflightcubeArma(prob, Bm));
+    return rcpp_result_gen;
+END_RCPP
+}
+// flightphaseArma
+arma::vec flightphaseArma(arma::vec prob, arma::mat Xbal);
+RcppExport SEXP _SamplingC_flightphaseArma(SEXP probSEXP, SEXP XbalSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< arma::vec >::type prob(probSEXP);
+    Rcpp::traits::input_parameter< arma::mat >::type Xbal(XbalSEXP);
+    rcpp_result_gen = Rcpp::wrap(flightphaseArma(prob, Xbal));
     return rcpp_result_gen;
 END_RCPP
 }
@@ -294,6 +307,16 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
+// rrefArma
+void rrefArma(arma::mat& M);
+RcppExport SEXP _SamplingC_rrefArma(SEXP MSEXP) {
+BEGIN_RCPP
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< arma::mat& >::type M(MSEXP);
+    rrefArma(M);
+    return R_NilValue;
+END_RCPP
+}
 // rrefBal
 void rrefBal(NumericMatrix& M);
 RcppExport SEXP _SamplingC_rrefBal(SEXP MSEXP) {
@@ -327,12 +350,35 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
+// ukern
+NumericVector ukern(NumericMatrix Bm);
+RcppExport SEXP _SamplingC_ukern(SEXP BmSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< NumericMatrix >::type Bm(BmSEXP);
+    rcpp_result_gen = Rcpp::wrap(ukern(Bm));
+    return rcpp_result_gen;
+END_RCPP
+}
+// ukernArma
+arma::vec ukernArma(arma::mat Bm);
+RcppExport SEXP _SamplingC_ukernArma(SEXP BmSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< arma::mat >::type Bm(BmSEXP);
+    rcpp_result_gen = Rcpp::wrap(ukernArma(Bm));
+    return rcpp_result_gen;
+END_RCPP
+}
 
 static const R_CallMethodDef CallEntries[] = {
     {"_SamplingC_all0", (DL_FUNC) &_SamplingC_all0, 1},
-    {"_SamplingC_ukern", (DL_FUNC) &_SamplingC_ukern, 1},
     {"_SamplingC_onestepfastflightcube", (DL_FUNC) &_SamplingC_onestepfastflightcube, 2},
     {"_SamplingC_flightphase", (DL_FUNC) &_SamplingC_flightphase, 2},
+    {"_SamplingC_onestepfastflightcubeArma", (DL_FUNC) &_SamplingC_onestepfastflightcubeArma, 2},
+    {"_SamplingC_flightphaseArma", (DL_FUNC) &_SamplingC_flightphaseArma, 2},
     {"_SamplingC_mat_as_Numeric", (DL_FUNC) &_SamplingC_mat_as_Numeric, 1},
     {"_SamplingC_mat_as_arma", (DL_FUNC) &_SamplingC_mat_as_arma, 1},
     {"_SamplingC_svdArma", (DL_FUNC) &_SamplingC_svdArma, 1},
@@ -354,9 +400,12 @@ static const R_CallMethodDef CallEntries[] = {
     {"_SamplingC_reduxArma", (DL_FUNC) &_SamplingC_reduxArma, 1},
     {"_SamplingC_colSumsiter", (DL_FUNC) &_SamplingC_colSumsiter, 1},
     {"_SamplingC_rowSumsiter", (DL_FUNC) &_SamplingC_rowSumsiter, 1},
+    {"_SamplingC_rrefArma", (DL_FUNC) &_SamplingC_rrefArma, 1},
     {"_SamplingC_rrefBal", (DL_FUNC) &_SamplingC_rrefBal, 1},
     {"_SamplingC_samplen", (DL_FUNC) &_SamplingC_samplen, 2},
     {"_SamplingC_systematicDesign", (DL_FUNC) &_SamplingC_systematicDesign, 1},
+    {"_SamplingC_ukern", (DL_FUNC) &_SamplingC_ukern, 1},
+    {"_SamplingC_ukernArma", (DL_FUNC) &_SamplingC_ukernArma, 1},
     {NULL, NULL, 0}
 };
 

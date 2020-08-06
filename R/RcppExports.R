@@ -28,33 +28,6 @@ all0 <- function(x) {
 #' @examples
 #'
 #' @export
-ukern <- function(Bm) {
-    .Call(`_SamplingC_ukern`, Bm)
-}
-
-#' @title title
-#'
-#' @description
-#' description
-#'
-#'
-#' @param x x
-#'
-#' @details
-#'
-#' details
-#'
-#' @return a vector
-#'
-#'
-#' @author Raphaël Jauslin \email{raphael.jauslin@@unine.ch}
-#'
-#' @seealso
-#' func
-#'
-#' @examples
-#'
-#' @export
 onestepfastflightcube <- function(prob, Bm) {
     .Call(`_SamplingC_onestepfastflightcube`, prob, Bm)
 }
@@ -84,6 +57,60 @@ onestepfastflightcube <- function(prob, Bm) {
 #' @export
 flightphase <- function(prob, Xbal) {
     .Call(`_SamplingC_flightphase`, prob, Xbal)
+}
+
+#' @title title
+#'
+#' @description
+#' description
+#'
+#'
+#' @param x x
+#'
+#' @details
+#'
+#' details
+#'
+#' @return a vector
+#'
+#'
+#' @author Raphaël Jauslin \email{raphael.jauslin@@unine.ch}
+#'
+#' @seealso
+#' func
+#'
+#' @examples
+#'
+#' @export
+onestepfastflightcubeArma <- function(prob, Bm) {
+    .Call(`_SamplingC_onestepfastflightcubeArma`, prob, Bm)
+}
+
+#' @title title
+#'
+#' @description
+#' description
+#'
+#'
+#' @param x x
+#'
+#' @details
+#'
+#' details
+#'
+#' @return a vector
+#'
+#'
+#' @author Raphaël Jauslin \email{raphael.jauslin@@unine.ch}
+#'
+#' @seealso
+#' func
+#'
+#' @examples
+#'
+#' @export
+flightphaseArma <- function(prob, Xbal) {
+    .Call(`_SamplingC_flightphaseArma`, prob, Xbal)
 }
 
 #' @title Arma matrix to NumericMatrix
@@ -490,6 +517,33 @@ rowSumsiter <- function(x) {
 #' @examples
 #'
 #' @export
+rrefArma <- function(M) {
+    invisible(.Call(`_SamplingC_rrefArma`, M))
+}
+
+#' @title title
+#'
+#' @description
+#' description
+#'
+#'
+#' @param x x
+#'
+#' @details
+#'
+#' details
+#'
+#' @return a vector
+#'
+#'
+#' @author Raphaël Jauslin \email{raphael.jauslin@@unine.ch}
+#'
+#' @seealso
+#' func
+#'
+#' @examples
+#'
+#' @export
 rrefBal <- function(M) {
     invisible(.Call(`_SamplingC_rrefBal`, M))
 }
@@ -529,5 +583,59 @@ samplen <- function(N, n) {
 #' @export
 systematicDesign <- function(pik) {
     .Call(`_SamplingC_systematicDesign`, pik)
+}
+
+#' @title title
+#'
+#' @description
+#' description
+#'
+#'
+#' @param x x
+#'
+#' @details
+#'
+#' details
+#'
+#' @return a vector
+#'
+#'
+#' @author Raphaël Jauslin \email{raphael.jauslin@@unine.ch}
+#'
+#' @seealso
+#' func
+#'
+#' @examples
+#'
+#' @export
+ukern <- function(Bm) {
+    .Call(`_SamplingC_ukern`, Bm)
+}
+
+#' @title title
+#'
+#' @description
+#' description
+#'
+#'
+#' @param x x
+#'
+#' @details
+#'
+#' details
+#'
+#' @return a vector
+#'
+#'
+#' @author Raphaël Jauslin \email{raphael.jauslin@@unine.ch}
+#'
+#' @seealso
+#' func
+#'
+#' @examples
+#'
+#' @export
+ukernArma <- function(Bm) {
+    .Call(`_SamplingC_ukernArma`, Bm)
 }
 
