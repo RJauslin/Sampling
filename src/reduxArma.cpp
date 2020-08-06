@@ -41,7 +41,7 @@ Rcpp::List reduxArma(arma::mat B) {
   while(any(sums < eps && sums > -eps)){ // loop while we find some colSums equal to 0
   // while(step < 4){ // loop while we find some colSums equal to 0
     
-    std::cout << step << std::endl << std::endl;
+    // std::cout << step << std::endl << std::endl;
     
 
     
@@ -65,8 +65,8 @@ Rcpp::List reduxArma(arma::mat B) {
    
     
     
-    std::cout << B_out.n_cols << std::endl;
-    std::cout << B_out.n_rows << std::endl;
+    // std::cout << B_out.n_cols << std::endl;
+    // std::cout << B_out.n_rows << std::endl;
     
     
     if(B_out.n_rows >= (B_out.n_cols + 1)){

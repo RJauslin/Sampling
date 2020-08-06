@@ -244,7 +244,7 @@ rm(list = ls())
 set.seed(1)
 eps <- 1e-13
 library(Matrix)
-N <- 50
+N <- 200
 n1 <- floor(N/3)
 n2 <- floor(N/5)
 n3 <- floor(N/7)
@@ -263,9 +263,9 @@ EPS = 1e-11
 
 test <- flightphaseSPOT(pik,X)
 
-test <- SamplingC::flightphaseArma(pik,X)
-test <- sampling::fastflightcube(X,pik,order = 2)
-test <- BalancedSampling::flightphase(pik,X)
+system.time(test <- SamplingC::flightphaseArma(pik,X))
+system.time(test <- sampling::fastflightcube(X,pik,order = 2))
+system.time(test <- BalancedSampling::flightphase(pik,X))
 
 system.time(test <- flightphase_arma(X,pik))
 system.time(test <- flightphase_arma2(X,pik))

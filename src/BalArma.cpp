@@ -1,5 +1,6 @@
 #include <RcppArmadillo.h>
 #include "rrefArma.h"
+#include "reduxArma.h"
 
 using namespace Rcpp;
 
@@ -175,16 +176,9 @@ arma::vec flightphaseArma(arma::vec prob, arma::mat Xbal){
   
   // remaining are index from done to N-1
   while( done < N ){
-    // while( B.ncol() > 1){
-    
+
     // find cluster of size howmany
     howmany = std::min(naux + 1,N-done);
-    
-    // stop if there are less than naux units left
-    // if(howmany <= naux){
-    //   done=N;
-    //   break;
-    // } //WHY ?!?!?!
     
     if( howmany > 1 ){
       arma::vec p_small(howmany);
@@ -202,6 +196,7 @@ arma::vec flightphaseArma(arma::vec prob, arma::mat Xbal){
         p_small[i] = p[index_small[i]];
       }
       
+      
       if(howmany < naux + 1){
         arma::mat kern = arma::null(B);
         if(kern.empty()){
@@ -209,45 +204,13 @@ arma::vec flightphaseArma(arma::vec prob, arma::mat Xbal){
         }
       }
       
-        //   emp = true;
-        //   // break;
-        // }
-      // std::cout << index << std::endl;
-      // std::cout << B << std::endl;
-      // if(howmany <= naux){
-        
-        // NumericVector u = ukern(B);
-        // std::cout << u << std::endl;
-        // if(all0(u) == true){
-        //   break;
-        // }
-        
-        // check singular value --> if all are greater than 0 (eps)
-        // then the matrix has a empty kernel -> IN FACT LOWER (certainly due to the all function)
-        // arma::vec s = arma::svd(B_arma);
-        // std::cout << s << std::endl;
-        // if(arma::all(s > eps)){
-        // break;
-        // }
-        
-        
-        // NumericVector u = ukern(B);
-        // if(sum(u) < eps){
-        //   break;
-        // }
-        
-        // arma::mat B_arma = mat_as_arma(B);
-        // arma::mat kern = arma::null(B_arma.t());
-        // std::cout << B << std::endl;
-        // if(kern.empty()){
-        //   emp = true;
-        //   // break;
-        // }
-      // }
-      // std::cout << B << std::endl;
+    
+      Rcpp::List L = reduxArma(B.t());
+      arma::mat B_tmp = L[0];
+      arma::uvec ind_row = L[2];
       
-      p_small = onestepfastflightcubeArma(p_small,B);
-      
+      // p_small = onestepfastflightcubeArma(p_small,B);
+      p_small.elem(ind_row) = onestepfastflightcubeArma(p_small.elem(ind_row),B_tmp.t());
       
       // update prob
       for(int i = 0;i < howmany;i++){
@@ -291,7 +254,7 @@ n = 30
 p = 2
 pik=inclusionprobabilities(runif(N),n)
 X=cbind(pik,matrix(rnorm(N*p),c(N,p)))
-flightphaseArma(pik,X)
+test <- flightphaseArma(pik,X)
 
 
 

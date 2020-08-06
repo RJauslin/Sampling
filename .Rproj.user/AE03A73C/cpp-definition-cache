@@ -324,7 +324,7 @@
     },
     {
         "file": "C:/Users/jauslinr/switchdrive/SamplingC/SamplingC/src/BalArma.cpp",
-        "file_last_write": 1596718528.0,
+        "file_last_write": 1596721222.0,
         "definitions": [
             {
                 "usr": "c:@F@onestepfastflightcubeArma#$@N@arma@S@Col>#d#$@N@arma@S@Mat>#d#",
@@ -493,7 +493,7 @@
     },
     {
         "file": "C:/Users/jauslinr/switchdrive/SamplingC/SamplingC/src/flightphase.cpp",
-        "file_last_write": 1596633707.0,
+        "file_last_write": 1596721348.0,
         "definitions": [
             {
                 "usr": "c:@F@flightphase_arma2#$@N@arma@S@Mat>#d#$@N@arma@S@Col>#d#d#",
@@ -510,14 +510,14 @@
                 "parent_name": "",
                 "name": "flightphase_arma(arma::mat, arma::vec, double)",
                 "file": "C:/Users/jauslinr/switchdrive/SamplingC/SamplingC/src/flightphase.cpp",
-                "line": 169,
+                "line": 171,
                 "column": 11
             }
         ]
     },
     {
         "file": "C:/Users/jauslinr/switchdrive/SamplingC/SamplingC/src/flightphaseSPOT.cpp",
-        "file_last_write": 1596707880.0,
+        "file_last_write": 1596721171.0,
         "definitions": [
             {
                 "usr": "c:@F@onestepfastflightcubeSPOT#$@N@Rcpp@S@Vector>#VI14#@N@Rcpp@ST>1#T@PreserveStorage#$@N@Rcpp@S@Matrix>#VI14#@N@Rcpp@ST>1#T@PreserveStorage#",
