@@ -4,7 +4,7 @@
 \alias{TemporalCube}
 \title{Cube method for temporal samples selection}
 \usage{
-TemporalCube(S, P, R, tol = 1e-08)
+TemporalCube(S, P, R, tol = 1e-08, arma)
 }
 \arguments{
 \item{S}{a matrix that contains variables on which the sample must be balanced. See Details.}

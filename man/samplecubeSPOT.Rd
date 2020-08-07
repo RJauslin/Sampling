@@ -4,7 +4,7 @@
 \alias{samplecubeSPOT}
 \title{Sample cube SPOT}
 \usage{
-samplecubeSPOT(X, pik, order = 1, comment = TRUE, method = 1)
+samplecubeSPOT(X, pik, order = 1, comment = TRUE, method = 1, arma)
 }
 \arguments{
 \item{X}{matrix of auxiliary variable}

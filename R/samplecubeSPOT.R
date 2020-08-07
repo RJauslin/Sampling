@@ -41,7 +41,7 @@
 #'
 #' s <- samplecubeSPOT(X,pik,order = 2)
 #' }
-samplecubeSPOT <- function (X, pik, order = 1, comment = TRUE, method = 1)
+samplecubeSPOT <- function (X, pik, order = 1, comment = TRUE, method = 1,arma)
 {
   EPS = 1e-11
   N = length(pik)
@@ -49,7 +49,15 @@ samplecubeSPOT <- function (X, pik, order = 1, comment = TRUE, method = 1)
     X = array(X, c(N, length(X)/N))
   if (method == 1) {
     if (length(pik[pik > EPS & pik < (1 - EPS)]) > 0){
-      pikstar = fastflightcubeSPOT(X, pik, order, comment)
+      if(arma == TRUE){
+        print("arma")
+        pikstar = ffphase(pik,X, order = FALSE, redux = TRUE)
+      }else{
+        print("R")
+        pikstar = fastflightcubeSPOT(X, pik, order = 2, comment)  
+      }
+      
+      
     }else {
       if (comment){
         cat("\nNO FLIGHT PHASE")

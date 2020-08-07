@@ -41,6 +41,13 @@ interest <- df[,3]
 N        <- nrow(df)
 
 
+set.seed(1)
+N_new <- 300
+ind <- sample(seq(1,N,1),N_new)
+N <- N_new
+df <- df[ind,]
+coord <- coord[ind,]
+
 
 
 
@@ -49,12 +56,16 @@ N        <- nrow(df)
 
 t       <- 3
 Pik     <- matrix(rep(0, t*N), ncol = t)
-Pik[,1] <- rep(100/N,N)
-Pik[,2] <- inclusionprobabilities(df[,4],160)
-Pik[,3] <- inclusionprobabilities(df[,3],180)
+n1 <- N/3
+n2 <- N/5
+n3 <- N/7
+Pik[,1] <- rep(n1/N,N)
+Pik[,2] <- inclusionprobabilities(df[,4],n2)
+Pik[,3] <- inclusionprobabilities(df[,3],n3)
 
 
-Orfs(Pik.remain)
+system.time(test <- Orfs(Pik,arma = TRUE))
+system.time(test <- Orfs(Pik,arma = FALSE))
 
 
 

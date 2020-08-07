@@ -5,7 +5,7 @@
 \alias{Orfs}
 \title{ORFS method}
 \usage{
-Orfs(Pik, tol = 1e-09)
+Orfs(Pik, tol = 1e-09, arma)
 }
 \arguments{
 \item{Pik}{a matrix of temporal inclusion probabilities.

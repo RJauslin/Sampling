@@ -46,7 +46,7 @@
 #' 
 #'}
 #' @export
-Orfs <- function(Pik, tol = 1e-9)
+Orfs <- function(Pik, tol = 1e-9,arma)
 {
 
   N <- nrow(Pik)
@@ -67,7 +67,7 @@ Orfs <- function(Pik, tol = 1e-9)
   R.init <- R
   P.init <- P
 
-  PP     <- TemporalCube(S, P, R)
+  PP     <- TemporalCube(S, P, R,arma = arma)
 
   return(S[PP == 1,])
 }
