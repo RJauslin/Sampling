@@ -48,7 +48,6 @@
 #' @export
 Orfs <- function(Pik, tol = 1e-9)
 {
-  library(sampling)
 
   N <- nrow(Pik)
   t <- ncol(Pik)
@@ -74,19 +73,21 @@ Orfs <- function(Pik, tol = 1e-9)
 }
 
 
-#' @encoding UTF-8
-#' @title ORFS method
-#'
+#' @title just for test some function 
+#' 
+#' @param Pik vector of inclusion probabilities
+#' @param tol tolerance
 #' @export
 #' @examples
+#' \dontrun{
 #' N <- 200
 #' Pik <- matrix(c(sampling::inclusionprobabilities(runif(N),20),
 #' sampling::inclusionprobabilities(runif(N),30),
 #' sampling::inclusionprobabilities(runif(N),40)),ncol = 3)
 #' X <- PM(Pik)
+#' }
 PM <- function(Pik, tol = 1e-9)
 {
-  library(sampling)
 
   N <- nrow(Pik)
   t <- ncol(Pik)

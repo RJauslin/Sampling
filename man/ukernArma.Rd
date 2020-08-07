@@ -2,27 +2,18 @@
 % Please edit documentation in R/RcppExports.R
 \name{ukernArma}
 \alias{ukernArma}
-\title{title}
+\title{kernel vector arma}
 \usage{
 ukernArma(Bm)
 }
 \arguments{
-\item{x}{x}
+\item{Bm}{matrix}
 }
 \value{
-a vector
+a null vector
 }
 \description{
-description
-}
-\details{
-details
-}
-\examples{
-
-}
-\seealso{
-func
+kernel vector arma
 }
 \author{
 Raphaël Jauslin \email{raphael.jauslin@unine.ch}

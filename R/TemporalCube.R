@@ -44,7 +44,6 @@
 #' }
 #'
 #' @export
-
 TemporalCube <- function(S, P, R, tol = 1e-8){
   library(sampling)
   

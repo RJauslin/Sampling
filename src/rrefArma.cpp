@@ -2,27 +2,14 @@
 
 
 // [[Rcpp::depends(RcppArmadillo)]]
-//' @title title
-//'
-//' @description
-//' description
+//' @title reduced row echelon form arma implementation
 //'
 //'
-//' @param x x
+//' @param M matrix 
 //'
-//' @details
-//'
-//' details
-//'
-//' @return a vector
-//'
+//' @return NULL (transform matrix)
 //'
 //' @author Raphaël Jauslin \email{raphael.jauslin@@unine.ch}
-//'
-//' @seealso
-//' func
-//'
-//' @examples
 //'
 //' @export
 // [[Rcpp::export]]

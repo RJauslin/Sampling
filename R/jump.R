@@ -1,12 +1,10 @@
-#' Title
+#' Internal function of algofastflightcube
 #'
-#' @param X
-#' @param pik
+#' @param X matrix of auxiliary variables
+#' @param pik vector of inclusion probabilities
 #'
-#' @return
+#' @return update pik
 #' @export
-#'
-#' @examples
 jump <- function(X, pik) {
   EPS = 1e-11
   N = length(pik)
@@ -29,7 +27,7 @@ jump <- function(X, pik) {
   pik2 <- pik - la2 * kern
 
   q <- la2/(la1 + la2)
-  if (runif(1) < q)
+  if (stats::runif(1) < q)
     pikn <- pik1
   else pikn <- pik2
   pikn

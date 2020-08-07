@@ -2,26 +2,27 @@
 % Please edit documentation in R/RcppExports.R
 \name{reduxArma}
 \alias{reduxArma}
-\title{Column sums for sparseMatrix}
+\title{Reduction of the matrix}
 \usage{
 reduxArma(B)
 }
 \arguments{
-\item{x}{A sparse matrix, i.e., inheriting from \code{\link[Matrix]{sparseMatrix}}.}
+\item{B}{a matrix of size (p+1 x p) sub-matrix of auxiliary matrix.}
 }
 \value{
-column sums of x.
+a list
 }
 \description{
-Form column sums for sparseMatrix.
+This function reduces the size of the matrix by removing alternatively columns and rows that have sum equal to 0.
+
+In case where the number of auxiliary varibale is great (p very large), even if we use the fast implementation proposed by
+(Chauvet and Tillé 2005) the problem is time consuming. If we have the chance that the matrix is strongly sparse,
+we can then use the function to reduce the size of the matrix B by using this method. 
+
+If the matrix is dense or every column have sum greater than 0, then nothing is changed.
 }
-\details{
-This function is designed to be used for internal \code{RcppArmadillo} functions. Nevertheless it could be applied in R.
-It loops on the non-zero entries of the \code{\link[Matrix]{sparseMatrix}}. For general uses, the function
-\code{\link[Matrix]{colSums}} should be prefered.
-}
-\seealso{
-\code{\link[Matrix]{colSums}}, \code{\link[Matrix]{rowSums}}.
+\references{
+Chauvet, G. and Tillé, Y. (2006). A fast algorithm of balanced sampling. Computational Statistics, 21/1:53–62.
 }
 \author{
 Raphaël Jauslin \email{raphael.jauslin@unine.ch}

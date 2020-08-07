@@ -3,28 +3,13 @@
 using namespace Rcpp;
 
 // [[Rcpp::depends(RcppArmadillo)]]
-//' @title title
-//'
-//' @description
-//' description
-//'
-//'
-//' @param x x
-//'
-//' @details
-//'
-//' details
-//'
-//' @return a vector
+//' @title kernel vector arma
+//' @param Bm matrix
+//' @return a null vector
 //'
 //'
 //' @author Raphaël Jauslin \email{raphael.jauslin@@unine.ch}
-//'
-//' @seealso
-//' func
-//'
-//' @examples
-//'
+//' 
 //' @export
 // [[Rcpp::export]]
 arma::vec ukernArma(arma::mat Bm){

@@ -1,16 +1,16 @@
-#' Title
+#' @title Sample cube SPOT
 #'
-#' @param X
-#' @param pik
-#' @param order
-#' @param comment
-#' @param method
+#' @param X matrix of auxiliary variable
+#' @param pik vector of inclusion probabilities
+#' @param order order 
+#' @param comment comment if true
+#' @param method method
 #'
 #' @return
 #' @export
 #'
 #' @examples
-#'
+#' \dontrun{
 #' N=1000
 #' p=7
 #' set.seed(1)
@@ -21,10 +21,6 @@
 #' X=cbind(cbind(X,rep(1,times=N)),pik)
 #' pikfin = sampling::samplecube(X,pik,1,TRUE)
 #' pikfin2 = samplecubeSPOT(X,pik,1,TRUE)
-#'
-#'
-#'
-#'
 #'
 #'
 #' rm(list = ls())
@@ -44,10 +40,7 @@
 #' EPS = 1e-11
 #'
 #' s <- samplecubeSPOT(X,pik,order = 2)
-#'
-#'
-#'
-#'
+#' }
 samplecubeSPOT <- function (X, pik, order = 1, comment = TRUE, method = 1)
 {
   EPS = 1e-11

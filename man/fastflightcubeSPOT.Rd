@@ -2,20 +2,28 @@
 % Please edit documentation in R/fastflightcubeSPOT.R
 \name{fastflightcubeSPOT}
 \alias{fastflightcubeSPOT}
-\title{Title}
+\title{Fast flight phase for the cube method modified}
 \usage{
 fastflightcubeSPOT(X, pik, order = 1, comment = TRUE)
 }
 \arguments{
-\item{comment}{}
+\item{X}{matrix of auxiliary variables.}
+
+\item{pik}{vector of inclusion probabilities.}
+
+\item{order}{order to rearrange the data. Default 1}
+
+\item{comment}{bool, if comment should be written.}
 }
 \value{
 
 }
 \description{
-Title
+implementation modified from the package sampling.
 }
 \examples{
+\dontrun{
+
 # Matrix of balancing variables
 X=cbind(c(1,1,1,1,1,1,1,1,1),c(1,2,3,4,5,6,7,8,9))
 # Vector of inclusion probabilities.
@@ -49,4 +57,5 @@ system.time(test3 <- sampling::fastflightcube(X,pik, order = 2))
 system.time(test4 <- BalancedSampling::flightphase(pik,X))
 
 
+}
 }

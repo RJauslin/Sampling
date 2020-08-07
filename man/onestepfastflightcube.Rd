@@ -2,28 +2,18 @@
 % Please edit documentation in R/RcppExports.R
 \name{onestepfastflightcube}
 \alias{onestepfastflightcube}
-\title{title}
+\title{onestepfastflightcube}
 \usage{
 onestepfastflightcube(prob, Bm)
 }
 \arguments{
-\item{x}{x}
+\item{prob}{vector of inclusion probabilities}
+
+\item{Bm}{matrix of size (p x p+1) (transpose from the original)}
 }
 \value{
-a vector
+updated inclusion probabilities
 }
 \description{
-description
-}
-\details{
-details
-}
-\examples{
-
-}
-\seealso{
-func
-}
-\author{
-Raphaël Jauslin \email{raphael.jauslin@unine.ch}
+one step of the fast flight cube. Direct implementation of the package BalancedSampling from Anton Grafström
 }

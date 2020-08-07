@@ -1,12 +1,26 @@
-#' Title
+#' Reduction of the matrix
+#' 
+#' @description 
+#' 
+#' This function reduces the size of the matrix by removing alternatively columns and rows that have sum equal to 0.
+#' 
+#' In case where the number of auxiliary varibale is great (p very large), even if we use the fast implementation proposed by
+#' (Chauvet and Tillé 2005) the problem is time consuming. If we have the chance that the matrix is strongly sparse,
+#' we can then use the function to reduce the size of the matrix B by using this method. 
+#' 
+#' If the matrix is dense or every column have sum greater than 0, then nothing is changed.
+#' 
+#' @param B a matrix of size (p+1 x p) sub-matrix of auxiliary matrix.
 #'
-#' @param X
+#' @references 
+#' Chauvet, G. and Tillé, Y. (2006). A fast algorithm of balanced sampling. Computational Statistics, 21/1:53–62. 
 #'
-#' @return
+#' @return a list
 #' @export
 #'
 #' @examples
-#' rm(list = ls())
+#' \dontrun{
+#' #' rm(list = ls())
 #' set.seed(1)
 #' eps <- 1e-13
 #' library(Matrix)
@@ -30,6 +44,7 @@
 #' B_redux <- tmp$B
 #' B_redux[1:10,1:20]
 #' B[tmp$ind_row[1:10],tmp$ind_col[1:20]]
+#' }
 reduxB <- function(B){
   
   # initialization
@@ -63,22 +78,6 @@ reduxB <- function(B){
     # recompute
     sums_row <- rowSums(B_out)
     
-    # unique 
-    # sums_row <- rowSums(B_out)
-    # uniqueRow <- !duplicated(sums_row)
-    # ind_row <- ind_row[uniqueRow]
-    # B_out <- B_out[uniqueRow, ]
-    # sums_row <- rowSums(B_out)
-    
-    
-    
-    ## remove duplicated rows
-    # uniqueRow <- !duplicated(B_out,MARGIN = 1)
-    # ind_row <- ind_row[uniqueRow]
-    # B_out <- B_out[uniqueRow, ]
-    # sums_row <- rowSums(B_out)
-    
-    
     
     # if we have enough row then compress B
     if(nrow(B_out) >= (ncol(B_out) + 1)){
@@ -89,20 +88,14 @@ reduxB <- function(B){
         ind_col <- ind_col[-length(ind_col)]
         B_out <- B_out[,-ncol(B_out)]
       }else{
-        # ind_row smaller than 
         ind_col <- ind_col[1:(length(ind_row)-1)]
         B_out <- B_out[,1:length(ind_row)-1]
       }
-      # break;
     }
     # update sums
     sums <- colSums(B_out)
     step = step + 1;
   }
-  # last update rowsums
-  # sums_row <- rowSums(B_out)
-  # ind_row <- ind_row[which(sums_row > eps | sums_row < -eps)]
-  
-  # return the compressed matrix and the column and row that represent B_out.
+ 
   return(list(B = B_out,ind_col = ind_col, ind_row = ind_row))
 }

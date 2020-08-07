@@ -7,22 +7,17 @@
 flightphase_arma(X, pik, EPS = 1e-07)
 }
 \arguments{
-\item{x}{x}
+\item{X}{matrix of auxiliary variables.}
+
+\item{pik}{vector of inclusion probabilities}
+
+\item{EPS}{tolerance}
 }
 \value{
-a vector
+a sample
 }
 \description{
-description
-}
-\details{
-details
-}
-\examples{
-
-}
-\seealso{
-func
+title
 }
 \author{
 Raphaël Jauslin \email{raphael.jauslin@unine.ch}

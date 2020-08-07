@@ -2,21 +2,29 @@
 % Please edit documentation in R/samplecubeSPOT.R
 \name{samplecubeSPOT}
 \alias{samplecubeSPOT}
-\title{Title}
+\title{Sample cube SPOT}
 \usage{
 samplecubeSPOT(X, pik, order = 1, comment = TRUE, method = 1)
 }
 \arguments{
-\item{method}{}
+\item{X}{matrix of auxiliary variable}
+
+\item{pik}{vector of inclusion probabilities}
+
+\item{order}{order}
+
+\item{comment}{comment if true}
+
+\item{method}{method}
 }
 \value{
 
 }
 \description{
-Title
+Sample cube SPOT
 }
 \examples{
-
+\dontrun{
 N=1000
 p=7
 set.seed(1)
@@ -27,10 +35,6 @@ X=array(x,c(N,p))
 X=cbind(cbind(X,rep(1,times=N)),pik)
 pikfin = sampling::samplecube(X,pik,1,TRUE)
 pikfin2 = samplecubeSPOT(X,pik,1,TRUE)
-
-
-
-
 
 
 rm(list = ls())
@@ -50,8 +54,5 @@ comment = TRUE
 EPS = 1e-11
 
 s <- samplecubeSPOT(X,pik,order = 2)
-
-
-
-
+}
 }

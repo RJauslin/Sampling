@@ -22,7 +22,7 @@ Suggests:
     ggvoronoi,
     sampling,
     BalancedSampling,
-    sp,
-    sf,
-    stats
+    stats,
+    MASS,
+    lpSolve
 VignetteBuilder: knitr

@@ -1,13 +1,15 @@
-#' Title
+#' @title  algofastflightcubeSPOT
 #'
-#' @param X
-#' @param pik
+#' @description 
+#' 
+#' implementation modified from the package sampling.
+#' 
+#' @param X matrix of auxiliary variables.
+#' @param pik vector of inclusion probabilities
 #'
-#' @return
+#' @return updated pik
 #' @export
-#'
-#' @examples
-algofastflightcube2 <- function(X, pik) {
+algofastflightcubeSPOT <- function(X, pik) {
   EPS = 1e-11
   N = length(pik)
   p = round(length(X)/length(pik))
@@ -55,53 +57,5 @@ algofastflightcube2 <- function(X, pik) {
     pik[ind] = psik
     pik
   }
-
-}
-
-
-
-
-
-#' Title
-#'
-#' @param X
-#' @param pik
-#'
-#' @return
-#' @export
-#'
-#' @examples
-algofastflightcube <- function(X, pik) {
-  N = length(pik)
-  p = round(length(X)/length(pik))
-  X <- array(X, c(N, p))
-  A <- X/pik
-  B <- A[1:(p + 1), ]
-
-  psik <- pik[1:(p + 1)]
-  ind <- seq(1, p + 1, 1)
-  pp = p + 2
-  B <- array(B, c(p + 1, p))
-  while (pp <= N) {
-    psik <- jump(B, psik)
-    liste <- (psik > (1 - EPS) | psik < EPS)
-    i <- 0
-    while (i <= (p) & pp <= N) {
-      i = i + 1
-      if (liste[i] == TRUE) {
-        pik[ind[i]] = psik[i]
-        psik[i] = pik[pp]
-        B[i, ] = A[pp, ]
-        B = array(B, c(p + 1, p))
-        ind[i] = pp
-        pp = pp + 1
-      }
-    }
-  }
-  if (length(pik[(pik > EPS & pik < (1 - EPS))]) == (p + 1)){
-    psik <- jump(B, psik)
-    pik[ind] = psik
-    pik
-  }
-
+  return(pik)
 }

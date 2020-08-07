@@ -3,32 +3,33 @@
 using namespace Rcpp;
 
 // [[Rcpp::depends(RcppArmadillo)]]
-//' @title Column sums for sparseMatrix
+//' @title Reduction of the matrix
 //'
-//' @description
-//' Form column sums for sparseMatrix.
+//' @description 
+//' 
+//' This function reduces the size of the matrix by removing alternatively columns and rows that have sum equal to 0.
+//' 
+//' In case where the number of auxiliary varibale is great (p very large), even if we use the fast implementation proposed by
+//' (Chauvet and Tillé 2005) the problem is time consuming. If we have the chance that the matrix is strongly sparse,
+//' we can then use the function to reduce the size of the matrix B by using this method. 
+//' 
+//' If the matrix is dense or every column have sum greater than 0, then nothing is changed.
 //'
-//' @param x A sparse matrix, i.e., inheriting from \code{\link[Matrix]{sparseMatrix}}.
+//' @param B a matrix of size (p+1 x p) sub-matrix of auxiliary matrix.
 //'
-//' @details
-//' This function is designed to be used for internal \code{RcppArmadillo} functions. Nevertheless it could be applied in R.
-//' It loops on the non-zero entries of the \code{\link[Matrix]{sparseMatrix}}. For general uses, the function
-//' \code{\link[Matrix]{colSums}} should be prefered.
-//'
-//' @return column sums of x.
+//' @return a list
+//' 
+//' @references 
+//' Chauvet, G. and Tillé, Y. (2006). A fast algorithm of balanced sampling. Computational Statistics, 21/1:53–62. 
 //' 
 //' @author Raphaël Jauslin \email{raphael.jauslin@@unine.ch}
 //' 
-//' @seealso
-//' \code{\link[Matrix]{colSums}}, \code{\link[Matrix]{rowSums}}.
-//'
+//' 
 //' @export
 // [[Rcpp::export]]
 Rcpp::List reduxArma(arma::mat B) {
   
   double eps = 1e-12;
-  int N = B.n_rows;
-  int p = B.n_cols;
   
   arma::mat B_out = B;
   arma::rowvec sums = sum(B,0);
@@ -39,10 +40,8 @@ Rcpp::List reduxArma(arma::mat B) {
   
   int step = 1;
   while(any(sums < eps && sums > -eps)){ // loop while we find some colSums equal to 0
-  // while(step < 4){ // loop while we find some colSums equal to 0
     
     // std::cout << step << std::endl << std::endl;
-    
 
     
     // extract the column that have sums greater than 0

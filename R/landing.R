@@ -1,14 +1,17 @@
-#' Title
+#' Lading Ineq (concept function for now)
 #'
-#' @param X
-#' @param pikstar
-#' @param pik
-#' @param comment
+#' @param X matrix of auxiliary variables
+#' @param pikstar vector of inclusion probabilities
+#' @param pik vector of inclusion probabilities
+#' @param B matrix
+#' @param r vector
+#' @param comment bool, should comment be written.
 #'
-#' @return
+#' @return sample (vector of 0 or 1)
 #' @export
 #'
 #' @examples
+#' \dontrun{
 #' rm(list = ls())
 #' EPS=0.0000001
 #' N=1000
@@ -58,8 +61,7 @@
 #' t(B)%*%s <= r
 #' t(X/pik)%*%s
 #' t(X/pik)%*%pik
-#'
-#'
+#'}
 landIneq <- function(X, pikstar, pik,B,r,comment = TRUE){
   # Idea of the algorithm is to first find all sample that have size of sum(pikstar)
   # on element of pikstar that does not have value equal 1 or 0. -> pikland
@@ -102,9 +104,9 @@ landIneq <- function(X, pikstar, pik,B,r,comment = TRUE){
     pikland = round(nland) * pikland/nland
     nland = round(nland)
     # SSS = writesample(nland, Nland)
-    sampleSet = IneqCube::samplen(Nland,nland)
+    sampleSet = samplen(Nland,nland)
   }else{
-    sampleSet = cbind(IneqCube::samplen(Nland,trunc(nland)), IneqCube::samplen(Nland,trunc(nland) + 1))
+    sampleSet = cbind(samplen(Nland,trunc(nland)), samplen(Nland,trunc(nland) + 1))
   }
   sampleSetSize = ncol(sampleSet)
   

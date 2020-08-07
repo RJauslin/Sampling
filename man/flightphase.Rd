@@ -2,28 +2,27 @@
 % Please edit documentation in R/RcppExports.R
 \name{flightphase}
 \alias{flightphase}
-\title{title}
+\title{Flight phase of the cube method}
 \usage{
 flightphase(prob, Xbal)
 }
 \arguments{
-\item{x}{x}
+\item{prob}{vector of length N with inclusion probabilities}
+
+\item{Xbal}{matrix of balancing auxiliary variables of N rows and q columns}
 }
 \value{
-a vector
+Returns a vector of length N with new probabilities, where at most q are non-integer.
 }
 \description{
-description
-}
-\details{
-details
-}
-\examples{
+Direct implementation of the function \code{\link[BalancedSampling:flightphase]{flightphase}}. 
 
-}
-\seealso{
-func
-}
-\author{
-Raphaël Jauslin \email{raphael.jauslin@unine.ch}
+In this function there exist a break condition when the number of not updated
+inclusion probabilities reach p (number of auxiliary variables).
+
+It is possible that in fact the kernel of the matrix is not empty and then the algorithm could
+continue without loosing any information.
+
+Look at \code{\link{ffphase}} for a modified version of this function that continue until we have an empty kernel.
+(and still have a good time-consuming)
 }

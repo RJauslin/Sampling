@@ -9,14 +9,10 @@ using namespace Rcpp;
 // Licence: GPL (>=2)
 //**********************************************
 
-// "import" print for error checking
-Function print("print");
-
-
 // [[Rcpp::export]]
 bool all0(NumericVector x) {
   double eps = 1e-12;
-  return is_true(all(x < eps & x > -eps));
+  return is_true(all((x < eps) & (x > -eps)));
 }
 
 /*** R
@@ -25,30 +21,17 @@ all0(c(rep(0,N),1))
 */
 
 
-
-
 // [[Rcpp::depends(RcppArmadillo)]]
-//' @title title
+//' @title onestepfastflightcube
 //'
 //' @description
-//' description
+//' 
+//' one step of the fast flight cube. Direct implementation of the package BalancedSampling from Anton Grafström
 //'
+//' @param prob vector of inclusion probabilities
+//' @param Bm matrix of size (p x p+1) (transpose from the original)
 //'
-//' @param x x
-//'
-//' @details
-//'
-//' details
-//'
-//' @return a vector
-//'
-//'
-//' @author Raphaël Jauslin \email{raphael.jauslin@@unine.ch}
-//'
-//' @seealso
-//' func
-//'
-//' @examples
+//' @return updated inclusion probabilities
 //'
 //' @export
 // [[Rcpp::export]]
@@ -129,27 +112,25 @@ NumericVector onestepfastflightcube(NumericVector prob, NumericMatrix Bm){
 
 
 // [[Rcpp::depends(RcppArmadillo)]]
-//' @title title
+//' @title Flight phase of the cube method
 //'
 //' @description
-//' description
+//' 
+//' Direct implementation of the function \code{\link[BalancedSampling:flightphase]{flightphase}}. 
+//' 
+//' In this function there exist a break condition when the number of not updated
+//' inclusion probabilities reach p (number of auxiliary variables).
+//' 
+//' It is possible that in fact the kernel of the matrix is not empty and then the algorithm could
+//' continue without loosing any information.
+//' 
+//' Look at \code{\link{ffphase}} for a modified version of this function that continue until we have an empty kernel.
+//' (and still have a good time-consuming)
 //'
+//' @param prob vector of length N with inclusion probabilities
+//' @param Xbal matrix of balancing auxiliary variables of N rows and q columns
 //'
-//' @param x x
-//'
-//' @details
-//'
-//' details
-//'
-//' @return a vector
-//'
-//'
-//' @author Raphaël Jauslin \email{raphael.jauslin@@unine.ch}
-//'
-//' @seealso
-//' func
-//'
-//' @examples
+//' @return Returns a vector of length N with new probabilities, where at most q are non-integer.
 //'
 //' @export
 // [[Rcpp::export]]
@@ -159,7 +140,7 @@ NumericVector flightphase(NumericVector prob, NumericMatrix Xbal){
   
   IntegerVector index(N);
   NumericVector p(N);
-  int i,j,k,howmany;
+  int i,j,howmany;
   for(i=0;i<N;i++){index[i]=i; p[i]=prob[i];}
   double eps = 1e-12;
   int done = 0, tempInt, howlong;
@@ -185,7 +166,7 @@ NumericVector flightphase(NumericVector prob, NumericMatrix Xbal){
   
   // remaining are index from done to N-1
   while( done < N ){
-  // while( B.ncol() > 1){
+    // while( B.ncol() > 1){
     
     // find cluster of size howmany
     howmany = std::min(naux+1,N-done);
@@ -220,7 +201,7 @@ NumericVector flightphase(NumericVector prob, NumericMatrix Xbal){
         // arma::vec s = arma::svd(B_arma);
         // std::cout << s << std::endl;
         // if(arma::all(s > eps)){
-          // break;
+        // break;
         // }
         
         

@@ -3,13 +3,11 @@
 // [[Rcpp::depends(RcppArmadillo)]]
 //' @title Arma matrix to NumericMatrix
 //'
-//' @param x Matrix X
+//' @param x a Matrix
 //'
-//' @return same matrix
-//'
+//' @return same matrix but with NumericMatrix type.
 //'
 //' @author Raphaël Jauslin \email{raphael.jauslin@@unine.ch}
-//
 //'
 //' @export
 // [[Rcpp::export]]
@@ -22,13 +20,12 @@ Rcpp::NumericMatrix mat_as_Numeric (arma::mat x) {
 // [[Rcpp::depends(RcppArmadillo)]]
 //' @title NumericMatrix matrix to Arma
 //'
-//' @param x Matrix X
+//' @param x a Matrix 
 //'
-//' @return same matrix
+//' @return same matrix but with arma type.
 //'
 //'
 //' @author Raphaël Jauslin \email{raphael.jauslin@@unine.ch}
-//
 //'
 //' @export
 // [[Rcpp::export]]
@@ -39,15 +36,14 @@ arma::mat mat_as_arma(Rcpp::NumericMatrix x) {
 
 
 // [[Rcpp::depends(RcppArmadillo)]]
-//' @title NumericMatrix matrix to Arma
+//' @title svd in arma
 //'
 //' @param x Matrix X
 //'
-//' @return same matrix
+//' @return list of element of svd
 //'
 //'
 //' @author Raphaël Jauslin \email{raphael.jauslin@@unine.ch}
-//
 //'
 //' @export
 // [[Rcpp::export]]

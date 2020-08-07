@@ -2,27 +2,18 @@
 % Please edit documentation in R/RcppExports.R
 \name{rrefBal}
 \alias{rrefBal}
-\title{title}
+\title{reduced row echelon fom}
 \usage{
 rrefBal(M)
 }
 \arguments{
-\item{x}{x}
+\item{M}{matrix}
 }
 \value{
-a vector
+NULL (transform matrix)
 }
 \description{
-description
-}
-\details{
-details
-}
-\examples{
-
-}
-\seealso{
-func
+reduced row echelon fom
 }
 \author{
 Raphaël Jauslin \email{raphael.jauslin@unine.ch}

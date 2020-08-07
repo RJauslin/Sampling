@@ -5,156 +5,82 @@ all0 <- function(x) {
     .Call(`_SamplingC_all0`, x)
 }
 
-#' @title title
+#' @title onestepfastflightcube
 #'
 #' @description
-#' description
+#' 
+#' one step of the fast flight cube. Direct implementation of the package BalancedSampling from Anton Grafström
 #'
+#' @param prob vector of inclusion probabilities
+#' @param Bm matrix of size (p x p+1) (transpose from the original)
 #'
-#' @param x x
-#'
-#' @details
-#'
-#' details
-#'
-#' @return a vector
-#'
-#'
-#' @author Raphaël Jauslin \email{raphael.jauslin@@unine.ch}
-#'
-#' @seealso
-#' func
-#'
-#' @examples
+#' @return updated inclusion probabilities
 #'
 #' @export
 onestepfastflightcube <- function(prob, Bm) {
     .Call(`_SamplingC_onestepfastflightcube`, prob, Bm)
 }
 
-#' @title title
+#' @title Flight phase of the cube method
 #'
 #' @description
-#' description
+#' 
+#' Direct implementation of the function \code{\link[BalancedSampling:flightphase]{flightphase}}. 
+#' 
+#' In this function there exist a break condition when the number of not updated
+#' inclusion probabilities reach p (number of auxiliary variables).
+#' 
+#' It is possible that in fact the kernel of the matrix is not empty and then the algorithm could
+#' continue without loosing any information.
+#' 
+#' Look at \code{\link{ffphase}} for a modified version of this function that continue until we have an empty kernel.
+#' (and still have a good time-consuming)
 #'
+#' @param prob vector of length N with inclusion probabilities
+#' @param Xbal matrix of balancing auxiliary variables of N rows and q columns
 #'
-#' @param x x
-#'
-#' @details
-#'
-#' details
-#'
-#' @return a vector
-#'
-#'
-#' @author Raphaël Jauslin \email{raphael.jauslin@@unine.ch}
-#'
-#' @seealso
-#' func
-#'
-#' @examples
+#' @return Returns a vector of length N with new probabilities, where at most q are non-integer.
 #'
 #' @export
 flightphase <- function(prob, Xbal) {
     .Call(`_SamplingC_flightphase`, prob, Xbal)
 }
 
-#' @title title
-#'
-#' @description
-#' description
-#'
-#'
-#' @param x x
-#'
-#' @details
-#'
-#' details
-#'
-#' @return a vector
-#'
-#'
-#' @author Raphaël Jauslin \email{raphael.jauslin@@unine.ch}
-#'
-#' @seealso
-#' func
-#'
-#' @examples
-#'
-#' @export
-onestepfastflightcubeArma <- function(prob, Bm) {
-    .Call(`_SamplingC_onestepfastflightcubeArma`, prob, Bm)
-}
-
-#' @title title
-#'
-#' @description
-#' description
-#'
-#'
-#' @param x x
-#'
-#' @details
-#'
-#' details
-#'
-#' @return a vector
-#'
-#'
-#' @author Raphaël Jauslin \email{raphael.jauslin@@unine.ch}
-#'
-#' @seealso
-#' func
-#'
-#' @examples
-#'
-#' @export
-flightphaseArma <- function(prob, Xbal) {
-    .Call(`_SamplingC_flightphaseArma`, prob, Xbal)
-}
-
 #' @title Arma matrix to NumericMatrix
 #'
-#' @param x Matrix X
+#' @param x a Matrix
 #'
-#' @return same matrix
-#'
-#'
-#' @author Raphaël Jauslin \email{raphael.jauslin@@unine.ch}
-NULL
-
-#' @title NumericMatrix matrix to Arma
-#'
-#' @param x Matrix X
-#'
-#' @return same matrix
-#'
+#' @return same matrix but with NumericMatrix type.
 #'
 #' @author Raphaël Jauslin \email{raphael.jauslin@@unine.ch}
-NULL
-
-#' @title NumericMatrix matrix to Arma
-#'
-#' @param x Matrix X
-#'
-#' @return same matrix
-#'
-#'
-#' @author Raphaël Jauslin \email{raphael.jauslin@@unine.ch}
-NULL
-
 #'
 #' @export
 mat_as_Numeric <- function(x) {
     .Call(`_SamplingC_mat_as_Numeric`, x)
 }
 
+#' @title NumericMatrix matrix to Arma
+#'
+#' @param x a Matrix 
+#'
+#' @return same matrix but with arma type.
+#'
+#'
+#' @author Raphaël Jauslin \email{raphael.jauslin@@unine.ch}
 #'
 #' @export
 mat_as_arma <- function(x) {
     .Call(`_SamplingC_mat_as_arma`, x)
 }
 
+#' @title svd in arma
+#'
+#' @param x Matrix X
+#'
+#' @return list of element of svd
+#'
+#'
+#' @author Raphaël Jauslin \email{raphael.jauslin@@unine.ch}
 #'
 #' @export
 svdArma <- function(x) {
@@ -178,136 +104,84 @@ choose <- function(n, k) {
     .Call(`_SamplingC_choose`, n, k)
 }
 
-#' @title Arma matrix to NumericMatrix
+#' @title all test condition in Rcpp
 #'
-#' @param x Matrix X
+#' @param x vector of boolean
 #'
-#' @return same matrix
-#'
-#'
+#' @return true or false
+#' 
 #' @author Raphaël Jauslin \email{raphael.jauslin@@unine.ch}
-NULL
-
-#' @title Arma matrix to NumericMatrix
-#'
-#' @param x Matrix X
-#'
-#' @return same matrix
-#'
-#'
-#' @author Raphaël Jauslin \email{raphael.jauslin@@unine.ch}
-NULL
-
-#' @title Arma matrix to NumericMatrix
-#'
-#' @param x Matrix X
-#'
-#' @return same matrix
-#'
-#'
-#' @author Raphaël Jauslin \email{raphael.jauslin@@unine.ch}
-NULL
-
-#' @title Arma matrix to NumericMatrix
-#'
-#' @param x Matrix X
-#'
-#' @return same matrix
-#'
-#'
-#' @author Raphaël Jauslin \email{raphael.jauslin@@unine.ch}
-NULL
-
-#' @title Arma matrix to NumericMatrix
-#'
-#' @param x Matrix X
-#'
-#' @return same matrix
-#'
-#'
-#' @author Raphaël Jauslin \email{raphael.jauslin@@unine.ch}
-NULL
-
-#' @title Arma matrix to NumericMatrix
-#'
-#' @param x Matrix X
-#'
-#' @return same matrix
-#'
-#'
-#' @author Raphaël Jauslin \email{raphael.jauslin@@unine.ch}
-NULL
-
-#' @title Arma matrix to NumericMatrix
-#'
-#' @param x Matrix X
-#'
-#' @return same matrix
-#'
-#'
-#' @author Raphaël Jauslin \email{raphael.jauslin@@unine.ch}
-NULL
-
-#' @title Arma matrix to NumericMatrix
-#'
-#' @param x Matrix X
-#'
-#' @return same matrix
-#'
-#'
-#' @author Raphaël Jauslin \email{raphael.jauslin@@unine.ch}
-NULL
-
 #'
 #' @export
 all_sug <- function(x) {
     .Call(`_SamplingC_all_sug`, x)
 }
 
+#' @title colSums in Rcpp
+#'
+#' @param x Matrix X
+#'
+#' @return colSums
+#'
+#' @author Raphaël Jauslin \email{raphael.jauslin@@unine.ch}
 #'
 #' @export
 colSumsRcpp <- function(x) {
     .Call(`_SamplingC_colSumsRcpp`, x)
 }
 
+#' @title rowSums in Rcpp
+#'
+#' @param x Matrix X
+#'
+#' @return rowSums
+#'
+#' @author Raphaël Jauslin \email{raphael.jauslin@@unine.ch}
 #'
 #' @export
 rowSumsRcpp <- function(x) {
     .Call(`_SamplingC_rowSumsRcpp`, x)
 }
 
+#' @title Check equal
 #'
-#' @export
-reduxRcpp <- function(B) {
-    .Call(`_SamplingC_reduxRcpp`, B)
-}
-
+#' @param x vector 
+#' @param y vector
 #'
-#' @export
-duplicatedMatrixRcpp <- function(x) {
-    .Call(`_SamplingC_duplicatedMatrixRcpp`, x)
-}
-
+#' @return return true if vector equal to each other
+#'
+#' @author Raphaël Jauslin \email{raphael.jauslin@@unine.ch}
 #'
 #' @export
 check_equal <- function(x, y) {
     .Call(`_SamplingC_check_equal`, x, y)
 }
 
+#' @title duplicated columns
+#'
+#' @param B Matrix B
+#'
+#' @return return vector of boolean
+#'
+#' @author Raphaël Jauslin \email{raphael.jauslin@@unine.ch}
 #'
 #' @export
 duplicatedCols <- function(B) {
     .Call(`_SamplingC_duplicatedCols`, B)
 }
 
+#' @title duplicated rows
+#'
+#' @param B Matrix B
+#'
+#' @return vector of boolean
+#'
+#'
+#' @author Raphaël Jauslin \email{raphael.jauslin@@unine.ch}
 #'
 #' @export
 duplicatedRows <- function(B) {
     .Call(`_SamplingC_duplicatedRows`, B)
-}
-
-is_duplicate_row <- function(r, x) {
-    .Call(`_SamplingC_is_duplicate_row`, r, x)
 }
 
 #' @title title
@@ -316,7 +190,8 @@ is_duplicate_row <- function(r, x) {
 #' description
 #'
 #'
-#' @param x x
+#' @param prob inclusion probabilities
+#' @param Bm matrix of auxiliary variables
 #'
 #' @details
 #'
@@ -331,6 +206,69 @@ is_duplicate_row <- function(r, x) {
 #' func
 #'
 #' @examples
+#'
+#' @export
+osffphase <- function(prob, Bm) {
+    .Call(`_SamplingC_osffphase`, prob, Bm)
+}
+
+#' @title Fast Flight phase
+#'
+#'
+#' @description
+#' 
+#' Modified version of \code{\link[BalancedSampling:flightphase]{flightphase}}
+#'
+#' @param prob vector of inclusion probabilities of size N.
+#' @param Xbal Matrix of auxiliary variables of dimension N x p
+#' @param order if reordering at first step, Default TRUE.
+#' @param redux if the matrix should be reduced. Default FALSE.
+#'
+#' @details
+#'
+#' details
+#'
+#' @return a sample with at most p value not update to 0 or 1. 
+#'
+#'
+#' @author Raphaël Jauslin \email{raphael.jauslin@@unine.ch}
+#'
+#' @export
+ffphase <- function(prob, Xbal, order = TRUE, redux = FALSE) {
+    .Call(`_SamplingC_ffphase`, prob, Xbal, order, redux)
+}
+
+#' @title title
+#'
+#' @description
+#' description
+#'
+#'
+#' @param B matrix of auxiliary variables.
+#' @param pik vector of inclusion probabilities
+#' @param EPS tolerance
+#'
+#' @return updated pik
+#'
+#'
+#' @author Raphaël Jauslin \email{raphael.jauslin@@unine.ch}
+#'
+#' @export
+onestep <- function(B, pik, EPS = 0.0000001) {
+    .Call(`_SamplingC_onestep`, B, pik, EPS)
+}
+
+#' @title title
+#'
+#'
+#'
+#' @param X matrix of auxiliary variables.
+#' @param pik vector of inclusion probabilities
+#' @param EPS tolerance
+#'
+#' @return a sample
+#'
+#' @author Raphaël Jauslin \email{raphael.jauslin@@unine.ch}
 #'
 #' @export
 flightphase_arma2 <- function(X, pik, EPS = 0.0000001) {
@@ -339,108 +277,43 @@ flightphase_arma2 <- function(X, pik, EPS = 0.0000001) {
 
 #' @title title
 #'
-#' @description
-#' description
 #'
 #'
-#' @param x x
+#' @param X matrix of auxiliary variables.
+#' @param pik vector of inclusion probabilities
+#' @param EPS tolerance
 #'
-#' @details
-#'
-#' details
-#'
-#' @return a vector
-#'
+#' @return a sample
 #'
 #' @author Raphaël Jauslin \email{raphael.jauslin@@unine.ch}
-#'
-#' @seealso
-#' func
-#'
-#' @examples
 #'
 #' @export
 flightphase_arma <- function(X, pik, EPS = 0.0000001) {
     .Call(`_SamplingC_flightphase_arma`, X, pik, EPS)
 }
 
-#' @title title
+#' @title Reduction of the matrix
 #'
-#' @description
-#' description
+#' @description 
+#' 
+#' This function reduces the size of the matrix by removing alternatively columns and rows that have sum equal to 0.
+#' 
+#' In case where the number of auxiliary varibale is great (p very large), even if we use the fast implementation proposed by
+#' (Chauvet and Tillé 2005) the problem is time consuming. If we have the chance that the matrix is strongly sparse,
+#' we can then use the function to reduce the size of the matrix B by using this method. 
+#' 
+#' If the matrix is dense or every column have sum greater than 0, then nothing is changed.
 #'
+#' @param B a matrix of size (p+1 x p) sub-matrix of auxiliary matrix.
 #'
-#' @param x x
-#'
-#' @details
-#'
-#' details
-#'
-#' @return a vector
-#'
-#'
-#' @author Raphaël Jauslin \email{raphael.jauslin@@unine.ch}
-#'
-#' @seealso
-#' func
-#'
-#' @examples
-#'
-#' @export
-onestepfastflightcubeSPOT <- function(prob, Bm) {
-    .Call(`_SamplingC_onestepfastflightcubeSPOT`, prob, Bm)
-}
-
-#' @title title
-#'
-#' @description
-#' description
-#'
-#'
-#' @param x x
-#'
-#' @details
-#'
-#' details
-#'
-#' @return a vector
-#'
-#'
-#' @author Raphaël Jauslin \email{raphael.jauslin@@unine.ch}
-#'
-#' @seealso
-#' func
-#'
-#' @examples
-#'
-#' @export
-flightphaseSPOT <- function(prob, Xbal) {
-    .Call(`_SamplingC_flightphaseSPOT`, prob, Xbal)
-}
-
-onestep <- function(B, pik, EPS = 0.0000001) {
-    .Call(`_SamplingC_onestep`, B, pik, EPS)
-}
-
-#' @title Column sums for sparseMatrix
-#'
-#' @description
-#' Form column sums for sparseMatrix.
-#'
-#' @param x A sparse matrix, i.e., inheriting from \code{\link[Matrix]{sparseMatrix}}.
-#'
-#' @details
-#' This function is designed to be used for internal \code{RcppArmadillo} functions. Nevertheless it could be applied in R.
-#' It loops on the non-zero entries of the \code{\link[Matrix]{sparseMatrix}}. For general uses, the function
-#' \code{\link[Matrix]{colSums}} should be prefered.
-#'
-#' @return column sums of x.
+#' @return a list
+#' 
+#' @references 
+#' Chauvet, G. and Tillé, Y. (2006). A fast algorithm of balanced sampling. Computational Statistics, 21/1:53–62. 
 #' 
 #' @author Raphaël Jauslin \email{raphael.jauslin@@unine.ch}
 #' 
-#' @seealso
-#' \code{\link[Matrix]{colSums}}, \code{\link[Matrix]{rowSums}}.
-#'
+#' 
 #' @export
 reduxArma <- function(B) {
     .Call(`_SamplingC_reduxArma`, B)
@@ -494,54 +367,28 @@ rowSumsiter <- function(x) {
     .Call(`_SamplingC_rowSumsiter`, x)
 }
 
-#' @title title
-#'
-#' @description
-#' description
+#' @title reduced row echelon form arma implementation
 #'
 #'
-#' @param x x
+#' @param M matrix 
 #'
-#' @details
-#'
-#' details
-#'
-#' @return a vector
-#'
+#' @return NULL (transform matrix)
 #'
 #' @author Raphaël Jauslin \email{raphael.jauslin@@unine.ch}
-#'
-#' @seealso
-#' func
-#'
-#' @examples
 #'
 #' @export
 rrefArma <- function(M) {
     invisible(.Call(`_SamplingC_rrefArma`, M))
 }
 
-#' @title title
-#'
-#' @description
-#' description
+#' @title reduced row echelon fom
 #'
 #'
-#' @param x x
+#' @param M matrix 
 #'
-#' @details
-#'
-#' details
-#'
-#' @return a vector
-#'
+#' @return NULL (transform matrix)
 #'
 #' @author Raphaël Jauslin \email{raphael.jauslin@@unine.ch}
-#'
-#' @seealso
-#' func
-#'
-#' @examples
 #'
 #' @export
 rrefBal <- function(M) {
@@ -585,55 +432,25 @@ systematicDesign <- function(pik) {
     .Call(`_SamplingC_systematicDesign`, pik)
 }
 
-#' @title title
-#'
-#' @description
-#' description
-#'
-#'
-#' @param x x
-#'
-#' @details
-#'
-#' details
-#'
-#' @return a vector
+#' @title kernel vector
+#' @param Bm matrix
+#' @return a null vector
 #'
 #'
 #' @author Raphaël Jauslin \email{raphael.jauslin@@unine.ch}
-#'
-#' @seealso
-#' func
-#'
-#' @examples
-#'
+#' 
 #' @export
 ukern <- function(Bm) {
     .Call(`_SamplingC_ukern`, Bm)
 }
 
-#' @title title
-#'
-#' @description
-#' description
-#'
-#'
-#' @param x x
-#'
-#' @details
-#'
-#' details
-#'
-#' @return a vector
+#' @title kernel vector arma
+#' @param Bm matrix
+#' @return a null vector
 #'
 #'
 #' @author Raphaël Jauslin \email{raphael.jauslin@@unine.ch}
-#'
-#' @seealso
-#' func
-#'
-#' @examples
-#'
+#' 
 #' @export
 ukernArma <- function(Bm) {
     .Call(`_SamplingC_ukernArma`, Bm)

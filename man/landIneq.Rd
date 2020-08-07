@@ -2,20 +2,31 @@
 % Please edit documentation in R/landing.R
 \name{landIneq}
 \alias{landIneq}
-\title{Title}
+\title{Lading Ineq (concept function for now)}
 \usage{
 landIneq(X, pikstar, pik, B, r, comment = TRUE)
 }
 \arguments{
-\item{comment}{}
+\item{X}{matrix of auxiliary variables}
+
+\item{pikstar}{vector of inclusion probabilities}
+
+\item{pik}{vector of inclusion probabilities}
+
+\item{B}{matrix}
+
+\item{r}{vector}
+
+\item{comment}{bool, should comment be written.}
 }
 \value{
-
+sample (vector of 0 or 1)
 }
 \description{
-Title
+Lading Ineq (concept function for now)
 }
 \examples{
+\dontrun{
 rm(list = ls())
 EPS=0.0000001
 N=1000
@@ -65,6 +76,5 @@ s <- landIneq(X,pikstar,pik,B,r)
 t(B)\%*\%s <= r
 t(X/pik)\%*\%s
 t(X/pik)\%*\%pik
-
-
+}
 }

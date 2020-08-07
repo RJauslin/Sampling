@@ -2,16 +2,18 @@
 % Please edit documentation in R/jump.R
 \name{jump}
 \alias{jump}
-\title{Title}
+\title{Internal function of algofastflightcube}
 \usage{
 jump(X, pik)
 }
 \arguments{
-\item{pik}{}
+\item{X}{matrix of auxiliary variables}
+
+\item{pik}{vector of inclusion probabilities}
 }
 \value{
-
+update pik
 }
 \description{
-Title
+Internal function of algofastflightcube
 }

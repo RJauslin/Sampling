@@ -1,15 +1,20 @@
-
-#' Title
+#' Fast flight phase for the cube method modified
 #'
-#' @param X
-#' @param pik
-#' @param order
-#' @param comment
+#' @description 
+#' 
+#' implementation modified from the package sampling.
+#' 
+#' @param X matrix of auxiliary variables.
+#' @param pik vector of inclusion probabilities.
+#' @param order order to rearrange the data. Default 1
+#' @param comment bool, if comment should be written.
 #'
 #' @return
 #' @export
 #'
 #' @examples
+#' \dontrun{
+#' 
 #' # Matrix of balancing variables
 #' X=cbind(c(1,1,1,1,1,1,1,1,1),c(1,2,3,4,5,6,7,8,9))
 #' # Vector of inclusion probabilities.
@@ -43,6 +48,7 @@
 #' system.time(test4 <- BalancedSampling::flightphase(pik,X))
 #'
 #'
+#' }
 fastflightcubeSPOT <- function (X, pik, order = 1, comment = TRUE)
 {
   EPS = 1e-11
@@ -100,7 +106,7 @@ fastflightcubeSPOT <- function (X, pik, order = 1, comment = TRUE)
   if (Nbon > p) {
     if (comment == TRUE)
       cat("Step 1  ")
-    system.time(pikstarbon <- algofastflightcube2(Xbon, pikbon))
+    system.time(pikstarbon <- algofastflightcubeSPOT(Xbon, pikbon))
     # system.time(pikstarbon <- algofastflightcube(Xbon, pikbon))
     pikstar[liste] = pikstarbon
     flag = 1
@@ -123,7 +129,7 @@ fastflightcubeSPOT <- function (X, pik, order = 1, comment = TRUE)
     if (comment == TRUE)
       cat("Step ", k, ",  ")
     k = k + 1
-    pikstarbon <- algofastflightcube2(Xbon/pik[liste] * pikbon,
+    pikstarbon <- algofastflightcubeSPOT(Xbon/pik[liste] * pikbon,
                                      pikbon)
     pikstar[liste] = pikstarbon
     liste <- o[(pikstar[o] > EPS & pikstar[o] < (1 - EPS))]
