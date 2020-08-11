@@ -3,41 +3,77 @@ library(sampling)
 library(BalancedSampling)
 library(MASS)
 library(microbenchmark)
+library(Matrix)
 
 rm(list = ls())
 eps=1e-12
-
 
 library(devtools)
 install_github("Rjauslin/SamplingC@master")
 library(SamplingC)
 
 
-
+#-------------------  
+#-------------------  set up 1
+#-------------------  
 rm(list = ls())
 N = 500
 n = 80
 p = 100
 pik=inclusionprobabilities(runif(N),n)
 X=cbind(pik,matrix(rnorm(N*p),c(N,p)))
-system.time(test1 <- BalancedSampling::flightphase(pik,X))
-system.time(test2 <- flightphaseArma(pik,X))
-system.time(test2 <- flightphase_arma(X,pik))
-system.time(test2 <- fastflightcube(X,pik))
-# 
 
+
+
+#-------------------  system.time
+
+# system.time(test1 <- BalancedSampling::flightphase(pik,X))
+# system.time(test2 <- SamplingC::ffphase(pik,X))
+# system.time(test2 <- SamplingC::flightphase_arma(X,pik))
+# system.time(test2 <- fastflightcube(X,pik))
+
+
+#-------------------  microbenchmark
 
 microbenchmark(
   BalancedSampling::flightphase(pik,X),
-  flightphaseArma(pik,X),
-  flightphase_arma(X,pik)
+  ffphase(pik,X),
+  flightphase_arma(X,pik),
+  fastflightcubeSPOT(X,pik,order = 2,comment = FALSE)
   # fastflight cube(X,pik)
 )
 
 
-A <- X/pik
+#-------------------  
+#-------------------  set up 1
+#-------------------  
 
-t(A)%*%pik
-t(A)%*%test1
-t(A)%*%test2
-t(A)%*%pik # correc
+
+rm(list = ls())
+N <- 300
+n1 <- round(N/3,N)
+n2 <- round(N/5,N)
+n3 <- round(N/7,N)
+
+Pik <- matrix(c(sampling::inclusionprobabilities(runif(N),n1),
+sampling::inclusionprobabilities(runif(N),n2),
+sampling::inclusionprobabilities(runif(N),n3)),ncol = 3)
+X <- PM(Pik)$PM
+pik <- PM(Pik)$P
+
+#-------------------  system.time
+
+system.time(test1 <- BalancedSampling::flightphase(pik,X))
+system.time(test2 <- SamplingC::ffphase(pik,X,order = FALSE,redux = TRUE))
+system.time(test3 <- SamplingC::flightphase_arma(X,pik))
+system.time(test4 <- fastflightcubeSPOT(X,pik,order = 2,comment = FALSE))
+
+
+microbenchmark(
+  BalancedSampling::flightphase(pik,X),
+  ffphase(pik,X),
+  flightphase_arma(X,pik),
+  fastflightcubeSPOT(X,pik,order = 2,comment = FALSE,method = 2)
+  # sampling::fastflightcube(X,pik)
+)
+

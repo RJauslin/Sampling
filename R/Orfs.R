@@ -84,7 +84,7 @@ Orfs <- function(Pik, tol = 1e-9,arma)
 #' Pik <- matrix(c(sampling::inclusionprobabilities(runif(N),20),
 #' sampling::inclusionprobabilities(runif(N),30),
 #' sampling::inclusionprobabilities(runif(N),40)),ncol = 3)
-#' X <- PM(Pik)
+#' X <- PM(Pik)$PM
 #' }
 PM <- function(Pik, tol = 1e-9)
 {

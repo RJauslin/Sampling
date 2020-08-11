@@ -1,14 +1,5 @@
-#' @title  algofastflightcubeSPOT
-#'
-#' @description 
-#' 
-#' implementation modified from the package sampling.
-#' 
-#' @param X matrix of auxiliary variables.
-#' @param pik vector of inclusion probabilities
-#'
-#' @return updated pik
-#' @export
+#' Internal function of fastflightcubeSPOT
+#' @noRd
 algofastflightcubeSPOT <- function(X, pik) {
   EPS = 1e-11
   N = length(pik)
@@ -26,8 +17,8 @@ algofastflightcubeSPOT <- function(X, pik) {
 
   while (pp <= N) {
     tmp <- reduxB(B)
-    tmp$B
-    B[tmp$ind_row,tmp$ind_col]
+    # tmp$B
+    # B[tmp$ind_row,tmp$ind_col]
     B_tmp <- tmp$B
     # print(dim(B_tmp))
 

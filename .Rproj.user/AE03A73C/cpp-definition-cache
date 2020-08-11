@@ -290,16 +290,16 @@
         ]
     },
     {
-        "file": "C:/Users/jauslinr/switchdrive/SamplingC/SamplingC/src/Bal.cpp",
-        "file_last_write": 1596717497.0,
+        "file": "C:/Users/jauslinr/switchdrive/SamplingC/SamplingC/src/BalancedSampling.cpp",
+        "file_last_write": 1596793530.0,
         "definitions": [
             {
                 "usr": "c:@F@all0#$@N@Rcpp@S@Vector>#VI14#@N@Rcpp@ST>1#T@PreserveStorage#",
                 "kind": 6,
                 "parent_name": "",
                 "name": "all0(Rcpp::NumericVector)",
-                "file": "C:/Users/jauslinr/switchdrive/SamplingC/SamplingC/src/Bal.cpp",
-                "line": 17,
+                "file": "C:/Users/jauslinr/switchdrive/SamplingC/SamplingC/src/BalancedSampling.cpp",
+                "line": 13,
                 "column": 6
             },
             {
@@ -307,8 +307,8 @@
                 "kind": 6,
                 "parent_name": "",
                 "name": "onestepfastflightcube(Rcpp::NumericVector, Rcpp::NumericMatrix)",
-                "file": "C:/Users/jauslinr/switchdrive/SamplingC/SamplingC/src/Bal.cpp",
-                "line": 55,
+                "file": "C:/Users/jauslinr/switchdrive/SamplingC/SamplingC/src/BalancedSampling.cpp",
+                "line": 38,
                 "column": 15
             },
             {
@@ -316,39 +316,15 @@
                 "kind": 6,
                 "parent_name": "",
                 "name": "flightphase(Rcpp::NumericVector, Rcpp::NumericMatrix)",
-                "file": "C:/Users/jauslinr/switchdrive/SamplingC/SamplingC/src/Bal.cpp",
-                "line": 156,
+                "file": "C:/Users/jauslinr/switchdrive/SamplingC/SamplingC/src/BalancedSampling.cpp",
+                "line": 137,
                 "column": 15
             }
         ]
     },
     {
-        "file": "C:/Users/jauslinr/switchdrive/SamplingC/SamplingC/src/BalArma.cpp",
-        "file_last_write": 1596723002.0,
-        "definitions": [
-            {
-                "usr": "c:@F@onestepfastflightcubeArma#$@N@arma@S@Col>#d#$@N@arma@S@Mat>#d#",
-                "kind": 6,
-                "parent_name": "",
-                "name": "onestepfastflightcubeArma(arma::vec, arma::mat)",
-                "file": "C:/Users/jauslinr/switchdrive/SamplingC/SamplingC/src/BalArma.cpp",
-                "line": 33,
-                "column": 11
-            },
-            {
-                "usr": "c:@F@flightphaseArma#$@N@arma@S@Col>#d#$@N@arma@S@Mat>#d#",
-                "kind": 6,
-                "parent_name": "",
-                "name": "flightphaseArma(arma::vec, arma::mat)",
-                "file": "C:/Users/jauslinr/switchdrive/SamplingC/SamplingC/src/BalArma.cpp",
-                "line": 143,
-                "column": 11
-            }
-        ]
-    },
-    {
         "file": "C:/Users/jauslinr/switchdrive/SamplingC/SamplingC/src/NumericToArma.cpp",
-        "file_last_write": 1596633707.0,
+        "file_last_write": 1596791050.0,
         "definitions": [
             {
                 "usr": "c:@F@mat_as_Numeric#$@N@arma@S@Mat>#d#",
@@ -356,7 +332,7 @@
                 "parent_name": "",
                 "name": "mat_as_Numeric(arma::mat)",
                 "file": "C:/Users/jauslinr/switchdrive/SamplingC/SamplingC/src/NumericToArma.cpp",
-                "line": 16,
+                "line": 14,
                 "column": 21
             },
             {
@@ -365,7 +341,7 @@
                 "parent_name": "",
                 "name": "mat_as_arma(Rcpp::NumericMatrix)",
                 "file": "C:/Users/jauslinr/switchdrive/SamplingC/SamplingC/src/NumericToArma.cpp",
-                "line": 35,
+                "line": 32,
                 "column": 11
             },
             {
@@ -374,7 +350,7 @@
                 "parent_name": "",
                 "name": "svdArma(arma::mat)",
                 "file": "C:/Users/jauslinr/switchdrive/SamplingC/SamplingC/src/NumericToArma.cpp",
-                "line": 54,
+                "line": 50,
                 "column": 12
             }
         ]
@@ -406,7 +382,7 @@
     },
     {
         "file": "C:/Users/jauslinr/switchdrive/SamplingC/SamplingC/src/duplicated.cpp",
-        "file_last_write": 1596696604.0,
+        "file_last_write": 1596792146.0,
         "definitions": [
             {
                 "usr": "c:@F@all_sug#$@N@Rcpp@S@Vector>#VI10#@N@Rcpp@ST>1#T@PreserveStorage#",
@@ -414,7 +390,7 @@
                 "parent_name": "",
                 "name": "all_sug(Rcpp::LogicalVector)",
                 "file": "C:/Users/jauslinr/switchdrive/SamplingC/SamplingC/src/duplicated.cpp",
-                "line": 18,
+                "line": 16,
                 "column": 6
             },
             {
@@ -423,7 +399,7 @@
                 "parent_name": "",
                 "name": "colSumsRcpp(const Rcpp::NumericMatrix &)",
                 "file": "C:/Users/jauslinr/switchdrive/SamplingC/SamplingC/src/duplicated.cpp",
-                "line": 43,
+                "line": 38,
                 "column": 15
             },
             {
@@ -432,25 +408,7 @@
                 "parent_name": "",
                 "name": "rowSumsRcpp(const Rcpp::NumericMatrix &)",
                 "file": "C:/Users/jauslinr/switchdrive/SamplingC/SamplingC/src/duplicated.cpp",
-                "line": 76,
-                "column": 15
-            },
-            {
-                "usr": "c:@F@reduxRcpp#$@N@Rcpp@S@Matrix>#VI14#@N@Rcpp@ST>1#T@PreserveStorage#",
-                "kind": 6,
-                "parent_name": "",
-                "name": "reduxRcpp(Rcpp::NumericMatrix)",
-                "file": "C:/Users/jauslinr/switchdrive/SamplingC/SamplingC/src/duplicated.cpp",
-                "line": 106,
-                "column": 15
-            },
-            {
-                "usr": "c:@F@duplicatedMatrixRcpp#$@N@Rcpp@S@Vector>#VI14#@N@Rcpp@ST>1#T@PreserveStorage#",
-                "kind": 6,
-                "parent_name": "",
-                "name": "duplicatedMatrixRcpp(Rcpp::NumericVector)",
-                "file": "C:/Users/jauslinr/switchdrive/SamplingC/SamplingC/src/duplicated.cpp",
-                "line": 158,
+                "line": 69,
                 "column": 15
             },
             {
@@ -459,7 +417,7 @@
                 "parent_name": "",
                 "name": "check_equal(Rcpp::NumericVector, Rcpp::NumericVector)",
                 "file": "C:/Users/jauslinr/switchdrive/SamplingC/SamplingC/src/duplicated.cpp",
-                "line": 182,
+                "line": 100,
                 "column": 6
             },
             {
@@ -468,7 +426,7 @@
                 "parent_name": "",
                 "name": "duplicatedCols(Rcpp::NumericMatrix)",
                 "file": "C:/Users/jauslinr/switchdrive/SamplingC/SamplingC/src/duplicated.cpp",
-                "line": 213,
+                "line": 129,
                 "column": 15
             },
             {
@@ -477,31 +435,55 @@
                 "parent_name": "",
                 "name": "duplicatedRows(Rcpp::NumericMatrix)",
                 "file": "C:/Users/jauslinr/switchdrive/SamplingC/SamplingC/src/duplicated.cpp",
-                "line": 261,
+                "line": 176,
                 "column": 15
-            },
-            {
-                "usr": "c:@F@is_duplicate_row#K#$@N@Rcpp@S@Matrix>#VI10#@N@Rcpp@ST>1#T@PreserveStorage#",
-                "kind": 6,
-                "parent_name": "",
-                "name": "is_duplicate_row(R_xlen_t, Rcpp::LogicalMatrix)",
-                "file": "C:/Users/jauslinr/switchdrive/SamplingC/SamplingC/src/duplicated.cpp",
-                "line": 300,
-                "column": 6
             }
         ]
     },
     {
-        "file": "C:/Users/jauslinr/switchdrive/SamplingC/SamplingC/src/flightphase.cpp",
-        "file_last_write": 1596721348.0,
+        "file": "C:/Users/jauslinr/switchdrive/SamplingC/SamplingC/src/ffphase.cpp",
+        "file_last_write": 1596792402.0,
         "definitions": [
+            {
+                "usr": "c:@F@osffphase#$@N@arma@S@Col>#d#$@N@arma@S@Mat>#d#",
+                "kind": 6,
+                "parent_name": "",
+                "name": "osffphase(arma::vec, arma::mat)",
+                "file": "C:/Users/jauslinr/switchdrive/SamplingC/SamplingC/src/ffphase.cpp",
+                "line": 34,
+                "column": 11
+            },
+            {
+                "usr": "c:@F@ffphase#$@N@arma@S@Col>#d#$@N@arma@S@Mat>#d#b#b#",
+                "kind": 6,
+                "parent_name": "",
+                "name": "ffphase(arma::vec, arma::mat, bool, bool)",
+                "file": "C:/Users/jauslinr/switchdrive/SamplingC/SamplingC/src/ffphase.cpp",
+                "line": 141,
+                "column": 11
+            }
+        ]
+    },
+    {
+        "file": "C:/Users/jauslinr/switchdrive/SamplingC/SamplingC/src/flightphaseArma.cpp",
+        "file_last_write": 1596792276.0,
+        "definitions": [
+            {
+                "usr": "c:@F@onestep#$@N@arma@S@Mat>#d#$@N@arma@S@Col>#d#d#",
+                "kind": 6,
+                "parent_name": "",
+                "name": "onestep(arma::mat, arma::vec, double)",
+                "file": "C:/Users/jauslinr/switchdrive/SamplingC/SamplingC/src/flightphaseArma.cpp",
+                "line": 22,
+                "column": 11
+            },
             {
                 "usr": "c:@F@flightphase_arma2#$@N@arma@S@Mat>#d#$@N@arma@S@Col>#d#d#",
                 "kind": 6,
                 "parent_name": "",
                 "name": "flightphase_arma2(arma::mat, arma::vec, double)",
-                "file": "C:/Users/jauslinr/switchdrive/SamplingC/SamplingC/src/flightphase.cpp",
-                "line": 29,
+                "file": "C:/Users/jauslinr/switchdrive/SamplingC/SamplingC/src/flightphaseArma.cpp",
+                "line": 75,
                 "column": 11
             },
             {
@@ -509,59 +491,15 @@
                 "kind": 6,
                 "parent_name": "",
                 "name": "flightphase_arma(arma::mat, arma::vec, double)",
-                "file": "C:/Users/jauslinr/switchdrive/SamplingC/SamplingC/src/flightphase.cpp",
-                "line": 171,
+                "file": "C:/Users/jauslinr/switchdrive/SamplingC/SamplingC/src/flightphaseArma.cpp",
+                "line": 207,
                 "column": 11
             }
         ]
     },
     {
-        "file": "C:/Users/jauslinr/switchdrive/SamplingC/SamplingC/src/flightphaseSPOT.cpp",
-        "file_last_write": 1596723322.0,
-        "definitions": [
-            {
-                "usr": "c:@F@onestepfastflightcubeSPOT#$@N@Rcpp@S@Vector>#VI14#@N@Rcpp@ST>1#T@PreserveStorage#$@N@Rcpp@S@Matrix>#VI14#@N@Rcpp@ST>1#T@PreserveStorage#",
-                "kind": 6,
-                "parent_name": "",
-                "name": "onestepfastflightcubeSPOT(Rcpp::NumericVector, Rcpp::NumericMatrix)",
-                "file": "C:/Users/jauslinr/switchdrive/SamplingC/SamplingC/src/flightphaseSPOT.cpp",
-                "line": 35,
-                "column": 15
-            },
-            {
-                "usr": "c:@F@flightphaseSPOT#$@N@Rcpp@S@Vector>#VI14#@N@Rcpp@ST>1#T@PreserveStorage#$@N@Rcpp@S@Matrix>#VI14#@N@Rcpp@ST>1#T@PreserveStorage#",
-                "kind": 6,
-                "parent_name": "",
-                "name": "flightphaseSPOT(Rcpp::NumericVector, Rcpp::NumericMatrix)",
-                "file": "C:/Users/jauslinr/switchdrive/SamplingC/SamplingC/src/flightphaseSPOT.cpp",
-                "line": 136,
-                "column": 15
-            }
-        ]
-    },
-    {
-        "file": "C:/Users/jauslinr/switchdrive/SamplingC/SamplingC/src/onestep.cpp",
-        "file_last_write": 1596633707.0,
-        "definitions": [
-            {
-                "usr": "c:@F@onestep#$@N@arma@S@Mat>#d#$@N@arma@S@Col>#d#d#",
-                "kind": 6,
-                "parent_name": "",
-                "name": "onestep(arma::mat, arma::vec, double)",
-                "file": "C:/Users/jauslinr/switchdrive/SamplingC/SamplingC/src/onestep.cpp",
-                "line": 28,
-                "column": 13
-            }
-        ]
-    },
-    {
-        "file": "C:/Users/jauslinr/switchdrive/SamplingC/SamplingC/src/onestep.h",
-        "file_last_write": 1596633707.0,
-        "definitions": []
-    },
-    {
         "file": "C:/Users/jauslinr/switchdrive/SamplingC/SamplingC/src/reduxArma.cpp",
-        "file_last_write": 1596723320.0,
+        "file_last_write": 1596790642.0,
         "definitions": [
             {
                 "usr": "c:@F@reduxArma#$@N@arma@S@Mat>#d#",
@@ -569,7 +507,7 @@
                 "parent_name": "",
                 "name": "reduxArma(arma::mat)",
                 "file": "C:/Users/jauslinr/switchdrive/SamplingC/SamplingC/src/reduxArma.cpp",
-                "line": 27,
+                "line": 30,
                 "column": 12
             }
         ]
@@ -610,7 +548,7 @@
     },
     {
         "file": "C:/Users/jauslinr/switchdrive/SamplingC/SamplingC/src/rrefArma.cpp",
-        "file_last_write": 1596717299.0,
+        "file_last_write": 1596792461.0,
         "definitions": [
             {
                 "usr": "c:@F@rrefArma#&$@N@arma@S@Mat>#d#",
@@ -618,7 +556,7 @@
                 "parent_name": "",
                 "name": "rrefArma(arma::mat &)",
                 "file": "C:/Users/jauslinr/switchdrive/SamplingC/SamplingC/src/rrefArma.cpp",
-                "line": 29,
+                "line": 16,
                 "column": 6
             }
         ]
@@ -630,7 +568,7 @@
     },
     {
         "file": "C:/Users/jauslinr/switchdrive/SamplingC/SamplingC/src/rrefBal.cpp",
-        "file_last_write": 1596701768.0,
+        "file_last_write": 1596792505.0,
         "definitions": [
             {
                 "usr": "c:@F@rrefBal#&$@N@Rcpp@S@Matrix>#VI14#@N@Rcpp@ST>1#T@PreserveStorage#",
@@ -638,7 +576,7 @@
                 "parent_name": "",
                 "name": "rrefBal(Rcpp::NumericMatrix &)",
                 "file": "C:/Users/jauslinr/switchdrive/SamplingC/SamplingC/src/rrefBal.cpp",
-                "line": 30,
+                "line": 17,
                 "column": 6
             }
         ]
@@ -680,7 +618,7 @@
     },
     {
         "file": "C:/Users/jauslinr/switchdrive/SamplingC/SamplingC/src/ukern.cpp",
-        "file_last_write": 1596717436.0,
+        "file_last_write": 1596792560.0,
         "definitions": [
             {
                 "usr": "c:@F@ukern#$@N@Rcpp@S@Matrix>#VI14#@N@Rcpp@ST>1#T@PreserveStorage#",
@@ -688,14 +626,14 @@
                 "parent_name": "",
                 "name": "ukern(Rcpp::NumericMatrix)",
                 "file": "C:/Users/jauslinr/switchdrive/SamplingC/SamplingC/src/ukern.cpp",
-                "line": 30,
+                "line": 15,
                 "column": 15
             }
         ]
     },
     {
         "file": "C:/Users/jauslinr/switchdrive/SamplingC/SamplingC/src/ukernArma.cpp",
-        "file_last_write": 1596717732.0,
+        "file_last_write": 1596792578.0,
         "definitions": [
             {
                 "usr": "c:@F@ukernArma#$@N@arma@S@Mat>#d#",
@@ -703,7 +641,7 @@
                 "parent_name": "",
                 "name": "ukernArma(arma::mat)",
                 "file": "C:/Users/jauslinr/switchdrive/SamplingC/SamplingC/src/ukernArma.cpp",
-                "line": 30,
+                "line": 15,
                 "column": 11
             }
         ]

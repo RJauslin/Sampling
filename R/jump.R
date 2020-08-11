@@ -1,10 +1,5 @@
 #' Internal function of algofastflightcube
-#'
-#' @param X matrix of auxiliary variables
-#' @param pik vector of inclusion probabilities
-#'
-#' @return update pik
-#' @export
+#' @noRd
 jump <- function(X, pik) {
   EPS = 1e-11
   N = length(pik)

@@ -42,7 +42,7 @@ N        <- nrow(df)
 
 
 set.seed(1)
-N_new <- 300
+N_new <- 500
 ind <- sample(seq(1,N,1),N_new)
 N <- N_new
 df <- df[ind,]

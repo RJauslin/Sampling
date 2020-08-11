@@ -49,7 +49,7 @@
 #'
 #'
 #' }
-fastflightcubeSPOT <- function (X, pik, order = 1, comment = TRUE)
+fastflightcubeSPOT <- function (X, pik, order = 2, comment = TRUE)
 {
   EPS = 1e-11
 
@@ -107,7 +107,6 @@ fastflightcubeSPOT <- function (X, pik, order = 1, comment = TRUE)
     if (comment == TRUE)
       cat("Step 1  ")
     system.time(pikstarbon <- algofastflightcubeSPOT(Xbon, pikbon))
-    # system.time(pikstarbon <- algofastflightcube(Xbon, pikbon))
     pikstar[liste] = pikstarbon
     flag = 1
   }

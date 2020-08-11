@@ -4,7 +4,7 @@
 \alias{fastflightcubeSPOT}
 \title{Fast flight phase for the cube method modified}
 \usage{
-fastflightcubeSPOT(X, pik, order = 1, comment = TRUE)
+fastflightcubeSPOT(X, pik, order = 2, comment = TRUE)
 }
 \arguments{
 \item{X}{matrix of auxiliary variables.}
