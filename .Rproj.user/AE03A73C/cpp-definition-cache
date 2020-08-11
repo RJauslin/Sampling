@@ -442,15 +442,33 @@
     },
     {
         "file": "C:/Users/jauslinr/switchdrive/SamplingC/SamplingC/src/ffphase.cpp",
-        "file_last_write": 1596792402.0,
+        "file_last_write": 1597136309.0,
         "definitions": [
+            {
+                "usr": "c:@F@isEye#&$@N@arma@S@Mat>#d#",
+                "kind": 6,
+                "parent_name": "",
+                "name": "isEye(arma::mat &)",
+                "file": "C:/Users/jauslinr/switchdrive/SamplingC/SamplingC/src/ffphase.cpp",
+                "line": 18,
+                "column": 6
+            },
+            {
+                "usr": "c:@F@rrefArma#&$@N@arma@S@Mat>#d#",
+                "kind": 6,
+                "parent_name": "",
+                "name": "rrefArma(arma::mat &)",
+                "file": "C:/Users/jauslinr/switchdrive/SamplingC/SamplingC/src/ffphase.cpp",
+                "line": 61,
+                "column": 6
+            },
             {
                 "usr": "c:@F@osffphase#$@N@arma@S@Col>#d#$@N@arma@S@Mat>#d#",
                 "kind": 6,
                 "parent_name": "",
                 "name": "osffphase(arma::vec, arma::mat)",
                 "file": "C:/Users/jauslinr/switchdrive/SamplingC/SamplingC/src/ffphase.cpp",
-                "line": 34,
+                "line": 158,
                 "column": 11
             },
             {
@@ -459,7 +477,7 @@
                 "parent_name": "",
                 "name": "ffphase(arma::vec, arma::mat, bool, bool)",
                 "file": "C:/Users/jauslinr/switchdrive/SamplingC/SamplingC/src/ffphase.cpp",
-                "line": 141,
+                "line": 265,
                 "column": 11
             }
         ]
@@ -547,23 +565,23 @@
         "definitions": []
     },
     {
-        "file": "C:/Users/jauslinr/switchdrive/SamplingC/SamplingC/src/rrefArma.cpp",
-        "file_last_write": 1596792461.0,
+        "file": "C:/Users/jauslinr/switchdrive/SamplingC/SamplingC/src/rrefArmaExport.cpp",
+        "file_last_write": 1597131177.0,
         "definitions": [
             {
-                "usr": "c:@F@rrefArma#&$@N@arma@S@Mat>#d#",
+                "usr": "c:@F@rrefArmaExport#&$@N@arma@S@Mat>#d#",
                 "kind": 6,
                 "parent_name": "",
-                "name": "rrefArma(arma::mat &)",
-                "file": "C:/Users/jauslinr/switchdrive/SamplingC/SamplingC/src/rrefArma.cpp",
-                "line": 16,
+                "name": "rrefArmaExport(arma::mat &)",
+                "file": "C:/Users/jauslinr/switchdrive/SamplingC/SamplingC/src/rrefArmaExport.cpp",
+                "line": 18,
                 "column": 6
             }
         ]
     },
     {
-        "file": "C:/Users/jauslinr/switchdrive/SamplingC/SamplingC/src/rrefArma.h",
-        "file_last_write": 1596717411.0,
+        "file": "C:/Users/jauslinr/switchdrive/SamplingC/SamplingC/src/rrefArmaExport.h",
+        "file_last_write": 1597131220.0,
         "definitions": []
     },
     {
@@ -633,7 +651,7 @@
     },
     {
         "file": "C:/Users/jauslinr/switchdrive/SamplingC/SamplingC/src/ukernArma.cpp",
-        "file_last_write": 1596792578.0,
+        "file_last_write": 1597131245.0,
         "definitions": [
             {
                 "usr": "c:@F@ukernArma#$@N@arma@S@Mat>#d#",

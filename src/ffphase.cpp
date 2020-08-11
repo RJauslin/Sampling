@@ -412,7 +412,7 @@ A <- X/pik
 
 pikfastflightcube <- round(fastflightcube(X,pik),9)
 pikffphase <- round(SamplingC::ffphase(pik,X),9)
-pikBal <-  round(BalancedSampling::flightphase(pik,X),9)
+pikBal <-  round(SamplingC::flightphase(pik,X),9)
 
 dim(X)
 length(which(pikfastflightcube > eps & pikfastflightcube < (1-eps)))
@@ -434,7 +434,7 @@ n = 800
 p = 40
 pik=inclusionprobabilities(runif(N),n)
 X=cbind(pik,matrix(rnorm(N*p),c(N,p)))
-system.time(test1 <- BalancedSampling::flightphase(pik,X))
+system.time(test1 <- SamplingC::flightphase(pik,X))
 system.time(test2 <- ffphase(pik,X))
 
 length(which(test1 > eps & test1 < (1-eps)))

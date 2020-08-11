@@ -28,10 +28,10 @@ X=cbind(pik,matrix(rnorm(N*p),c(N,p)))
 
 #-------------------  system.time
 
-# system.time(test1 <- BalancedSampling::flightphase(pik,X))
-# system.time(test2 <- SamplingC::ffphase(pik,X))
-# system.time(test2 <- SamplingC::flightphase_arma(X,pik))
-# system.time(test2 <- fastflightcube(X,pik))
+system.time(test1 <- SamplingC::flightphase(pik,X))
+system.time(test2 <- SamplingC::ffphase(pik,X))
+system.time(test3 <- SamplingC::flightphase_arma(X,pik))
+system.time(test4 <- fastflightcube(X,pik))
 
 
 #-------------------  microbenchmark

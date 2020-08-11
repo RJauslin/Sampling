@@ -6,41 +6,6 @@
 
 using namespace Rcpp;
 
-// all0
-bool all0(NumericVector x);
-RcppExport SEXP _SamplingC_all0(SEXP xSEXP) {
-BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< NumericVector >::type x(xSEXP);
-    rcpp_result_gen = Rcpp::wrap(all0(x));
-    return rcpp_result_gen;
-END_RCPP
-}
-// onestepfastflightcube
-NumericVector onestepfastflightcube(NumericVector prob, NumericMatrix Bm);
-RcppExport SEXP _SamplingC_onestepfastflightcube(SEXP probSEXP, SEXP BmSEXP) {
-BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< NumericVector >::type prob(probSEXP);
-    Rcpp::traits::input_parameter< NumericMatrix >::type Bm(BmSEXP);
-    rcpp_result_gen = Rcpp::wrap(onestepfastflightcube(prob, Bm));
-    return rcpp_result_gen;
-END_RCPP
-}
-// flightphase
-NumericVector flightphase(NumericVector prob, NumericMatrix Xbal);
-RcppExport SEXP _SamplingC_flightphase(SEXP probSEXP, SEXP XbalSEXP) {
-BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< NumericVector >::type prob(probSEXP);
-    Rcpp::traits::input_parameter< NumericMatrix >::type Xbal(XbalSEXP);
-    rcpp_result_gen = Rcpp::wrap(flightphase(prob, Xbal));
-    return rcpp_result_gen;
-END_RCPP
-}
 // mat_as_Numeric
 Rcpp::NumericMatrix mat_as_Numeric(arma::mat x);
 RcppExport SEXP _SamplingC_mat_as_Numeric(SEXP xSEXP) {
@@ -83,6 +48,110 @@ BEGIN_RCPP
     Rcpp::traits::input_parameter< int >::type n(nSEXP);
     Rcpp::traits::input_parameter< int >::type k(kSEXP);
     rcpp_result_gen = Rcpp::wrap(choose(n, k));
+    return rcpp_result_gen;
+END_RCPP
+}
+// cube
+IntegerVector cube(NumericVector prob, NumericMatrix Xbal);
+RcppExport SEXP _SamplingC_cube(SEXP probSEXP, SEXP XbalSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< NumericVector >::type prob(probSEXP);
+    Rcpp::traits::input_parameter< NumericMatrix >::type Xbal(XbalSEXP);
+    rcpp_result_gen = Rcpp::wrap(cube(prob, Xbal));
+    return rcpp_result_gen;
+END_RCPP
+}
+// lcube
+IntegerVector lcube(NumericVector prob, NumericMatrix Xspread, NumericMatrix Xbal);
+RcppExport SEXP _SamplingC_lcube(SEXP probSEXP, SEXP XspreadSEXP, SEXP XbalSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< NumericVector >::type prob(probSEXP);
+    Rcpp::traits::input_parameter< NumericMatrix >::type Xspread(XspreadSEXP);
+    Rcpp::traits::input_parameter< NumericMatrix >::type Xbal(XbalSEXP);
+    rcpp_result_gen = Rcpp::wrap(lcube(prob, Xspread, Xbal));
+    return rcpp_result_gen;
+END_RCPP
+}
+// flightphase
+NumericVector flightphase(NumericVector prob, NumericMatrix Xbal);
+RcppExport SEXP _SamplingC_flightphase(SEXP probSEXP, SEXP XbalSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< NumericVector >::type prob(probSEXP);
+    Rcpp::traits::input_parameter< NumericMatrix >::type Xbal(XbalSEXP);
+    rcpp_result_gen = Rcpp::wrap(flightphase(prob, Xbal));
+    return rcpp_result_gen;
+END_RCPP
+}
+// landingphase
+IntegerVector landingphase(NumericVector prob, NumericVector probflight, NumericMatrix Xbal);
+RcppExport SEXP _SamplingC_landingphase(SEXP probSEXP, SEXP probflightSEXP, SEXP XbalSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< NumericVector >::type prob(probSEXP);
+    Rcpp::traits::input_parameter< NumericVector >::type probflight(probflightSEXP);
+    Rcpp::traits::input_parameter< NumericMatrix >::type Xbal(XbalSEXP);
+    rcpp_result_gen = Rcpp::wrap(landingphase(prob, probflight, Xbal));
+    return rcpp_result_gen;
+END_RCPP
+}
+// lcubeflightphase
+NumericVector lcubeflightphase(NumericVector prob, NumericMatrix Xspread, NumericMatrix Xbal);
+RcppExport SEXP _SamplingC_lcubeflightphase(SEXP probSEXP, SEXP XspreadSEXP, SEXP XbalSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< NumericVector >::type prob(probSEXP);
+    Rcpp::traits::input_parameter< NumericMatrix >::type Xspread(XspreadSEXP);
+    Rcpp::traits::input_parameter< NumericMatrix >::type Xbal(XbalSEXP);
+    rcpp_result_gen = Rcpp::wrap(lcubeflightphase(prob, Xspread, Xbal));
+    return rcpp_result_gen;
+END_RCPP
+}
+// lcubelandingphase
+IntegerVector lcubelandingphase(NumericVector prob, NumericVector probflight, NumericMatrix Xspread, NumericMatrix Xbal);
+RcppExport SEXP _SamplingC_lcubelandingphase(SEXP probSEXP, SEXP probflightSEXP, SEXP XspreadSEXP, SEXP XbalSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< NumericVector >::type prob(probSEXP);
+    Rcpp::traits::input_parameter< NumericVector >::type probflight(probflightSEXP);
+    Rcpp::traits::input_parameter< NumericMatrix >::type Xspread(XspreadSEXP);
+    Rcpp::traits::input_parameter< NumericMatrix >::type Xbal(XbalSEXP);
+    rcpp_result_gen = Rcpp::wrap(lcubelandingphase(prob, probflight, Xspread, Xbal));
+    return rcpp_result_gen;
+END_RCPP
+}
+// cubestratified
+IntegerVector cubestratified(NumericVector prob, NumericMatrix Xbal, IntegerVector integerStrata);
+RcppExport SEXP _SamplingC_cubestratified(SEXP probSEXP, SEXP XbalSEXP, SEXP integerStrataSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< NumericVector >::type prob(probSEXP);
+    Rcpp::traits::input_parameter< NumericMatrix >::type Xbal(XbalSEXP);
+    Rcpp::traits::input_parameter< IntegerVector >::type integerStrata(integerStrataSEXP);
+    rcpp_result_gen = Rcpp::wrap(cubestratified(prob, Xbal, integerStrata));
+    return rcpp_result_gen;
+END_RCPP
+}
+// lcubestratified
+IntegerVector lcubestratified(NumericVector prob, NumericMatrix Xspread, NumericMatrix Xbal, IntegerVector integerStrata);
+RcppExport SEXP _SamplingC_lcubestratified(SEXP probSEXP, SEXP XspreadSEXP, SEXP XbalSEXP, SEXP integerStrataSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< NumericVector >::type prob(probSEXP);
+    Rcpp::traits::input_parameter< NumericMatrix >::type Xspread(XspreadSEXP);
+    Rcpp::traits::input_parameter< NumericMatrix >::type Xbal(XbalSEXP);
+    Rcpp::traits::input_parameter< IntegerVector >::type integerStrata(integerStrataSEXP);
+    rcpp_result_gen = Rcpp::wrap(lcubestratified(prob, Xspread, Xbal, integerStrata));
     return rcpp_result_gen;
 END_RCPP
 }
@@ -339,13 +408,18 @@ END_RCPP
 }
 
 static const R_CallMethodDef CallEntries[] = {
-    {"_SamplingC_all0", (DL_FUNC) &_SamplingC_all0, 1},
-    {"_SamplingC_onestepfastflightcube", (DL_FUNC) &_SamplingC_onestepfastflightcube, 2},
-    {"_SamplingC_flightphase", (DL_FUNC) &_SamplingC_flightphase, 2},
     {"_SamplingC_mat_as_Numeric", (DL_FUNC) &_SamplingC_mat_as_Numeric, 1},
     {"_SamplingC_mat_as_arma", (DL_FUNC) &_SamplingC_mat_as_arma, 1},
     {"_SamplingC_svdArma", (DL_FUNC) &_SamplingC_svdArma, 1},
     {"_SamplingC_choose", (DL_FUNC) &_SamplingC_choose, 2},
+    {"_SamplingC_cube", (DL_FUNC) &_SamplingC_cube, 2},
+    {"_SamplingC_lcube", (DL_FUNC) &_SamplingC_lcube, 3},
+    {"_SamplingC_flightphase", (DL_FUNC) &_SamplingC_flightphase, 2},
+    {"_SamplingC_landingphase", (DL_FUNC) &_SamplingC_landingphase, 3},
+    {"_SamplingC_lcubeflightphase", (DL_FUNC) &_SamplingC_lcubeflightphase, 3},
+    {"_SamplingC_lcubelandingphase", (DL_FUNC) &_SamplingC_lcubelandingphase, 4},
+    {"_SamplingC_cubestratified", (DL_FUNC) &_SamplingC_cubestratified, 3},
+    {"_SamplingC_lcubestratified", (DL_FUNC) &_SamplingC_lcubestratified, 4},
     {"_SamplingC_all_sug", (DL_FUNC) &_SamplingC_all_sug, 1},
     {"_SamplingC_colSumsRcpp", (DL_FUNC) &_SamplingC_colSumsRcpp, 1},
     {"_SamplingC_rowSumsRcpp", (DL_FUNC) &_SamplingC_rowSumsRcpp, 1},

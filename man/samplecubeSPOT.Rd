@@ -53,8 +53,8 @@ method = 1
 comment = TRUE
 EPS = 1e-11
 
-system.time(s <- samplecubeSPOT(X,pik,order = 2,arma = FALSE))
-system.time(s <- sampling::samplecube(X,pik,order = 2))
+system.time(s <- samplecubeSPOT(X,pik,order = 2,,method = 2,arma = FALSE))
+system.time(s <- sampling::samplecube(X,pik,order = 2,comment = TRUE,method = 2))
 system.time(s <- BalancedSampling::cube(pik,X))
 }
 }
