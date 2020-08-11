@@ -153,6 +153,27 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
+// isEye
+bool isEye(arma::mat& M);
+RcppExport SEXP _SamplingC_isEye(SEXP MSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< arma::mat& >::type M(MSEXP);
+    rcpp_result_gen = Rcpp::wrap(isEye(M));
+    return rcpp_result_gen;
+END_RCPP
+}
+// rrefArma
+void rrefArma(arma::mat& M);
+RcppExport SEXP _SamplingC_rrefArma(SEXP MSEXP) {
+BEGIN_RCPP
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< arma::mat& >::type M(MSEXP);
+    rrefArma(M);
+    return R_NilValue;
+END_RCPP
+}
 // osffphase
 arma::vec osffphase(arma::vec prob, arma::mat Bm);
 RcppExport SEXP _SamplingC_osffphase(SEXP probSEXP, SEXP BmSEXP) {
@@ -251,13 +272,13 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
-// rrefArma
-void rrefArma(arma::mat& M);
-RcppExport SEXP _SamplingC_rrefArma(SEXP MSEXP) {
+// rrefArmaExport
+void rrefArmaExport(arma::mat& M);
+RcppExport SEXP _SamplingC_rrefArmaExport(SEXP MSEXP) {
 BEGIN_RCPP
     Rcpp::RNGScope rcpp_rngScope_gen;
     Rcpp::traits::input_parameter< arma::mat& >::type M(MSEXP);
-    rrefArma(M);
+    rrefArmaExport(M);
     return R_NilValue;
 END_RCPP
 }
@@ -331,6 +352,8 @@ static const R_CallMethodDef CallEntries[] = {
     {"_SamplingC_check_equal", (DL_FUNC) &_SamplingC_check_equal, 2},
     {"_SamplingC_duplicatedCols", (DL_FUNC) &_SamplingC_duplicatedCols, 1},
     {"_SamplingC_duplicatedRows", (DL_FUNC) &_SamplingC_duplicatedRows, 1},
+    {"_SamplingC_isEye", (DL_FUNC) &_SamplingC_isEye, 1},
+    {"_SamplingC_rrefArma", (DL_FUNC) &_SamplingC_rrefArma, 1},
     {"_SamplingC_osffphase", (DL_FUNC) &_SamplingC_osffphase, 2},
     {"_SamplingC_ffphase", (DL_FUNC) &_SamplingC_ffphase, 4},
     {"_SamplingC_onestep", (DL_FUNC) &_SamplingC_onestep, 3},
@@ -339,7 +362,7 @@ static const R_CallMethodDef CallEntries[] = {
     {"_SamplingC_reduxArma", (DL_FUNC) &_SamplingC_reduxArma, 1},
     {"_SamplingC_colSumsiter", (DL_FUNC) &_SamplingC_colSumsiter, 1},
     {"_SamplingC_rowSumsiter", (DL_FUNC) &_SamplingC_rowSumsiter, 1},
-    {"_SamplingC_rrefArma", (DL_FUNC) &_SamplingC_rrefArma, 1},
+    {"_SamplingC_rrefArmaExport", (DL_FUNC) &_SamplingC_rrefArmaExport, 1},
     {"_SamplingC_rrefBal", (DL_FUNC) &_SamplingC_rrefBal, 1},
     {"_SamplingC_samplen", (DL_FUNC) &_SamplingC_samplen, 2},
     {"_SamplingC_systematicDesign", (DL_FUNC) &_SamplingC_systematicDesign, 1},

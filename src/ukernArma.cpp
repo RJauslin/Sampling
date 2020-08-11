@@ -1,5 +1,5 @@
 #include <RcppArmadillo.h>
-#include "rrefArma.h"
+#include "rrefArmaExport.h"
 using namespace Rcpp;
 
 // [[Rcpp::depends(RcppArmadillo)]]
@@ -25,7 +25,7 @@ arma::vec ukernArma(arma::mat Bm){
   // find nonzero vector u in Ker B (null space of B, i.e. Bu = 0)
   // with both positive and negative values
   // find reduced row echelon form of B
-  rrefArma(Bm);
+  rrefArmaExport(Bm);
   
   // std::cout << Bm << std::endl;
   for(int i = (nrow-1); i >=0; i--){
@@ -69,7 +69,8 @@ arma::vec ukernArma(arma::mat Bm){
   return u;
 }
 /*** R
-# set.seed(1)
+library(sampling)
+set.seed(1)
 rm(list = ls())
 N = 50
 n = 30
@@ -79,12 +80,26 @@ X=cbind(pik,matrix(rnorm(N*p),c(N,p)))
 A <- as.matrix(X/pik)
 
 test <- t(A[1:(p+2),])
+rrefArma(test)
 rankMatrix(test)
 dim(test)
 u <- ukernArma(test)
 
 test
 u
+
+
+
+set.seed(2)
+rm(list = ls())
+N = 50
+n = 30
+p = 20
+pik=inclusionprobabilities(runif(N),n)
+X=cbind(pik,matrix(rnorm(N*p),c(N,p)))
+
+
+
 */
 
 

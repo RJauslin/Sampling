@@ -9,6 +9,7 @@ rm(list = ls())
 eps=1e-12
 
 library(devtools)
+remove.packages("SamplingC")
 install_github("Rjauslin/SamplingC@master")
 library(SamplingC)
 
@@ -64,10 +65,14 @@ pik <- PM(Pik)$P
 #-------------------  system.time
 
 system.time(test1 <- BalancedSampling::flightphase(pik,X))
-system.time(test2 <- SamplingC::ffphase(pik,X,order = FALSE,redux = TRUE))
+system.time(test2 <- SamplingC::ffphase(pik,X,order = TRUE,redux = FALSE))
 system.time(test3 <- SamplingC::flightphase_arma(X,pik))
 system.time(test4 <- fastflightcubeSPOT(X,pik,order = 2,comment = FALSE))
+system.time(test5 <- sampling::fastflightcube(X,pik,order = 2,comment = FALSE))
 
+A <- X/pik
+t(A)%*%pik
+t(A)%*%test4
 
 microbenchmark(
   BalancedSampling::flightphase(pik,X),

@@ -1,8 +1,132 @@
 #include <RcppArmadillo.h>
-#include "rrefArma.h"
 #include "reduxArma.h"
 
 using namespace Rcpp;
+
+
+// [[Rcpp::depends(RcppArmadillo)]]
+//' @title is Identiy matrix
+//'
+//' @param M matrix 
+//'
+//' @return bool
+//'
+//' @author Raphaël Jauslin \email{raphael.jauslin@@unine.ch}
+//'
+//' @export
+// [[Rcpp::export]]
+bool isEye(arma::mat& M){
+  bool out = true;
+  int p = M.n_cols;
+  int N = M.n_rows;
+  double eps = 1e-12;
+  for(int i = 0;i< N; i++){
+    for(int j = 0; j < p; j++){
+      if(i == j && M(i,j) != 1){
+        out = false;
+        break;
+      }
+      if(i != j && M(i,j) != 0){
+        out = false;
+        break;
+      }
+    }
+  }
+  return out;
+}
+
+
+/*** R
+isEye(diag(rep(1,10)))
+isEye(diag(rep(1,10)) - diag(rep(1e-15,10))) 
+
+D <- diag(rep(1,10000))
+D <- D[,1:5000]
+system.time(isEye(D))
+*/
+
+
+// [[Rcpp::depends(RcppArmadillo)]]
+//' @title reduced row echelon form arma implementation
+//'
+//'
+//' @param M matrix 
+//'
+//' @return NULL (transform matrix)
+//'
+//' @author Raphaël Jauslin \email{raphael.jauslin@@unine.ch}
+//'
+//' @export
+// [[Rcpp::export]]
+void rrefArma(arma::mat& M){
+  int lead = 0;
+  int rowCount = M.n_rows;
+  int columnCount = M.n_cols;
+  double eps = 1e-11;
+  int i,k;
+  double temp;
+  for(int r = 0; r < rowCount; r++){
+    if(columnCount <= lead){
+      return;
+    }
+    i = r;
+    while(std::max(M(i,lead),-M(i,lead)) < eps ){
+      M(i,lead) = 0.0;
+      i = i + 1;
+      if(i == rowCount){
+        i = r;
+        lead = lead + 1;
+        if(columnCount == lead){
+          return;
+        }
+      }
+    }
+    // swap rows i and r
+    for(int k = 0; k < columnCount;k++){
+      temp = M(i,k);
+      M(i,k) = M(r,k);
+      M(r,k) = temp;
+    }
+    // If M(r, lead) is not 0 divide row r by M(r, lead)
+    if( M(r,lead) != 0.0 ){
+      temp = M(r,lead);
+      for(int k = 0; k < lead;k++){
+        M(r,k) = 0.0;
+      }
+      for(int k = lead;k < columnCount;k++){
+        M(r,k) = M(r,k)/temp;
+      }
+    }
+    for(int i = 0;i < rowCount;i++){
+      if( i != r ){
+        // Subtract M(i, lead) multiplied by row r from row i
+        temp = M(i,lead);
+        for( k = 0;k < columnCount; k++){
+          M(i,k) = M(i,k) - temp * M(r,k);
+        }
+      }
+    }
+    lead = lead + 1;
+  }
+  return;
+}
+
+
+/*** R
+set.seed(1)
+rm(list = ls())
+N = 50
+n = 30
+p = 20
+pik=inclusionprobabilities(runif(N),n)
+X=cbind(pik,matrix(rnorm(N*p),c(N,p)))
+A <- as.matrix(X/pik)
+
+test <- t(A[1:(p+2),])
+rrefArma(test)
+test
+
+*/
 
 
 // [[Rcpp::depends(RcppArmadillo)]]
@@ -46,7 +170,7 @@ arma::vec osffphase(arma::vec prob, arma::mat Bm){
   // find nonzero vector u in Ker B (null space of B, i.e. Bu = 0)
   // with both positive and negative values
   // find reduced row echelon form of B
-  rrefArma(Bm);
+  // rrefArma(Bm);
   
   // std::cout << Bm << std::endl;
   for(int i = (nrow-1);i >= 0; i--){
@@ -199,24 +323,41 @@ arma::vec ffphase(arma::vec prob, arma::mat Xbal, bool order = true, bool redux 
         p_small[i] = p[index_small[i]];
       }
       
+      rrefArma(B);
       // HERE we check if we have a smaller than p if the kernel is empty or not.
-      if(howmany < naux + 1){
-        arma::mat kern = arma::null(B);
-        if(kern.empty()){
-          break;  
-        }
-      }
-      
+      // if(howmany < naux + 1){
+      //   rrefArma(B);
+      //   
+      //   std::cout <<  B << std::endl;
+      //   arma::mat kern = arma::null(B);
+      //   if(kern.empty()){
+      //     break;
+      //   }
+      // }
+      // 
       if(redux == true){
         Rcpp::List L = reduxArma(B.t());
         arma::mat B_tmp = L[0];
         arma::uvec ind_row = L[2];
         p_small.elem(ind_row) = osffphase(p_small.elem(ind_row),B_tmp.t());
       }else{
-        p_small = osffphase(p_small,B);  
+        if(howmany < naux + 1){
+         
+          bool test = isEye(B);
+          // std::cout << test << std::endl;
+          if(test == true){
+            // std::cout <<  B << std::endl;
+            break;
+          }else{
+           p_small = osffphase(p_small,B); 
+          }
+        }else{
+          p_small = osffphase(p_small,B); 
+        }
       }
       
-     
+   
+      
       // update prob
       for(int i = 0;i < howmany;i++){
         p[index_small[i]] = p_small[i];
@@ -252,7 +393,7 @@ arma::vec ffphase(arma::vec prob, arma::mat Xbal, bool order = true, bool redux 
 
 /*** R
 rm(list = ls())
-set.seed(1)
+# set.seed(3)
 N <-  1000
 n <-  300
 p <-  1

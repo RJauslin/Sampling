@@ -1,5 +1,7 @@
 #include <RcppArmadillo.h>
 
+using namespace Rcpp;
+
 
 // [[Rcpp::depends(RcppArmadillo)]]
 //' @title reduced row echelon form arma implementation
@@ -13,7 +15,7 @@
 //'
 //' @export
 // [[Rcpp::export]]
-void rrefArma(arma::mat& M){
+void rrefArmaExport(arma::mat& M){
   int lead = 0;
   int rowCount = M.n_rows;
   int columnCount = M.n_cols;

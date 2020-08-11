@@ -184,6 +184,33 @@ duplicatedRows <- function(B) {
     .Call(`_SamplingC_duplicatedRows`, B)
 }
 
+#' @title is Identiy matrix
+#'
+#' @param M matrix 
+#'
+#' @return bool
+#'
+#' @author Raphaël Jauslin \email{raphael.jauslin@@unine.ch}
+#'
+#' @export
+isEye <- function(M) {
+    .Call(`_SamplingC_isEye`, M)
+}
+
+#' @title reduced row echelon form arma implementation
+#'
+#'
+#' @param M matrix 
+#'
+#' @return NULL (transform matrix)
+#'
+#' @author Raphaël Jauslin \email{raphael.jauslin@@unine.ch}
+#'
+#' @export
+rrefArma <- function(M) {
+    invisible(.Call(`_SamplingC_rrefArma`, M))
+}
+
 #' @title title
 #'
 #' @description
@@ -377,8 +404,8 @@ rowSumsiter <- function(x) {
 #' @author Raphaël Jauslin \email{raphael.jauslin@@unine.ch}
 #'
 #' @export
-rrefArma <- function(M) {
-    invisible(.Call(`_SamplingC_rrefArma`, M))
+rrefArmaExport <- function(M) {
+    invisible(.Call(`_SamplingC_rrefArmaExport`, M))
 }
 
 #' @title reduced row echelon fom
