@@ -28,9 +28,22 @@ X=cbind(pik,matrix(rnorm(N*p),c(N,p)))
 
 #-------------------  system.time
 
-system.time(test1 <- SamplingC::flightphase(pik,X))
+system.time(test1 <- BalancedSampling::flightphase(pik,X))
 system.time(test2 <- SamplingC::ffphase(pik,X))
 system.time(test3 <- SamplingC::flightphase_arma(X,pik))
+system.time(test4 <- fastflightcube(X,pik))
+
+
+
+set.seed(12345);
+N = 100000; # population size
+n = 100; # sample size
+pik = rep(n/N,N); # inclusion probabilities
+# matrix of 5 auxiliary variables
+X = cbind(p,runif(N),runif(N),runif(N),runif(N)); 
+
+system.time(test1 <- BalancedSampling::flightphase(pik,X))
+system.time(test2 <- SamplingC::ffphase(pik,X))
 system.time(test4 <- fastflightcube(X,pik))
 
 
@@ -39,8 +52,8 @@ system.time(test4 <- fastflightcube(X,pik))
 microbenchmark(
   BalancedSampling::flightphase(pik,X),
   ffphase(pik,X),
-  flightphase_arma(X,pik),
-  fastflightcubeSPOT(X,pik,order = 2,comment = FALSE)
+  flightphase_arma(X,pik)
+  # fastflightcubeSPOT(X,pik,order = 2,comment = FALSE)
   # fastflight cube(X,pik)
 )
 

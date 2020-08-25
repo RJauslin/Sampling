@@ -324,17 +324,6 @@ arma::vec ffphase(arma::vec prob, arma::mat Xbal, bool order = true, bool redux 
       }
       
       rrefArma(B);
-      // HERE we check if we have a smaller than p if the kernel is empty or not.
-      // if(howmany < naux + 1){
-      //   rrefArma(B);
-      //   
-      //   std::cout <<  B << std::endl;
-      //   arma::mat kern = arma::null(B);
-      //   if(kern.empty()){
-      //     break;
-      //   }
-      // }
-      // 
       if(redux == true){
         Rcpp::List L = reduxArma(B.t());
         arma::mat B_tmp = L[0];
@@ -344,9 +333,7 @@ arma::vec ffphase(arma::vec prob, arma::mat Xbal, bool order = true, bool redux 
         if(howmany < naux + 1){
          
           bool test = isEye(B);
-          // std::cout << test << std::endl;
           if(test == true){
-            // std::cout <<  B << std::endl;
             break;
           }else{
            p_small = osffphase(p_small,B); 

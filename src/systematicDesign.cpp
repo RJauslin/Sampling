@@ -124,11 +124,18 @@ sum(pik)
 system.time(test1 <- systematicDesign(pik))
 test1
 rowSums(test1$samples)
-system.time(test2 <- systematic.find.design(pik))
+system.time(test2 <- SystematicDesign(pik))
 test2
 rowSums(test2)
 
 
 round(test1,9) == round(test2,9)
+
+
+
+pik <- rep(1,10)
+systematicDesign(pik)
+SystematicDesign(pik)
+
 
 */

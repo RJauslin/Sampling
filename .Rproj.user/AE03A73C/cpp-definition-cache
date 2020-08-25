@@ -290,39 +290,6 @@
         ]
     },
     {
-        "file": "C:/Users/jauslinr/switchdrive/SamplingC/SamplingC/src/BalancedSampling.cpp",
-        "file_last_write": 1596793530.0,
-        "definitions": [
-            {
-                "usr": "c:@F@all0#$@N@Rcpp@S@Vector>#VI14#@N@Rcpp@ST>1#T@PreserveStorage#",
-                "kind": 6,
-                "parent_name": "",
-                "name": "all0(Rcpp::NumericVector)",
-                "file": "C:/Users/jauslinr/switchdrive/SamplingC/SamplingC/src/BalancedSampling.cpp",
-                "line": 13,
-                "column": 6
-            },
-            {
-                "usr": "c:@F@onestepfastflightcube#$@N@Rcpp@S@Vector>#VI14#@N@Rcpp@ST>1#T@PreserveStorage#$@N@Rcpp@S@Matrix>#VI14#@N@Rcpp@ST>1#T@PreserveStorage#",
-                "kind": 6,
-                "parent_name": "",
-                "name": "onestepfastflightcube(Rcpp::NumericVector, Rcpp::NumericMatrix)",
-                "file": "C:/Users/jauslinr/switchdrive/SamplingC/SamplingC/src/BalancedSampling.cpp",
-                "line": 38,
-                "column": 15
-            },
-            {
-                "usr": "c:@F@flightphase#$@N@Rcpp@S@Vector>#VI14#@N@Rcpp@ST>1#T@PreserveStorage#$@N@Rcpp@S@Matrix>#VI14#@N@Rcpp@ST>1#T@PreserveStorage#",
-                "kind": 6,
-                "parent_name": "",
-                "name": "flightphase(Rcpp::NumericVector, Rcpp::NumericMatrix)",
-                "file": "C:/Users/jauslinr/switchdrive/SamplingC/SamplingC/src/BalancedSampling.cpp",
-                "line": 137,
-                "column": 15
-            }
-        ]
-    },
-    {
         "file": "C:/Users/jauslinr/switchdrive/SamplingC/SamplingC/src/NumericToArma.cpp",
         "file_last_write": 1596791050.0,
         "definitions": [
@@ -379,6 +346,102 @@
         "file": "C:/Users/jauslinr/switchdrive/SamplingC/SamplingC/src/choose.h",
         "file_last_write": 1596633707.0,
         "definitions": []
+    },
+    {
+        "file": "C:/Users/jauslinr/switchdrive/SamplingC/SamplingC/src/cube.cpp",
+        "file_last_write": 1597137804.0,
+        "definitions": [
+            {
+                "usr": "c:@F@rref#&$@N@Rcpp@S@Matrix>#VI14#@N@Rcpp@ST>1#T@PreserveStorage#",
+                "kind": 6,
+                "parent_name": "",
+                "name": "rref(Rcpp::NumericMatrix &)",
+                "file": "C:/Users/jauslinr/switchdrive/SamplingC/SamplingC/src/cube.cpp",
+                "line": 12,
+                "column": 6
+            },
+            {
+                "usr": "c:@F@onestepfastflightcube#$@N@Rcpp@S@Vector>#VI14#@N@Rcpp@ST>1#T@PreserveStorage#$@N@Rcpp@S@Matrix>#VI14#@N@Rcpp@ST>1#T@PreserveStorage#",
+                "kind": 6,
+                "parent_name": "",
+                "name": "onestepfastflightcube(Rcpp::NumericVector, Rcpp::NumericMatrix)",
+                "file": "C:/Users/jauslinr/switchdrive/SamplingC/SamplingC/src/cube.cpp",
+                "line": 60,
+                "column": 15
+            },
+            {
+                "usr": "c:@F@cube#$@N@Rcpp@S@Vector>#VI14#@N@Rcpp@ST>1#T@PreserveStorage#$@N@Rcpp@S@Matrix>#VI14#@N@Rcpp@ST>1#T@PreserveStorage#",
+                "kind": 6,
+                "parent_name": "",
+                "name": "cube(Rcpp::NumericVector, Rcpp::NumericMatrix)",
+                "file": "C:/Users/jauslinr/switchdrive/SamplingC/SamplingC/src/cube.cpp",
+                "line": 132,
+                "column": 15
+            },
+            {
+                "usr": "c:@F@lcube#$@N@Rcpp@S@Vector>#VI14#@N@Rcpp@ST>1#T@PreserveStorage#$@N@Rcpp@S@Matrix>#VI14#@N@Rcpp@ST>1#T@PreserveStorage#S1_#",
+                "kind": 6,
+                "parent_name": "",
+                "name": "lcube(Rcpp::NumericVector, Rcpp::NumericMatrix, Rcpp::NumericMatrix)",
+                "file": "C:/Users/jauslinr/switchdrive/SamplingC/SamplingC/src/cube.cpp",
+                "line": 212,
+                "column": 15
+            },
+            {
+                "usr": "c:@F@flightphase#$@N@Rcpp@S@Vector>#VI14#@N@Rcpp@ST>1#T@PreserveStorage#$@N@Rcpp@S@Matrix>#VI14#@N@Rcpp@ST>1#T@PreserveStorage#",
+                "kind": 6,
+                "parent_name": "",
+                "name": "flightphase(Rcpp::NumericVector, Rcpp::NumericMatrix)",
+                "file": "C:/Users/jauslinr/switchdrive/SamplingC/SamplingC/src/cube.cpp",
+                "line": 310,
+                "column": 15
+            },
+            {
+                "usr": "c:@F@landingphase#$@N@Rcpp@S@Vector>#VI14#@N@Rcpp@ST>1#T@PreserveStorage#S0_#$@N@Rcpp@S@Matrix>#VI14#@N@Rcpp@ST>1#T@PreserveStorage#",
+                "kind": 6,
+                "parent_name": "",
+                "name": "landingphase(Rcpp::NumericVector, Rcpp::NumericVector, Rcpp::NumericMatrix)",
+                "file": "C:/Users/jauslinr/switchdrive/SamplingC/SamplingC/src/cube.cpp",
+                "line": 390,
+                "column": 15
+            },
+            {
+                "usr": "c:@F@lcubeflightphase#$@N@Rcpp@S@Vector>#VI14#@N@Rcpp@ST>1#T@PreserveStorage#$@N@Rcpp@S@Matrix>#VI14#@N@Rcpp@ST>1#T@PreserveStorage#S1_#",
+                "kind": 6,
+                "parent_name": "",
+                "name": "lcubeflightphase(Rcpp::NumericVector, Rcpp::NumericMatrix, Rcpp::NumericMatrix)",
+                "file": "C:/Users/jauslinr/switchdrive/SamplingC/SamplingC/src/cube.cpp",
+                "line": 469,
+                "column": 15
+            },
+            {
+                "usr": "c:@F@lcubelandingphase#$@N@Rcpp@S@Vector>#VI14#@N@Rcpp@ST>1#T@PreserveStorage#S0_#$@N@Rcpp@S@Matrix>#VI14#@N@Rcpp@ST>1#T@PreserveStorage#S1_#",
+                "kind": 6,
+                "parent_name": "",
+                "name": "lcubelandingphase(Rcpp::NumericVector, Rcpp::NumericVector, Rcpp::NumericMatrix, Rcpp::NumericMatrix)",
+                "file": "C:/Users/jauslinr/switchdrive/SamplingC/SamplingC/src/cube.cpp",
+                "line": 567,
+                "column": 15
+            },
+            {
+                "usr": "c:@F@cubestratified#$@N@Rcpp@S@Vector>#VI14#@N@Rcpp@ST>1#T@PreserveStorage#$@N@Rcpp@S@Matrix>#VI14#@N@Rcpp@ST>1#T@PreserveStorage#$@N@Rcpp@S@Vector>#VI13#@N@Rcpp@ST>1#T@PreserveStorage#",
+                "kind": 6,
+                "parent_name": "",
+                "name": "cubestratified(Rcpp::NumericVector, Rcpp::NumericMatrix, Rcpp::IntegerVector)",
+                "file": "C:/Users/jauslinr/switchdrive/SamplingC/SamplingC/src/cube.cpp",
+                "line": 664,
+                "column": 15
+            },
+            {
+                "usr": "c:@F@lcubestratified#$@N@Rcpp@S@Vector>#VI14#@N@Rcpp@ST>1#T@PreserveStorage#$@N@Rcpp@S@Matrix>#VI14#@N@Rcpp@ST>1#T@PreserveStorage#S1_#$@N@Rcpp@S@Vector>#VI13#@N@Rcpp@ST>1#T@PreserveStorage#",
+                "kind": 6,
+                "parent_name": "",
+                "name": "lcubestratified(Rcpp::NumericVector, Rcpp::NumericMatrix, Rcpp::NumericMatrix, Rcpp::IntegerVector)",
+                "file": "C:/Users/jauslinr/switchdrive/SamplingC/SamplingC/src/cube.cpp",
+                "line": 738,
+                "column": 15
+            }
+        ]
     },
     {
         "file": "C:/Users/jauslinr/switchdrive/SamplingC/SamplingC/src/duplicated.cpp",
@@ -442,7 +505,7 @@
     },
     {
         "file": "C:/Users/jauslinr/switchdrive/SamplingC/SamplingC/src/ffphase.cpp",
-        "file_last_write": 1597136309.0,
+        "file_last_write": 1597215217.0,
         "definitions": [
             {
                 "usr": "c:@F@isEye#&$@N@arma@S@Mat>#d#",
@@ -621,7 +684,7 @@
     },
     {
         "file": "C:/Users/jauslinr/switchdrive/SamplingC/SamplingC/src/systematicDesign.cpp",
-        "file_last_write": 1596633707.0,
+        "file_last_write": 1597744037.0,
         "definitions": [
             {
                 "usr": "c:@F@systematicDesign#$@N@arma@S@Col>#d#",

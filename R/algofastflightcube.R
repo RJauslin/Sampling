@@ -1,6 +1,6 @@
 #' Internal function of fastflightcubeSPOT
 #' @noRd
-algofastflightcubeSPOT <- function(X, pik) {
+algofastflightcubeSPOT <- function(X, pik,redux = TRUE) {
   EPS = 1e-11
   N = length(pik)
   p = round(length(X)/length(pik))
@@ -16,14 +16,19 @@ algofastflightcubeSPOT <- function(X, pik) {
 
 
   while (pp <= N) {
-    tmp <- reduxB(B)
-    # tmp$B
-    # B[tmp$ind_row,tmp$ind_col]
-    B_tmp <- tmp$B
-    # print(dim(B_tmp))
-
-    psik_tmp <- psik[tmp$ind_row]
-    psik[tmp$ind_row]<- jump(B_tmp, psik_tmp)
+    if(redux == TRUE){
+      tmp <- reduxB(B)
+      # tmp$B
+      # B[tmp$ind_row,tmp$ind_col]
+      B_tmp <- tmp$B
+      # print(dim(B_tmp))
+      
+      psik_tmp <- psik[tmp$ind_row]
+      psik[tmp$ind_row]<- jump(B_tmp, psik_tmp)
+    }else{
+      psik <- jump(B, psik)
+    }
+    
 
     liste <- (psik > (1 - EPS) | psik < EPS)
     i <- 0
@@ -43,6 +48,7 @@ algofastflightcubeSPOT <- function(X, pik) {
     # Sys.sleep(2)
   }
   
+  print(length(pik[(pik > EPS & pik < (1 - EPS))]))
   if (length(pik[(pik > EPS & pik < (1 - EPS))]) == (p + 1)){
     psik <- jump(B, psik)
     pik[ind] = psik

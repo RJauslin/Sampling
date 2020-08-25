@@ -49,10 +49,10 @@
 #'
 #'
 #' }
-fastflightcubeSPOT <- function (X, pik, order = 2, comment = TRUE)
+ffscube <- function (X, pik, comment = TRUE)
 {
   EPS = 1e-11
-
+  
   "reduc" <- function(X) {
     EPS = 1e-10
     N = dim(X)[1]
@@ -60,23 +60,17 @@ fastflightcubeSPOT <- function (X, pik, order = 2, comment = TRUE)
     array(Re$u[, (Re$d > EPS)], c(N, sum(as.integer(Re$d >
                                                       EPS))))
   }
-
-
+  
+  
   ########################### START ALGO
-
-
+  
+  
   N = length(pik)
   p = round(length(X)/length(pik))
   X <- array(X, c(N, p))
-  if (order == 1){
-    o <- sample(N, N)
-  }else {
-    if (order == 2){
-      o <- seq(1, N, 1)
-    }else {
-      o <- order(pik, decreasing = TRUE)
-    }
-  }
+  o <- seq(1, N, 1)
+
+  
   liste <- o[(pik[o] > EPS & pik[o] < (1 - EPS))]
   if (comment == TRUE) {
     cat("\nBEGINNING OF THE FLIGHT PHASE\n")
@@ -94,30 +88,30 @@ fastflightcubeSPOT <- function (X, pik, order = 2, comment = TRUE)
   Xbon <- array(X[liste, ], c(Nbon, p))
   pikstar <- pik
   flag = 0
-
-
+  
+  
   # X <- Xbon
   # pik <- pikbon
-
-
-
+  
+  
+  
   # begin algorithm (general case where N > p) at the end of this phase you have
   # at most p values that are not equal to 0 or 1.
   if (Nbon > p) {
     if (comment == TRUE)
       cat("Step 1  ")
-    system.time(pikstarbon <- algofastflightcubeSPOT(Xbon, pikbon,redux = TRUE))
+    pikstarbon <- algofastflightcubeSPOT(Xbon, pikbon,redux = TRUE)
     pikstar[liste] = pikstarbon
     flag = 1
   }
-
+  
   # reupdate the liste and the exctract element no equal to 0 or 1
   liste <- o[(pikstar[o] > EPS & pikstar[o] < (1 - EPS))]
   pikbon <- pikstar[liste]
   Nbon = length(pikbon)
   Xbon <- array(X[liste, ], c(Nbon, p))
   pbon = dim(Xbon)[2]
-
+  
   # if you still have value that are not equal to 0 or 1 you reduc the matrix and loop until
   if (Nbon > 0) {
     Xbon = reduc(Xbon)
@@ -129,7 +123,7 @@ fastflightcubeSPOT <- function (X, pik, order = 2, comment = TRUE)
       cat("Step ", k, ",  ")
     k = k + 1
     pikstarbon <- algofastflightcubeSPOT(Xbon/pik[liste] * pikbon,
-                                     pikbon,redux = FALSE)
+                                         pikbon,redux = FALSE)
     pikstar[liste] = pikstarbon
     liste <- o[(pikstar[o] > EPS & pikstar[o] < (1 - EPS))]
     pikbon <- pikstar[liste]

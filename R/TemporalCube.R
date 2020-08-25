@@ -44,7 +44,7 @@
 #' }
 #'
 #' @export
-TemporalCube <- function(S, P, R, tol = 1e-8,arma){
+TemporalCube <- function(S, P, R, tol = 1e-8){
   
   RR <- unique(R)
   Z  <- matrix(rep(0,nrow(S)*length(RR)), nrow = nrow(S))
@@ -56,7 +56,7 @@ TemporalCube <- function(S, P, R, tol = 1e-8,arma){
   M           <- cbind(Z,S)
   colnames(M) <- NULL
   
-  PP  <- samplecubeSPOT(P*M, P,order = 2, method = 1, comment = F,arma = arma)
+  PP  <- samplecubeSPOT(P*M, P,order = 2, method = 1, comment = F)
   # PP               <- samplecubeSPOT(P*M, P,order = 2, method = 2, comment = F)
   # PP               <- sampling::samplecube(P*M, P, order = 2,method = 2, comment = F)
   PP[PP < tol]     <- 0

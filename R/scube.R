@@ -43,46 +43,33 @@
 #' system.time(s <- sampling::samplecube(X,pik,order = 2,comment = TRUE,method = 2))
 #' system.time(s <- BalancedSampling::cube(pik,X))
 #' }
-samplecubeSPOT <- function (X, pik, order = 1, comment = TRUE, method = 1)
+scube <- function(X, pik,comment = FALSE)
 {
+  
+  ##----------------------------------------------------------------
+  ##                        initialization                         -
+  ##----------------------------------------------------------------
+  
+  
   EPS = 1e-11
   N = length(pik)
-  if (!is.array(X))
+  if (!is.array(X)){
     X = array(X, c(N, length(X)/N))
-  if (method == 1) {
-    if (length(pik[pik > EPS & pik < (1 - EPS)]) > 0){
-      pikstar = fastflightcubeSPOT(X, pik, order = 2, comment)  
-      
-      
-    }else {
-      if (comment){
-        cat("\nNO FLIGHT PHASE")
-      }
-      pikstar = pik
-    }
-    if (length(pikstar[pikstar > EPS & pikstar < (1 - EPS)]) >0){
-      pikfin = sampling::landingcube(X, pikstar, pik, comment)
-    }else {
-      if (comment){
-        cat("\nNO LANDING PHASE")
-      }
-      pikfin = pikstar
-    }
-  } else {
-    p = length(X)/length(pik)
-    pikstar = pik
-    for (i in 0:(p - 1)) {
-      if (length(pikstar[pikstar > EPS & pikstar < (1 -
-                                                    EPS)]) > 0)
-        pikstar = fastflightcubeSPOT(X[, 1:(p - i)]/pik *
-                                   pikstar, pikstar, order, comment)
-    }
-    pikfin = pikstar
-    for (i in 1:N) if (runif(1) < pikfin[i])
-      pikfin[i] = 1
   }
-
-
+  p = ncol(X)
+  pikstar = pik
+  
+  
+  for (i in 0:(p - 1)) {
+    if (length(pikstar[pikstar > EPS & pikstar < (1 - EPS)]) > 0){
+      pikstar = ffscube(X[, 1:(p - i)]/pik*pikstar, pikstar, comment)
+    }
+  }
+  pikfin = pikstar
+  for (i in 1:N) if (runif(1) < pikfin[i]){
+    pikfin[i] = 1
+  }
+      
   if (comment) {
     A = X[pik > EPS, ]/pik[pik > EPS]
     TOT = t(A) %*% pik[pik > EPS]
