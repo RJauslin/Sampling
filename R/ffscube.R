@@ -51,94 +51,66 @@
 #' }
 ffscube <- function (X, pik, comment = TRUE)
 {
+  
+  ##----------------------------------------------------------------
+  ##                        Initialization                         -
+  ##----------------------------------------------------------------
+  
+  X <- as.matrix(X)
   EPS = 1e-11
-  
-  "reduc" <- function(X) {
-    EPS = 1e-10
-    N = dim(X)[1]
-    Re = svd(X)
-    array(Re$u[, (Re$d > EPS)], c(N, sum(as.integer(Re$d >
-                                                      EPS))))
-  }
-  
-  
-  ########################### START ALGO
-  
-  
   N = length(pik)
-  p = round(length(X)/length(pik))
+  p = ncol(X)
   X <- array(X, c(N, p))
+  #---- order
   o <- seq(1, N, 1)
-
+  
   
   liste <- o[(pik[o] > EPS & pik[o] < (1 - EPS))]
-  if (comment == TRUE) {
-    cat("\nBEGINNING OF THE FLIGHT PHASE\n")
-    cat("The matrix of balanced variable has", p, " variables and ",
-        N, " units\n")
-    cat("The size of the inclusion probability vector is ",
-        length(pik), "\n")
-    cat("The sum of the inclusion probability vector is ",
-        sum(pik), "\n")
-    cat("The inclusion probability vector has ", length(liste),
-        " non-integer elements\n")
-  }
   pikbon <- pik[liste]
   Nbon = length(pikbon)
   Xbon <- array(X[liste, ], c(Nbon, p))
   pikstar <- pik
-  flag = 0
-  
-  
-  # X <- Xbon
-  # pik <- pikbon
   
   
   
-  # begin algorithm (general case where N > p) at the end of this phase you have
-  # at most p values that are not equal to 0 or 1.
-  if (Nbon > p) {
-    if (comment == TRUE)
-      cat("Step 1  ")
+  ##---------------------------------------------------------------
+  ##                    Redux for the N-p value                   -
+  ##---------------------------------------------------------------
+  
+  
+  if(Nbon > p){
     pikstarbon <- algofastflightcubeSPOT(Xbon, pikbon,redux = TRUE)
     pikstar[liste] = pikstarbon
-    flag = 1
   }
   
-  # reupdate the liste and the exctract element no equal to 0 or 1
+  
+  ##----------------------------------------------------------------
+  ##                            update                             -
+  ##----------------------------------------------------------------
+  
+  
   liste <- o[(pikstar[o] > EPS & pikstar[o] < (1 - EPS))]
   pikbon <- pikstar[liste]
   Nbon = length(pikbon)
   Xbon <- array(X[liste, ], c(Nbon, p))
   pbon = dim(Xbon)[2]
   
-  # if you still have value that are not equal to 0 or 1 you reduc the matrix and loop until
-  if (Nbon > 0) {
-    Xbon = reduc(Xbon)
-    pbon = dim(Xbon)[2]
-  }
-  k = 2
+  
+  ##----------------------------------------------------------------
+  ##                Finish flightphase without redux               -
+  ##----------------------------------------------------------------
+  
+  
   while (Nbon > pbon & Nbon > 0) {
-    if (comment == TRUE)
-      cat("Step ", k, ",  ")
-    k = k + 1
-    pikstarbon <- algofastflightcubeSPOT(Xbon/pik[liste] * pikbon,
-                                         pikbon,redux = FALSE)
+    pikstarbon <- algofastflightcubeSPOT(Xbon/pik[liste] * pikbon,pikbon,redux = FALSE)
     pikstar[liste] = pikstarbon
     liste <- o[(pikstar[o] > EPS & pikstar[o] < (1 - EPS))]
     pikbon <- pikstar[liste]
     Nbon = length(pikbon)
     Xbon <- array(X[liste, ], c(Nbon, p))
-    if (Nbon > 0) {
-      Xbon = reduc(Xbon)
-      pbon = dim(Xbon)[2]
-    }
-    flag = 1
+    pbon = ncol(Xbon)
   }
-  if (comment == TRUE)
-    if (flag == 0)
-      cat("NO FLIGHT PHASE")
-  if (comment == TRUE)
-    cat("\n")
-  pikstar
+  
+  
+  return(pikstar)
 }

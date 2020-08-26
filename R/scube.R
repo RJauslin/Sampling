@@ -53,38 +53,30 @@ scube <- function(X, pik,comment = FALSE)
   
   EPS = 1e-11
   N = length(pik)
-  if (!is.array(X)){
-    X = array(X, c(N, length(X)/N))
-  }
+  X = as.matrix(X)
   p = ncol(X)
   pikstar = pik
   
+  
+  ##---------------------------------------------------------------
+  ##                          Main loop                           -
+  ##---------------------------------------------------------------
   
   for (i in 0:(p - 1)) {
     if (length(pikstar[pikstar > EPS & pikstar < (1 - EPS)]) > 0){
       pikstar = ffscube(X[, 1:(p - i)]/pik*pikstar, pikstar, comment)
     }
   }
-  pikfin = pikstar
-  for (i in 1:N) if (runif(1) < pikfin[i]){
-    pikfin[i] = 1
-  }
-      
-  if (comment) {
-    A = X[pik > EPS, ]/pik[pik > EPS]
-    TOT = t(A) %*% pik[pik > EPS]
-    EST = t(A) %*% pikfin[pik > EPS]
-    DEV = 100 * (EST - TOT)/TOT
-    cat("\n\nQUALITY OF BALANCING\n")
-    if (is.null(colnames(X)))
-      Vn = as.character(1:length(TOT))
-    else Vn = colnames(X)
-    for (i in 1:length(TOT)) if (Vn[i] == "")
-      Vn[i] = as.character(i)
-    d = data.frame(TOTALS = c(TOT), HorvitzThompson_estimators = c(EST),
-                   Relative_deviation = c(DEV))
-    rownames(d) <- Vn
-    print(d)
-  }
-  round(pikfin,9)
+  
+  
+  ##---------------------------------------------------------------
+  ##                      Put equal to 0 or 1                     -
+  ##---------------------------------------------------------------
+  
+  
+  pikstar[pikstar < EPS] <- 0
+  pikstar[pikstar > (1-EPS)] <- 1
+  
+  
+  return(pikstar)
 }

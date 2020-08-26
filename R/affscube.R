@@ -1,6 +1,6 @@
 #' Internal function of fastflightcubeSPOT
 #' @noRd
-algofastflightcubeSPOT <- function(X, pik,redux = TRUE) {
+affscube <- function(X, pik,redux = TRUE) {
   
   ##----------------------------------------------------------------
   ##                        Initialization                         -
@@ -12,13 +12,13 @@ algofastflightcubeSPOT <- function(X, pik,redux = TRUE) {
   X <- array(X, c(N, p))
   A <- X/pik
   B <- A[1:(p + 1), ]
-
+  
   
   psik <- pik[1:(p + 1)]
   ind <- seq(1, p + 1, 1)
   pp = p + 2
   B <- array(B, c(p + 1, p))
-
+  
   
   ##---------------------------------------------------------------
   ##                          Main loop                           -
@@ -37,7 +37,7 @@ algofastflightcubeSPOT <- function(X, pik,redux = TRUE) {
     }
     
     #---- update
-
+    
     liste <- (psik > (1 - EPS) | psik < EPS)
     i <- 0
     while (i <= (p) & pp <= N) {
